@@ -1,0 +1,30 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE WRAPPER JDBC po_instrument
+    DATASOURCENAME=oracle_tpcds_copy
+    SCHEMANAME='${databases.test.views.jdbc.po_instrument.SCHEMANAME}' 
+    RELATIONNAME='PO_INSTRUMENT' 
+    OUTPUTSCHEMA (
+        po_id = 'PO_ID' :'java.lang.Long' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='10', sourcetypeid='3', sourcetypename='NUMBER')  SORTABLE,
+        cscn_0 = 'CSCN$$' :'java.lang.Long' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='10', sourcetypeid='3', sourcetypename='NUMBER')  SORTABLE,
+        cscnm_0 = 'CSCNM$$' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='100', sourcetypeid='12', sourcetypename='VARCHAR2')  SORTABLE
+    );
+
+CREATE OR REPLACE TABLE po_instrument I18N us_est (
+        po_id:long (sourcetypedecimals = '0', sourcetyperadix = '10', sourcetypesize = '10', sourcetypeid = '-5'), 
+        cscn_0:long (sourcetypedecimals = '0', sourcetyperadix = '10', sourcetypesize = '10', sourcetypeid = '-5'), 
+        cscnm_0:text (sourcetyperadix = '10', sourcetypesize = '100', sourcetypeid = '12')
+    )
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD po_instrument(
+        I18N us_est
+        CONSTRAINTS (
+             ADD po_id (any) OPT ANY
+             ADD cscn_0 (any) OPT ANY
+             ADD cscnm_0 (any) OPT ANY
+        )
+        OUTPUTLIST (cscn_0, cscnm_0, po_id
+        )
+        WRAPPER (jdbc po_instrument)
+    );
+

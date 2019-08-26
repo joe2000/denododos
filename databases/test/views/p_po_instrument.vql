@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW p_po_instrument AS SELECT po_instrument.po_id AS po_id, po_instrument.cscn_0 AS cscn_0 FROM po_instrument;
+
+ALTER VIEW p_po_instrument
+ LAYOUT (po_instrument = [20, 20, 200, 86]);
+

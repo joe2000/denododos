@@ -1,0 +1,11 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE DATASOURCE CUSTOM azure_csv_copy
+    FOLDER = '/test_delete'
+    CLASSNAME='com.denodo.connect.hadoop.hdfs.wrapper.HDFSDelimitedTextFileWrapper'
+    JARS 'denodo-hdfs-customwrapper-7.0'
+    PARAMETERS (
+      'File system URI' = '${databases.customer360.folder.test_delete.datasources.custom.azure_csv_copy.File system URI}',
+      'Custom core-site.xml file' = ROUTE LOCAL 'LocalConnection' '${databases.customer360.folder.test_delete.datasources.custom.azure_csv_copy.Custom core-site.xml file.ROUTE.LOCAL.PATH}',
+      'Kerberos enabled' = ${databases.customer360.folder.test_delete.datasources.custom.azure_csv_copy.Kerberos enabled}
+    );
+

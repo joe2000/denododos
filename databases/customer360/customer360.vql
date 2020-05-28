@@ -1,0 +1,8 @@
+﻿CREATE OR REPLACE DATABASE customer360 'Database for demo "Customer 360"';
+
+ALTER DATABASE customer360
+  CHARSET DEFAULT;
+
+ALTER DATABASE customer360
+  COST OPTIMIZATION ON;
+

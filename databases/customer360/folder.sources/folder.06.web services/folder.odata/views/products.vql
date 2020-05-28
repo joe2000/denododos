@@ -1,0 +1,129 @@
+﻿CREATE OR REPLACE WRAPPER CUSTOM products
+    FOLDER = '/sources/06.web services/odata'
+    DATASOURCENAME="ODataDatasource"
+    PARAMETERS (
+      'Service Endpoint *' = 'http://services.odata.org/V2/Northwind/Northwind.svc/',
+      'Entity Collection *' = 'Products',
+      'Service Format *' = 'JSON',
+      'Service Version' = 'V2',
+      'Expand Related Entities' = true,
+      'Use NTLM Authentication' = false,
+      'Enable Pagination' = true
+    )
+    OUTPUTSCHEMA (
+        "ProductID" = 'ProductID' : 'java.lang.Integer' (OPT) NOT NULL SORTABLE,
+        "ProductName" = 'ProductName' : 'java.lang.String' (OPT) NOT NULL SORTABLE,
+        "SupplierID" = 'SupplierID' : 'java.lang.Integer' (OPT) SORTABLE,
+        "CategoryID" = 'CategoryID' : 'java.lang.Integer' (OPT) SORTABLE,
+        "QuantityPerUnit" = 'QuantityPerUnit' : 'java.lang.String' (OPT) SORTABLE,
+        "UnitPrice" = 'UnitPrice' : 'java.lang.Double' (OPT) SORTABLE,
+        "UnitsInStock" = 'UnitsInStock' : 'java.lang.Integer' (OPT) SORTABLE,
+        "UnitsOnOrder" = 'UnitsOnOrder' : 'java.lang.Integer' (OPT) SORTABLE,
+        "ReorderLevel" = 'ReorderLevel' : 'java.lang.Integer' (OPT) SORTABLE,
+        "Discontinued" = 'Discontinued' : 'java.lang.Boolean' (OPT) NOT NULL SORTABLE,
+        "Category" = 'Category' : REGISTER OF (
+            "CategoryID" = 'CategoryID' : 'java.lang.Integer' (OPT) NOT NULL SORTABLE,
+            "CategoryName" = 'CategoryName' : 'java.lang.String' (OPT) NOT NULL SORTABLE,
+            "Description" = 'Description' : 'java.lang.String' (OPT) SORTABLE,
+            "Picture" = 'Picture' : '[Ljava.lang.Byte;' (OPT) SORTABLE
+        ),
+        "Order_Details" = 'Order_Details' : ARRAY OF (
+            "Order_Details_record" = 'Order_Details_record' : REGISTER OF (
+                "OrderID" = 'OrderID' : 'java.lang.Integer' (OPT) NOT NULL SORTABLE,
+                "ProductID" = 'ProductID' : 'java.lang.Integer' (OPT) NOT NULL SORTABLE,
+                "UnitPrice" = 'UnitPrice' : 'java.lang.Double' (OPT) NOT NULL SORTABLE,
+                "Quantity" = 'Quantity' : 'java.lang.Integer' (OPT) NOT NULL SORTABLE,
+                "Discount" = 'Discount' : 'java.lang.Float' (OPT) NOT NULL SORTABLE
+            )
+        ),
+        "Supplier" = 'Supplier' : REGISTER OF (
+            "SupplierID" = 'SupplierID' : 'java.lang.Integer' (OPT) NOT NULL SORTABLE,
+            "CompanyName" = 'CompanyName' : 'java.lang.String' (OPT) NOT NULL SORTABLE,
+            "ContactName" = 'ContactName' : 'java.lang.String' (OPT) SORTABLE,
+            "ContactTitle" = 'ContactTitle' : 'java.lang.String' (OPT) SORTABLE,
+            "Address" = 'Address' : 'java.lang.String' (OPT) SORTABLE,
+            "City" = 'City' : 'java.lang.String' (OPT) SORTABLE,
+            "Region" = 'Region' : 'java.lang.String' (OPT) SORTABLE,
+            "PostalCode" = 'PostalCode' : 'java.lang.String' (OPT) SORTABLE,
+            "Country" = 'Country' : 'java.lang.String' (OPT) SORTABLE,
+            "Phone" = 'Phone' : 'java.lang.String' (OPT) SORTABLE,
+            "Fax" = 'Fax' : 'java.lang.String' (OPT) SORTABLE,
+            "HomePage" = 'HomePage' : 'java.lang.String' (OPT) SORTABLE
+        ),
+        fetch_size = 'fetch_size' : 'java.lang.Integer' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        offset_size = 'offset_size' : 'java.lang.Integer' (OPT) NOT SORTABLE NOT UPDATEABLE
+    );
+
+CREATE OR REPLACE TYPE "products_Category" AS REGISTER OF ("CategoryID":int, "CategoryName":text, "Description":text, "Picture":blob);
+
+CREATE OR REPLACE TYPE "products_Order_Details_Order_Details_record" AS REGISTER OF ("OrderID":int, "ProductID":int, "UnitPrice":double, "Quantity":int, "Discount":float);
+
+CREATE OR REPLACE TYPE "products_Order_Details" AS ARRAY OF "products_Order_Details_Order_Details_record";
+
+CREATE OR REPLACE TYPE "products_Supplier" AS REGISTER OF ("SupplierID":int, "CompanyName":text, "ContactName":text, "ContactTitle":text, "Address":text, "City":text, "Region":text, "PostalCode":text, "Country":text, "Phone":text, "Fax":text, "HomePage":text);
+
+CREATE OR REPLACE TABLE products I18N es_euro (
+        "ProductID":int,
+        "ProductName":text,
+        "SupplierID":int,
+        "CategoryID":int,
+        "QuantityPerUnit":text,
+        "UnitPrice":double,
+        "UnitsInStock":int,
+        "UnitsOnOrder":int,
+        "ReorderLevel":int,
+        "Discontinued":boolean,
+        "Category":"products_Category",
+        "Order_Details":"products_Order_Details",
+        "Supplier":"products_Supplier",
+        fetch_size:int,
+        offset_size:int
+    )
+    FOLDER = '/sources/06.web services/odata'
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD products(
+        I18N es_euro
+        CONSTRAINTS (
+             ADD "ProductID" (any) OPT ANY
+             ADD "ProductName" (any) OPT ANY
+             ADD "SupplierID" (any) OPT ANY
+             ADD "CategoryID" (any) OPT ANY
+             ADD "QuantityPerUnit" (any) OPT ANY
+             ADD "UnitPrice" (any) OPT ANY
+             ADD "UnitsInStock" (any) OPT ANY
+             ADD "UnitsOnOrder" (any) OPT ANY
+             ADD "ReorderLevel" (any) OPT ANY
+             ADD "Discontinued" (any) OPT ANY
+             ADD fetch_size (any) OPT ANY
+             ADD offset_size (any) OPT ANY
+             ADD "Category"."CategoryID" (any) OPT ANY
+             ADD "Category"."CategoryName" (any) OPT ANY
+             ADD "Category"."Description" (any) OPT ANY
+             ADD "Category"."Picture" NOS ZERO ()
+             ADD "Order_Details"."OrderID" (any) OPT ANY
+             ADD "Order_Details"."ProductID" (any) OPT ANY
+             ADD "Order_Details"."UnitPrice" (any) OPT ANY
+             ADD "Order_Details"."Quantity" (any) OPT ANY
+             ADD "Order_Details"."Discount" (any) OPT ANY
+             ADD "Supplier"."SupplierID" (any) OPT ANY
+             ADD "Supplier"."CompanyName" (any) OPT ANY
+             ADD "Supplier"."ContactName" (any) OPT ANY
+             ADD "Supplier"."ContactTitle" (any) OPT ANY
+             ADD "Supplier"."Address" (any) OPT ANY
+             ADD "Supplier"."City" (any) OPT ANY
+             ADD "Supplier"."Region" (any) OPT ANY
+             ADD "Supplier"."PostalCode" (any) OPT ANY
+             ADD "Supplier"."Country" (any) OPT ANY
+             ADD "Supplier"."Phone" (any) OPT ANY
+             ADD "Supplier"."Fax" (any) OPT ANY
+             ADD "Supplier"."HomePage" (any) OPT ANY
+             ADD "Category" NOS ZERO ()
+             ADD "Order_Details" NOS ZERO ()
+             ADD "Supplier" NOS ZERO ()
+        )
+        OUTPUTLIST ("Category", "CategoryID", "Discontinued", "Order_Details", "ProductID", "ProductName", "QuantityPerUnit", "ReorderLevel", "Supplier", "SupplierID", "UnitPrice", "UnitsInStock", "UnitsOnOrder", fetch_size, offset_size
+        )
+        WRAPPER (custom products)
+    );
+

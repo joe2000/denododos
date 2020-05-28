@@ -1,0 +1,6 @@
+﻿CREATE OR REPLACE VIEW denodo_catalog_views FOLDER = '/other/business catalog' DESCRIPTION = 'Denodo metadata catalog views' 
+    PRIMARY KEY ( 'resultname' , 'databasename' ) AS SELECT resultname AS resultname, resulttype AS resulttype, resultsubtype AS resultsubtype, resultusercreator AS resultusercreator, resultlastusermodifier AS resultlastusermodifier, resultcreatedate AS resultcreatedate, resultlastmodificationdate AS resultlastmodificationdate, resultdescription AS resultdescription, (('<a href="http://localhost:9090/server/customer360/metadata/views/'||resultname)||'">view data</a>') AS view_data, getsession('database') AS databasename FROM catalog_elements() WHERE (resulttype = 'view' AND resultname in ('customer', 'invoice', 'product', 'incident', 'diagnostic', 'serviceusage'));
+
+ALTER VIEW denodo_catalog_views
+ LAYOUT (catalog_elements = [20, 20, 200, 130]);
+

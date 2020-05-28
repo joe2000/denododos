@@ -1,0 +1,5 @@
+﻿/databases/customer360/folder.sources/sources.vql
+/databases/customer360/folder.sources/folder.06.web services/06.web services.vql
+/databases/customer360/folder.sources/folder.06.web services/folder.soap/soap.vql
+/databases/customer360/folder.sources/folder.06.web services/folder.soap/folder.customers/customers.vql
+/databases/customer360/folder.sources/folder.06.web services/folder.soap/folder.customers/datasources/ws/customer_soap_webservice.vql

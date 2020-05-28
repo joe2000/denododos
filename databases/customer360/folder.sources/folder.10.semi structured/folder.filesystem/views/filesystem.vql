@@ -1,0 +1,59 @@
+﻿CREATE OR REPLACE WRAPPER CUSTOM filesystem
+    FOLDER = '/sources/10.semi structured/filesystem'
+    DATASOURCENAME=filesystem
+    OUTPUTSCHEMA (
+        parentfolder = 'parentfolder' : 'java.lang.Object' (OBL) NOT NULL NOT SORTABLE NOT UPDATEABLE,
+        "relativePath" = 'relativePath' : 'java.lang.String' (OPT) SORTABLE,
+        filename = 'filename' : 'java.lang.String' (OPT) SORTABLE,
+        extension = 'extension' : 'java.lang.String' (OPT) SORTABLE,
+        fullpath = 'fullpath' : 'java.lang.String' (OPT) SORTABLE,
+        filetype = 'filetype' : 'java.lang.String' (OPT) SORTABLE,
+        hidden = 'hidden' : 'java.lang.Boolean' (OPT) SORTABLE,
+        datemodified = 'datemodified' : 'java.util.Date' (OPT) SORTABLE,
+        canread = 'canread' : 'java.lang.Boolean' (OPT) SORTABLE,
+        canwrite = 'canwrite' : 'java.lang.Boolean' (OPT) SORTABLE,
+        canexecute = 'canexecute' : 'java.lang.Boolean' (OPT) SORTABLE,
+        size = 'size' : 'java.lang.Long' (OPT) SORTABLE,
+        recursive = 'recursive' : 'java.lang.Boolean' (OBL) NOT SORTABLE NOT UPDATEABLE
+    );
+
+CREATE OR REPLACE TABLE filesystem I18N gb (
+        parentfolder:text,
+        "relativePath":text,
+        filename:text,
+        extension:text,
+        fullpath:text,
+        filetype:text,
+        hidden:boolean,
+        datemodified:date,
+        canread:boolean,
+        canwrite:boolean,
+        canexecute:boolean,
+        size:long,
+        recursive:boolean
+    )
+    FOLDER = '/sources/10.semi structured/filesystem'
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD filesystem(
+        I18N gb
+        CONSTRAINTS (
+             ADD "relativePath" (any) OPT ANY
+             ADD filename (any) OPT ANY
+             ADD extension (any) OPT ANY
+             ADD fullpath (any) OPT ANY
+             ADD filetype (any) OPT ANY
+             ADD hidden (any) OPT ANY
+             ADD datemodified (any) OPT ANY
+             ADD canread (any) OPT ANY
+             ADD canwrite (any) OPT ANY
+             ADD canexecute (any) OPT ANY
+             ADD size (any) OPT ANY
+             ADD parentfolder (=) OBL ONE
+             ADD recursive (=) OBL ONE
+        )
+        OUTPUTLIST (canexecute, canread, canwrite, datemodified, extension, filename, filetype, fullpath, hidden, parentfolder, recursive, "relativePath", size
+        )
+        WRAPPER (custom filesystem)
+    );
+

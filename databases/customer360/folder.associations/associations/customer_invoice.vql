@@ -1,0 +1,8 @@
+﻿CREATE OR REPLACE ASSOCIATION customer_invoice REFERENTIAL CONSTRAINT 
+FOLDER = '/associations'
+    ENDPOINT invoices customer PRINCIPAL (1)
+    DESCRIPTION = 'Has invoices'
+    ENDPOINT customer invoice (0,*)
+    DESCRIPTION = 'Belongs to customer'
+    ADD MAPPING id=client_id;
+

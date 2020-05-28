@@ -1,0 +1,46 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE WRAPPER JDBC address_oakland
+    DATASOURCENAME=acme_crm_oakland
+    CATALOGNAME='${databases.customer360.views.jdbc.address_oakland.CATALOGNAME}' 
+    RELATIONNAME='address' 
+    OUTPUTSCHEMA (
+        client_identifier = 'client_identifier' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypename='VARCHAR', sourcetypeid='12', sourcetypesize='50')  NOT NULL SORTABLE,
+        street = 'street' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypename='VARCHAR', sourcetypeid='12', sourcetypesize='100')  SORTABLE,
+        city = 'city' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypename='VARCHAR', sourcetypeid='12', sourcetypesize='100')  SORTABLE,
+        zip = 'zip' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypename='VARCHAR', sourcetypeid='12', sourcetypesize='100')  SORTABLE,
+        state = 'state' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypename='VARCHAR', sourcetypeid='12', sourcetypesize='100')  SORTABLE,
+        primary_phone = 'primary_phone' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypename='VARCHAR', sourcetypeid='12', sourcetypesize='100')  SORTABLE,
+        country = 'country' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypename='VARCHAR', sourcetypeid='12', sourcetypesize='45')  SORTABLE
+    )
+    CONSTRAINT 'PRIMARY' PRIMARY KEY ( 'client_identifier' )
+    INDEX 'PRIMARY' CLUSTER UNIQUE PRIMARY ( 'client_identifier' );
+
+CREATE OR REPLACE TABLE address_oakland I18N es_euro (
+        client_identifier:text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '50'),
+        street:text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '100'),
+        city:text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '100'),
+        zip:text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '100'),
+        state:text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '100'),
+        primary_phone:text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '100'),
+        country:text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '45')
+    )
+    FOLDER = '/other/optimizations/partitioned union/aux'
+    CONSTRAINT 'PRIMARY' PRIMARY KEY ( 'client_identifier' )
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD address_oakland(
+        I18N es_euro
+        CONSTRAINTS (
+             ADD client_identifier (any) OPT ANY
+             ADD street (any) OPT ANY
+             ADD city (any) OPT ANY
+             ADD zip (any) OPT ANY
+             ADD state (any) OPT ANY
+             ADD primary_phone (any) OPT ANY
+             ADD country (any) OPT ANY
+        )
+        OUTPUTLIST (city, client_identifier, country, primary_phone, state, street, zip
+        )
+        WRAPPER (jdbc address_oakland)
+    );
+

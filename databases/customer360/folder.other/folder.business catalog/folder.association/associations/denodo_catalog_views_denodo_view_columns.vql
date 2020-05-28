@@ -1,0 +1,10 @@
+﻿CREATE OR REPLACE ASSOCIATION denodo_catalog_views_denodo_view_columns
+FOLDER = '/other/business catalog/association'
+    ENDPOINT columns denodo_catalog_views (+)
+    ENDPOINT table_info denodo_view_columns (1)
+    ADD MAPPING databasename=database_name
+    ADD MAPPING resultname=view_name;
+
+ALTER ASSOCIATION denodo_catalog_views_denodo_view_columns
+ LAYOUT (denodo_view_columns = [470, 40, 200, 242], denodo_catalog_views = [20, 20, 200, 242]);
+

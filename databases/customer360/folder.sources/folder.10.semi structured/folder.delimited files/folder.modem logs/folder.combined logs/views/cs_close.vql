@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW cs_close FOLDER = '/sources/10.semi structured/delimited files/modem logs/combined logs' AS SELECT networkequipment, login, ntu, id, macpc, filepath, accesstype, ip, date_to FROM (SELECT * FROM cslog_adsl_close UNION SELECT macpc, date_to, ip, ntu, accesstype, networkequipment, login, filepath, id FROM cslog_isdn_close) WHERE filepath = 'C:/demos/customer360/Datasources/DF/Modem Logs';
+
+ALTER VIEW cs_close
+ LAYOUT (cslog_adsl_close = [20, 20, 200, 207], cslog_isdn_close = [540, 40, 200, 207]);
+

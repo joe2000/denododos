@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE DATASOURCE CUSTOM "LogCustomWrapper"
+    FOLDER = '/sources/10.semi structured/delimited files/date ordered logs'
+    CLASSNAME='com.denodo.connect.log.LogCustomWrapper'
+    JARS 'denodo-log-customwrapper-6.0';
+

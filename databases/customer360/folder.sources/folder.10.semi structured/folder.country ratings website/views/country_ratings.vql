@@ -1,0 +1,32 @@
+﻿CREATE OR REPLACE TABLE country_ratings I18N us_pst (
+        country:text,
+        sp_rating:text,
+        sp_tendency:text,
+        moodys_rating:text,
+        moodys_tendency:text,
+        fitch_tendency:text,
+        te_rating:text,
+        te_tendency:text,
+        fitch_rating:text
+    )
+    FOLDER = '/sources/10.semi structured/country ratings website'
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD country_ratings(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD country NOS ZERO ()
+             ADD sp_rating NOS ZERO ()
+             ADD sp_tendency NOS ZERO ()
+             ADD moodys_rating NOS ZERO ()
+             ADD moodys_tendency NOS ZERO ()
+             ADD fitch_tendency NOS ZERO ()
+             ADD te_rating NOS ZERO ()
+             ADD te_tendency NOS ZERO ()
+             ADD fitch_rating NOS ZERO ()
+        )
+        OUTPUTLIST (country, fitch_rating, fitch_tendency, moodys_rating, moodys_tendency, sp_rating, sp_tendency, te_rating, te_tendency
+        )
+        WRAPPER (itp country_ratings)
+    );
+

@@ -1,0 +1,3 @@
+﻿/databases/customer360/folder.other/other.vql
+/databases/customer360/folder.other/folder.optimizations/optimizations.vql
+/databases/customer360/folder.other/folder.optimizations/folder.partitioned union/partitioned union.vql

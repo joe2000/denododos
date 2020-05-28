@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW norm_address FOLDER = '/other/optimizations/push-up non-delegable derived attributes/aux' AS SELECT address.client_identifier AS client_identifier, address.street AS street, address.city AS city, address.zip AS zip, map(address.state, 'us_states_map') AS state, address.primary_phone AS primary_phone, propercase(address.country) AS country FROM address;
+
+ALTER VIEW norm_address
+ LAYOUT (address = [20, 20, 200, 167]);
+

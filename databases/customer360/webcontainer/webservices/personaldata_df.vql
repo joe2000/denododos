@@ -1,0 +1,5 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+UNDEPLOY IF EXISTS WEBSERVICE personaldata_df;
+
+DEPLOY WEBSERVICE personaldata_df LOGIN = '${databases.customer360.webcontainer.webservices.personaldata_df.LOGIN}' PASSWORD = '${databases.customer360.webcontainer.webservices.personaldata_df.PASSWORD}' ${databases.customer360.webcontainer.webservices.personaldata_df.PASSWORD.ENCRYPTED};
+

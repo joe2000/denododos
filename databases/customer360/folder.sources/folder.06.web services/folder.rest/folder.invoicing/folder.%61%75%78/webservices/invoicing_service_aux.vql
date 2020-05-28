@@ -1,0 +1,68 @@
+﻿CREATE OR REPLACE WEBSERVICE invoicing_service_aux
+    CHUNKSIZE = 100
+    CHUNKTIMEOUT = 90000
+    QUERYTIMEOUT = 80000
+    POOLENABLED = true
+    POOLINITSIZE = 0
+    POOLMAXACTIVE = 30
+    I18N es_euro
+    DATETYPEMAPPING DATE
+    OUTPUT TYPE (
+      REST
+            (
+            OPCONFIGS (
+                OPERATION = 'getClientInvoicingFlatten'
+                PRETTYOUTPUT))
+      JSON
+    )
+    OPERATION 'getClientInvoicing' (
+        TYPE SELECT
+        SCHEMA VIEW invoicing_data_aux
+        VQL = 'SELECT client_id, name, surname, invoicing_address, bills FROM customer360.invoicing_data_aux ^ExecuteIfIsNotNull("WHERE ",@WHEREEXPRESSION,"") CONTEXT (''i18n'' = ''es_euro''^ExecuteIfIsNotNull(", ",@VERBOSEERRORS,"")^ExecuteIfIsNotNull(", ",@CONTEXTEXPRESSION,""))'
+        INPUTS (
+            'CLIENT_ID' client_id:'text' '=' OBL 
+        )
+        OUTPUT 
+            'invoicing_data_auxReturn1': Array of ( 'invoicing_data_auxReturnRow_1': Register of (
+                client_id : 'text',
+                name : 'text',
+                surname : 'text',
+                invoicing_address : 'text',
+                bills : 'invoicing_aux_ds_array_bill'
+            ) (
+                    '/bills'='BILLS':'invoicing_aux_ds_array_bill' / 'invoicing_aux_ds_array_bill_bill',
+                    '/bills/array_package'='ARRAY_PACKAGE':'invoicing_aux_ds_array_bill_bill_array_package' / 'invoicing_aux_ds_array_bill_bill_array_package_package',
+                    '/bills/array_package/amount_due'='AMOUNT_DUE',
+                    '/bills/array_package/description'='DESCRIPTION',
+                    '/bills/array_package/package_id'='PACKAGE_ID',
+                    '/bills/date'='DATE',
+                    '/client_id'='CLIENT_ID',
+                    '/invoicing_address'='INVOICING_ADDRESS',
+                    '/name'='NAME',
+                    '/surname'='SURNAME',
+                    '/bills/ARRAY_PACKAGE'='ARRAY_PACKAGE':'invoicing_aux_ds_array_bill_bill_array_package' / 'invoicing_aux_ds_array_bill_bill_array_package_package'))
+    )    OPERATION 'getClientInvoicingFlatten' (
+        TYPE SELECT
+        SCHEMA VIEW invoicing_data_aux_flatten
+        VQL = 'SELECT invoicing_address, date, package_id, description, amount_due FROM customer360.invoicing_data_aux_flatten ^ExecuteIfIsNotNull("WHERE ",@WHEREEXPRESSION,"") CONTEXT (''i18n'' = ''es_euro''^ExecuteIfIsNotNull(", ",@VERBOSEERRORS,"")^ExecuteIfIsNotNull(", ",@CONTEXTEXPRESSION,""))'
+        INPUTS (
+            'CLIENT_ID' client_id:'text' '=' OBL 
+        )
+        OUTPUT 
+            'INVOICING_DATA_AUX_FLATTENReturn': Array of ( 'getClientInvoicingFlattenRow': Register of (
+                invoicing_address : 'text',
+                date : 'text',
+                package_id : 'text',
+                description : 'text',
+                amount_due : 'float'
+            ) (
+                    '/amount_due'='AMOUNT_DUE',
+                    '/date'='DATE',
+                    '/description'='DESCRIPTION',
+                    '/invoicing_address'='INVOICING_ADDRESS',
+                    '/package_id'='PACKAGE_ID'))
+    )
+    FOLDER = '/sources/06.web services/rest/invoicing/aux'
+    DESCRIPTION = 'Invoicing'
+    CASE_SENSITIVE = true;
+

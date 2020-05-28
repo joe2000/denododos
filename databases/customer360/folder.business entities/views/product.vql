@@ -1,0 +1,6 @@
+﻿CREATE OR REPLACE VIEW product FOLDER = '/business entities' DESCRIPTION = 'Detailed information about products.' 
+    PRIMARY KEY ( 'package_code' ) AS SELECT package_code, package_name, package_type, price, free_minutes_month, special_features, product_name, code, (product_features).manufacturer AS manufacturer, (product_features).reference AS reference, (product_features).category AS category, (product_features).description AS description FROM FLATTEN product_catalog AS v ( v.features.product) CONTEXT ('I18N' = 'be');
+
+ALTER VIEW product
+ LAYOUT (product_catalog = [20, 20, 446, 344]);
+

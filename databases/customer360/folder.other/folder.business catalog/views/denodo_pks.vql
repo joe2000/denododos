@@ -1,0 +1,6 @@
+﻿CREATE OR REPLACE VIEW denodo_pks FOLDER = '/other/business catalog' DESCRIPTION = 'Primary Keys Information' 
+    PRIMARY KEY ( 'database_name' , 'view_name' ) AS SELECT database_name AS database_name, view_name AS view_name, column_name AS column_name, pk_name AS pk_name FROM catalog_pks() WHERE view_name in ('customer', 'invoice', 'product', 'incident', 'diagnostic', 'serviceusage');
+
+ALTER VIEW denodo_pks
+ LAYOUT (catalog_pks = [20, 20, 200, 105]);
+

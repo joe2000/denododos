@@ -1,0 +1,48 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE WRAPPER JDBC company
+    FOLDER = '/sources/01.databases/sql server/company'
+    DATASOURCENAME=acme_erp
+    CATALOGNAME='${databases.customer360.folder.sources.folder.01..databases.folder.sql server.folder.company.views.jdbc.company.CATALOGNAME}' 
+    SCHEMANAME='${databases.customer360.folder.sources.folder.01..databases.folder.sql server.folder.company.views.jdbc.company.SCHEMANAME}' 
+    RELATIONNAME='company' 
+    OUTPUTSCHEMA (
+        id = 'id' :'java.lang.String' (OPT) (sourcetyperadix='0', sourcetypename='nchar', sourcetypeid='1', sourcetypedecimals='0', sourcetypesize='50')  SORTABLE,
+        code = 'code' :'java.lang.String' (OPT) (sourcetyperadix='0', sourcetypename='nchar', sourcetypeid='1', sourcetypedecimals='0', sourcetypesize='50')  NOT NULL SORTABLE,
+        name = 'name' :'java.lang.String' (OPT) (sourcetyperadix='0', sourcetypename='nchar', sourcetypeid='1', sourcetypedecimals='0', sourcetypesize='50')  SORTABLE,
+        city = 'city' :'java.lang.String' (OPT) (sourcetyperadix='0', sourcetypename='nchar', sourcetypeid='1', sourcetypedecimals='0', sourcetypesize='50')  SORTABLE,
+        state = 'state' :'java.lang.String' (OPT) (sourcetyperadix='0', sourcetypename='nchar', sourcetypeid='1', sourcetypedecimals='0', sourcetypesize='50')  SORTABLE,
+        country = 'country' :'java.lang.String' (OPT) (sourcetyperadix='0', sourcetypename='nchar', sourcetypeid='1', sourcetypedecimals='0', sourcetypesize='50')  SORTABLE,
+        address = 'address' :'java.lang.String' (OPT) (sourcetyperadix='0', sourcetypename='nchar', sourcetypeid='1', sourcetypedecimals='0', sourcetypesize='100')  SORTABLE
+    )
+    CONSTRAINT 'PK_company' PRIMARY KEY ( 'code' )
+    INDEX 'PK_company' CLUSTER UNIQUE PRIMARY ( 'code' );
+
+CREATE OR REPLACE TABLE company I18N us_pst (
+        id:text (sourcetypeid = '-15', sourcetyperadix = '0', sourcetypedecimals = '0', sourcetypesize = '50'),
+        code:text (sourcetypeid = '-15', sourcetyperadix = '0', sourcetypedecimals = '0', sourcetypesize = '50'),
+        name:text (sourcetypeid = '-15', sourcetyperadix = '0', sourcetypedecimals = '0', sourcetypesize = '50'),
+        city:text (sourcetypeid = '-15', sourcetyperadix = '0', sourcetypedecimals = '0', sourcetypesize = '50'),
+        state:text (sourcetypeid = '-15', sourcetyperadix = '0', sourcetypedecimals = '0', sourcetypesize = '50'),
+        country:text (sourcetypeid = '-15', sourcetyperadix = '0', sourcetypedecimals = '0', sourcetypesize = '50'),
+        address:text (sourcetypeid = '-15', sourcetyperadix = '0', sourcetypedecimals = '0', sourcetypesize = '100')
+    )
+    FOLDER = '/sources/01.databases/sql server/company'
+    PRIMARY KEY ( 'code' )
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD company(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD id (any) OPT ANY
+             ADD code (any) OPT ANY
+             ADD name (any) OPT ANY
+             ADD city (any) OPT ANY
+             ADD state (any) OPT ANY
+             ADD country (any) OPT ANY
+             ADD address (any) OPT ANY
+        )
+        OUTPUTLIST (address, city, code, country, id, name, state
+        )
+        WRAPPER (jdbc company)
+    );
+

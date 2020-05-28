@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE DATASOURCE CUSTOM pushd_redis
+    FOLDER = '/sources/09.nosql/redis'
+    CLASSNAME='com.denodo4e.se.RedisWrapper'
+    JARS 'redis_cw_with_jedis_dependencies';
+

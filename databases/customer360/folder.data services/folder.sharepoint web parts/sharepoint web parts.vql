@@ -1,0 +1,2 @@
+﻿CREATE OR REPLACE FOLDER '/data services/Sharepoint Web Parts' DESCRIPTION 'Denodo MS Sharepoint Web Parts' ;
+

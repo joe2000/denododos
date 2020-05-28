@@ -1,0 +1,5 @@
+﻿/databases/customer360/folder.other/other.vql
+/databases/customer360/folder.other/folder.metadata governance/metadata governance.vql
+/databases/customer360/folder.other/folder.metadata governance/folder.%61%75%78/%61%75%78.vql
+/databases/customer360/folder.other/folder.metadata governance/folder.%61%75%78/views/df_base_views.vql
+/databases/customer360/folder.other/folder.metadata governance/folder.%61%75%78/views/source_changes.vql

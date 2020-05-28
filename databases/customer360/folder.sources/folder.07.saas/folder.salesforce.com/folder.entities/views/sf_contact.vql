@@ -1,0 +1,217 @@
+﻿CREATE OR REPLACE WRAPPER CUSTOM sf_contact
+    FOLDER = '/sources/07.saas/salesforce.com/entities'
+    DATASOURCENAME=salesforce
+    PARAMETERS (
+      'ENTITY' = 'Contact',
+      'BASE_URL' = 'https://na3.salesforce.com',
+      'ACCESS_TOKEN' = '00D5000000077zi!ARcAQE_qUZ9l3JhH3yr4nQpPucD.NDJxUphbjCjx6oetX8mQ1C2qVi770L1RBnPJcdK53ck4UP0pY1QAdQPHexh50o1cRMD.',
+      'CLIENT_ID' = '3MVG9Km_cBLhsuPzuEJ8T.2uUkOGhpBPs0UH6ejd6RFAmuHgCV_zeHh_GE0cUfnTCyKkf.m4fghfEeLpqMdus',
+      'REFRESH_TOKEN (required for web flow)' = '5Aep861eWO5D.7wJBsLFjitX6L3M98eYEYnVfxbfZ6rwYOkMG4OhB3bBRaYfPD5xCWNEh0D6LkRzbfkUhbk3Lin',
+      'RESPONSE_COMPRESSION_TYPE (one of NONE, GZIP or DEFLATE -default is NONE)' = 'DEFLATE'
+    )
+    OUTPUTSCHEMA (
+        id = 'Id' : 'java.lang.String' (OPT) SORTABLE,
+        isdeleted = 'IsDeleted' : 'java.lang.Boolean' (OPT) SORTABLE,
+        masterrecordid = 'MasterRecordId' : 'java.lang.String' (OPT) SORTABLE,
+        accountid = 'AccountId' : 'java.lang.String' (OPT) SORTABLE,
+        lastname = 'LastName' : 'java.lang.String' (OPT) SORTABLE,
+        firstname = 'FirstName' : 'java.lang.String' (OPT) SORTABLE,
+        salutation = 'Salutation' : 'java.lang.String' (OPT) SORTABLE,
+        name = 'Name' : 'java.lang.String' (OPT) SORTABLE,
+        otherstreet = 'OtherStreet' : 'java.lang.String' (OPT) SORTABLE,
+        othercity = 'OtherCity' : 'java.lang.String' (OPT) SORTABLE,
+        otherstate = 'OtherState' : 'java.lang.String' (OPT) SORTABLE,
+        otherpostalcode = 'OtherPostalCode' : 'java.lang.String' (OPT) SORTABLE,
+        othercountry = 'OtherCountry' : 'java.lang.String' (OPT) SORTABLE,
+        "OtherLatitude" = 'OtherLatitude' : 'java.math.BigDecimal' (OPT) SORTABLE,
+        "OtherLongitude" = 'OtherLongitude' : 'java.math.BigDecimal' (OPT) SORTABLE,
+        "OtherAddress" = 'OtherAddress' : 'java.lang.String' (OPT) NOT SORTABLE,
+        mailingstreet = 'MailingStreet' : 'java.lang.String' (OPT) SORTABLE,
+        mailingcity = 'MailingCity' : 'java.lang.String' (OPT) SORTABLE,
+        mailingstate = 'MailingState' : 'java.lang.String' (OPT) SORTABLE,
+        mailingpostalcode = 'MailingPostalCode' : 'java.lang.String' (OPT) SORTABLE,
+        mailingcountry = 'MailingCountry' : 'java.lang.String' (OPT) SORTABLE,
+        "MailingLatitude" = 'MailingLatitude' : 'java.math.BigDecimal' (OPT) SORTABLE,
+        "MailingLongitude" = 'MailingLongitude' : 'java.math.BigDecimal' (OPT) SORTABLE,
+        "MailingAddress" = 'MailingAddress' : 'java.lang.String' (OPT) NOT SORTABLE,
+        phone = 'Phone' : 'java.lang.String' (OPT) SORTABLE,
+        fax = 'Fax' : 'java.lang.String' (OPT) SORTABLE,
+        mobilephone = 'MobilePhone' : 'java.lang.String' (OPT) SORTABLE,
+        homephone = 'HomePhone' : 'java.lang.String' (OPT) SORTABLE,
+        otherphone = 'OtherPhone' : 'java.lang.String' (OPT) SORTABLE,
+        assistantphone = 'AssistantPhone' : 'java.lang.String' (OPT) SORTABLE,
+        reportstoid = 'ReportsToId' : 'java.lang.String' (OPT) SORTABLE,
+        email = 'Email' : 'java.lang.String' (OPT) SORTABLE,
+        title = 'Title' : 'java.lang.String' (OPT) SORTABLE,
+        department = 'Department' : 'java.lang.String' (OPT) SORTABLE,
+        assistantname = 'AssistantName' : 'java.lang.String' (OPT) SORTABLE,
+        leadsource = 'LeadSource' : 'java.lang.String' (OPT) SORTABLE,
+        birthdate = 'Birthdate' : 'java.util.Date' (OPT) SORTABLE,
+        description = 'Description' : 'java.lang.String' NOT SORTABLE,
+        ownerid = 'OwnerId' : 'java.lang.String' (OPT) SORTABLE,
+        createddate = 'CreatedDate' : 'java.util.Date' (OPT) SORTABLE,
+        createdbyid = 'CreatedById' : 'java.lang.String' (OPT) SORTABLE,
+        lastmodifieddate = 'LastModifiedDate' : 'java.util.Date' (OPT) SORTABLE,
+        lastmodifiedbyid = 'LastModifiedById' : 'java.lang.String' (OPT) SORTABLE,
+        systemmodstamp = 'SystemModstamp' : 'java.util.Date' (OPT) SORTABLE,
+        lastactivitydate = 'LastActivityDate' : 'java.util.Date' (OPT) SORTABLE,
+        lastcurequestdate = 'LastCURequestDate' : 'java.util.Date' (OPT) SORTABLE,
+        lastcuupdatedate = 'LastCUUpdateDate' : 'java.util.Date' (OPT) SORTABLE,
+        "LastViewedDate" = 'LastViewedDate' : 'java.util.Date' (OPT) SORTABLE,
+        "LastReferencedDate" = 'LastReferencedDate' : 'java.util.Date' (OPT) SORTABLE,
+        emailbouncedreason = 'EmailBouncedReason' : 'java.lang.String' (OPT) SORTABLE,
+        emailbounceddate = 'EmailBouncedDate' : 'java.util.Date' (OPT) SORTABLE,
+        "IsEmailBounced" = 'IsEmailBounced' : 'java.lang.Boolean' (OPT) SORTABLE,
+        "PhotoUrl" = 'PhotoUrl' : 'java.lang.String' (OPT) SORTABLE,
+        jigsaw = 'Jigsaw' : 'java.lang.String' (OPT) SORTABLE,
+        jigsawcontactid = 'JigsawContactId' : 'java.lang.String' (OPT) SORTABLE,
+        languages__c = 'Languages__c' : 'java.lang.String' (OPT) SORTABLE,
+        level__c = 'Level__c' : 'java.lang.String' (OPT) SORTABLE,
+        taxid__c = 'TaxId__c' : 'java.lang.String' (OPT) SORTABLE,
+        ssn__c = 'SSN__c' : 'java.lang.String' (OPT) SORTABLE,
+        businesstype__c = 'BusinessType__c' : 'java.lang.String' (OPT) SORTABLE,
+        contactid__c = 'ContactId__c' : 'java.lang.String' (OPT) SORTABLE,
+        businessname__c = 'BusinessName__c' : 'java.lang.String' (OPT) SORTABLE,
+        referenceable__c = 'Referenceable__c' : 'java.lang.String' (OPT) SORTABLE
+    );
+
+CREATE OR REPLACE TABLE sf_contact I18N us_pst (
+        id:text,
+        isdeleted:boolean,
+        masterrecordid:text,
+        accountid:text,
+        lastname:text,
+        firstname:text,
+        salutation:text,
+        name:text,
+        otherstreet:text,
+        othercity:text,
+        otherstate:text,
+        otherpostalcode:text,
+        othercountry:text,
+        "OtherLatitude":decimal,
+        "OtherLongitude":decimal,
+        "OtherAddress":text,
+        mailingstreet:text,
+        mailingcity:text,
+        mailingstate:text,
+        mailingpostalcode:text,
+        mailingcountry:text,
+        "MailingLatitude":decimal,
+        "MailingLongitude":decimal,
+        "MailingAddress":text,
+        phone:text,
+        fax:text,
+        mobilephone:text,
+        homephone:text,
+        otherphone:text,
+        assistantphone:text,
+        reportstoid:text,
+        email:text,
+        title:text,
+        department:text,
+        assistantname:text,
+        leadsource:text,
+        birthdate:date,
+        description:text,
+        ownerid:text,
+        createddate:date,
+        createdbyid:text,
+        lastmodifieddate:date,
+        lastmodifiedbyid:text,
+        systemmodstamp:date,
+        lastactivitydate:date,
+        lastcurequestdate:date,
+        lastcuupdatedate:date,
+        "LastViewedDate":date,
+        "LastReferencedDate":date,
+        emailbouncedreason:text,
+        emailbounceddate:date,
+        "IsEmailBounced":boolean,
+        "PhotoUrl":text,
+        jigsaw:text,
+        jigsawcontactid:text,
+        languages__c:text,
+        level__c:text,
+        taxid__c:text,
+        ssn__c:text,
+        businesstype__c:text,
+        contactid__c:text,
+        businessname__c:text,
+        referenceable__c:text
+    )
+    FOLDER = '/sources/07.saas/salesforce.com/entities'
+    CACHE OFF
+    TIMETOLIVEINCACHE NOEXPIRE
+    ADD SEARCHMETHOD sf_contact(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD id (any) OPT ANY
+             ADD isdeleted (any) OPT ANY
+             ADD masterrecordid (any) OPT ANY
+             ADD accountid (any) OPT ANY
+             ADD lastname (any) OPT ANY
+             ADD firstname (any) OPT ANY
+             ADD salutation (any) OPT ANY
+             ADD name (any) OPT ANY
+             ADD otherstreet (any) OPT ANY
+             ADD othercity (any) OPT ANY
+             ADD otherstate (any) OPT ANY
+             ADD otherpostalcode (any) OPT ANY
+             ADD othercountry (any) OPT ANY
+             ADD "OtherLatitude" (any) OPT ANY
+             ADD "OtherLongitude" (any) OPT ANY
+             ADD "OtherAddress" (any) OPT ANY
+             ADD mailingstreet (any) OPT ANY
+             ADD mailingcity (any) OPT ANY
+             ADD mailingstate (any) OPT ANY
+             ADD mailingpostalcode (any) OPT ANY
+             ADD mailingcountry (any) OPT ANY
+             ADD "MailingLatitude" (any) OPT ANY
+             ADD "MailingLongitude" (any) OPT ANY
+             ADD "MailingAddress" (any) OPT ANY
+             ADD phone (any) OPT ANY
+             ADD fax (any) OPT ANY
+             ADD mobilephone (any) OPT ANY
+             ADD homephone (any) OPT ANY
+             ADD otherphone (any) OPT ANY
+             ADD assistantphone (any) OPT ANY
+             ADD reportstoid (any) OPT ANY
+             ADD email (any) OPT ANY
+             ADD title (any) OPT ANY
+             ADD department (any) OPT ANY
+             ADD assistantname (any) OPT ANY
+             ADD leadsource (any) OPT ANY
+             ADD birthdate (any) OPT ANY
+             ADD ownerid (any) OPT ANY
+             ADD createddate (any) OPT ANY
+             ADD createdbyid (any) OPT ANY
+             ADD lastmodifieddate (any) OPT ANY
+             ADD lastmodifiedbyid (any) OPT ANY
+             ADD systemmodstamp (any) OPT ANY
+             ADD lastactivitydate (any) OPT ANY
+             ADD lastcurequestdate (any) OPT ANY
+             ADD lastcuupdatedate (any) OPT ANY
+             ADD "LastViewedDate" (any) OPT ANY
+             ADD "LastReferencedDate" (any) OPT ANY
+             ADD emailbouncedreason (any) OPT ANY
+             ADD emailbounceddate (any) OPT ANY
+             ADD "IsEmailBounced" (any) OPT ANY
+             ADD "PhotoUrl" (any) OPT ANY
+             ADD jigsaw (any) OPT ANY
+             ADD jigsawcontactid (any) OPT ANY
+             ADD languages__c (any) OPT ANY
+             ADD level__c (any) OPT ANY
+             ADD taxid__c (any) OPT ANY
+             ADD ssn__c (any) OPT ANY
+             ADD businesstype__c (any) OPT ANY
+             ADD contactid__c (any) OPT ANY
+             ADD businessname__c (any) OPT ANY
+             ADD referenceable__c (any) OPT ANY
+             ADD description NOS ZERO ()
+        )
+        OUTPUTLIST ("IsEmailBounced", "LastReferencedDate", "LastViewedDate", "MailingAddress", "MailingLatitude", "MailingLongitude", "OtherAddress", "OtherLatitude", "OtherLongitude", "PhotoUrl", accountid, assistantname, assistantphone, birthdate, businessname__c, businesstype__c, contactid__c, createdbyid, createddate, department, description, email, emailbounceddate, emailbouncedreason, fax, firstname, homephone, id, isdeleted, jigsaw, jigsawcontactid, languages__c, lastactivitydate, lastcurequestdate, lastcuupdatedate, lastmodifiedbyid, lastmodifieddate, lastname, leadsource, level__c, mailingcity, mailingcountry, mailingpostalcode, mailingstate, mailingstreet, masterrecordid, mobilephone, name, othercity, othercountry, otherphone, otherpostalcode, otherstate, otherstreet, ownerid, phone, referenceable__c, reportstoid, salutation, ssn__c, systemmodstamp, taxid__c, title
+        )
+        WRAPPER (custom sf_contact)
+    );
+

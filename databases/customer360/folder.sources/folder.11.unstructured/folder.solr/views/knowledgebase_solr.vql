@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW knowledgebase_solr FOLDER = '/sources/11.unstructured/solr' AS SELECT message, forum_name, topic_name FROM FLATTEN knowledgebase_solr_aux AS v ( v.response.docs);
+
+ALTER VIEW knowledgebase_solr
+ LAYOUT (knowledgebase_solr_aux = [20, 20, 384, 307]);
+

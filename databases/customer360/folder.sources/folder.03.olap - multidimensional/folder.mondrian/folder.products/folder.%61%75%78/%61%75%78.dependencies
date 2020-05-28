@@ -1,0 +1,4 @@
+﻿/databases/customer360/folder.sources/sources.vql
+/databases/customer360/folder.sources/folder.03.olap - multidimensional/03.olap - multidimensional.vql
+/databases/customer360/folder.sources/folder.03.olap - multidimensional/folder.mondrian/mondrian.vql
+/databases/customer360/folder.sources/folder.03.olap - multidimensional/folder.mondrian/folder.products/products.vql

@@ -1,0 +1,47 @@
+﻿CREATE OR REPLACE WRAPPER CUSTOM categories
+    FOLDER = '/sources/06.web services/odata'
+    DATASOURCENAME="ODataDatasource"
+    PARAMETERS (
+      'Service Endpoint *' = 'http://services.odata.org/V2/Northwind/Northwind.svc/',
+      'Entity Collection *' = 'Categories',
+      'Service Format *' = 'JSON',
+      'Service Version' = 'V2',
+      'Expand Related Entities' = false,
+      'Use NTLM Authentication' = false,
+      'Enable Pagination' = true
+    )
+    OUTPUTSCHEMA (
+        "CategoryID" = 'CategoryID' : 'java.lang.Integer' (OPT) NOT NULL SORTABLE,
+        "CategoryName" = 'CategoryName' : 'java.lang.String' (OPT) NOT NULL SORTABLE,
+        "Description" = 'Description' : 'java.lang.String' (OPT) SORTABLE,
+        "Picture" = 'Picture' : '[Ljava.lang.Byte;' (OPT) SORTABLE,
+        fetch_size = 'fetch_size' : 'java.lang.Integer' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        offset_size = 'offset_size' : 'java.lang.Integer' (OPT) NOT SORTABLE NOT UPDATEABLE
+    );
+
+CREATE OR REPLACE TABLE categories I18N es_euro (
+        "CategoryID":int,
+        "CategoryName":text,
+        "Description":text,
+        "Picture":blob,
+        fetch_size:int,
+        offset_size:int
+    )
+    FOLDER = '/sources/06.web services/odata'
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD categories(
+        I18N es_euro
+        CONSTRAINTS (
+             ADD "CategoryID" (any) OPT ANY
+             ADD "CategoryName" (any) OPT ANY
+             ADD "Description" (any) OPT ANY
+             ADD fetch_size (any) OPT ANY
+             ADD offset_size (any) OPT ANY
+             ADD "Picture" NOS ZERO ()
+        )
+        OUTPUTLIST ("CategoryID", "CategoryName", "Description", "Picture", fetch_size, offset_size
+        )
+        WRAPPER (custom categories)
+    );
+

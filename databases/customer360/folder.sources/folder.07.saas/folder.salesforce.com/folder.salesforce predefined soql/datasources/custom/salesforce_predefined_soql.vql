@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE DATASOURCE CUSTOM salesforce_predefined_soql
+    FOLDER = '/sources/07.saas/salesforce.com/salesforce predefined soql'
+    CLASSNAME='com.denodo.connect.salesforce.rest.wrapper.SalesforcePredefinedSOQLWrapper'
+    JARS 'denodo-salesforce-rest-wrapper-6.0';
+

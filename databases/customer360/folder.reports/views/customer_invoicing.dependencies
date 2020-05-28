@@ -1,0 +1,28 @@
+﻿/databases/customer360/folder.reports/reports.vql
+/databases/customer360/folder.business entities/business entities.vql
+/databases/customer360/folder.business entities/folder.implementation/implementation.vql
+/databases/customer360/folder.sources/sources.vql
+/databases/customer360/folder.sources/folder.01.databases/01.databases.vql
+/databases/customer360/folder.sources/folder.01.databases/folder.mysql/mysql.vql
+/databases/customer360/folder.sources/folder.01.databases/folder.mysql/datasources/jdbc/acme_crm.vql
+/databases/customer360/folder.sources/folder.01.databases/folder.mysql/views/client.vql
+/databases/customer360/folder.sources/folder.01.databases/folder.mysql/views/client_type.vql
+/databases/customer360/folder.sources/folder.01.databases/folder.mysql/views/address.vql
+/databases/customer360/folder.sources/folder.01.databases/folder.sql server/sql server.vql
+/databases/customer360/folder.sources/folder.01.databases/folder.sql server/folder.company/company.vql
+/databases/customer360/folder.sources/folder.01.databases/folder.sql server/folder.company/datasources/jdbc/acme_erp.vql
+/databases/customer360/folder.sources/folder.01.databases/folder.sql server/folder.company/views/company.vql
+/databases/customer360/folder.business entities/folder.implementation/views/customer_2.vql
+/databases/customer360/folder.sources/folder.06.web services/06.web services.vql
+/databases/customer360/folder.sources/folder.06.web services/folder.rest/rest.vql
+/databases/customer360/folder.sources/folder.06.web services/folder.rest/folder.invoicing/invoicing.vql
+/databases/customer360/folder.sources/folder.06.web services/folder.rest/folder.invoicing/datasources/xml/invoicing.vql
+/databases/customer360/folder.sources/folder.06.web services/folder.rest/folder.invoicing/views/invoicing.vql
+/databases/customer360/folder.business entities/views/invoice.vql
+/databases/customer360/folder.sources/folder.03.olap - multidimensional/03.olap - multidimensional.vql
+/databases/customer360/folder.sources/folder.03.olap - multidimensional/folder.mondrian/mondrian.vql
+/databases/customer360/folder.sources/folder.03.olap - multidimensional/folder.mondrian/folder.products/products.vql
+/databases/customer360/folder.sources/folder.03.olap - multidimensional/folder.mondrian/folder.products/folder.%61%75%78/%61%75%78.vql
+/databases/customer360/folder.sources/folder.03.olap - multidimensional/folder.mondrian/folder.products/folder.%61%75%78/datasources/xml/product_catalog.vql
+/databases/customer360/folder.sources/folder.03.olap - multidimensional/folder.mondrian/folder.products/folder.%61%75%78/views/product_catalog.vql
+/databases/customer360/folder.business entities/views/product.vql

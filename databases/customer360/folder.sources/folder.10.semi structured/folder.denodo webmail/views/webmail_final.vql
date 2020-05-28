@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW webmail_final FOLDER = '/sources/10.semi structured/denodo webmail' AS SELECT webmail_no_credentials.sender AS sender, webmail_no_credentials.subject AS subject, webmail_no_credentials.size AS size, webmail_no_credentials.day AS day, webmail_no_credentials.month AS month, webmail_no_credentials.year AS year FROM webmail_no_credentials WHERE (login = 'demos' AND password = 'DeMo.04');
+
+ALTER VIEW webmail_final
+ LAYOUT (webmail_no_credentials = [20, 20, 200, 187]);
+

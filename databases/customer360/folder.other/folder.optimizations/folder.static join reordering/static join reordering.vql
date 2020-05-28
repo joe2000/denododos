@@ -1,0 +1,3 @@
+﻿CREATE OR REPLACE FOLDER '/other/optimizations/Static Join reordering' DESCRIPTION 'Static Join Reordering to maximize query delegation to data sources
+' ;
+

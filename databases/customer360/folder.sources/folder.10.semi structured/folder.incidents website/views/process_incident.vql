@@ -1,0 +1,30 @@
+﻿CREATE OR REPLACE TABLE process_incident I18N us_pst (
+        case_num:text,
+        description:text,
+        status:text,
+        login:text,
+        process_action:text,
+        name_search:text,
+        password:text,
+        notes:text
+    )
+    FOLDER = '/sources/10.semi structured/incidents website'
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD process_incident(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD case_num NOS ZERO ()
+             ADD description NOS ZERO ()
+             ADD status NOS ZERO ()
+             ADD login (=) OBL ONE
+             ADD process_action (=) OBL ONE
+             ADD name_search (=) OBL ONE
+             ADD password (=) OBL ONE
+             ADD notes (=) OBL ONE
+        )
+        OUTPUTLIST (case_num, description, status
+        )
+        WRAPPER (itp process_incident)
+    );
+

@@ -1,0 +1,139 @@
+﻿CREATE OR REPLACE WRAPPER CUSTOM sf_opportunity
+    FOLDER = '/sources/07.saas/salesforce.com/entities'
+    DATASOURCENAME=salesforce
+    PARAMETERS (
+      'ENTITY' = 'Opportunity',
+      'BASE_URL' = 'https://na3.salesforce.com',
+      'ACCESS_TOKEN' = '00D5000000077zi!ARcAQE_qUZ9l3JhH3yr4nQpPucD.NDJxUphbjCjx6oetX8mQ1C2qVi770L1RBnPJcdK53ck4UP0pY1QAdQPHexh50o1cRMD.',
+      'CLIENT_ID' = '3MVG9Km_cBLhsuPzuEJ8T.2uUkOGhpBPs0UH6ejd6RFAmuHgCV_zeHh_GE0cUfnTCyKkf.m4fghfEeLpqMdus',
+      'REFRESH_TOKEN (required for web flow)' = '5Aep861eWO5D.7wJBsLFjitX6L3M98eYEYnVfxbfZ6rwYOkMG4OhB3bBRaYfPD5xCWNEh0D6LkRzbfkUhbk3Lin',
+      'RESPONSE_COMPRESSION_TYPE (one of NONE, GZIP or DEFLATE -default is NONE)' = 'DEFLATE'
+    )
+    OUTPUTSCHEMA (
+        id = 'Id' : 'java.lang.String' (OPT) NOT SORTABLE,
+        isdeleted = 'IsDeleted' : 'java.lang.Boolean' (OPT) NOT SORTABLE,
+        accountid = 'AccountId' : 'java.lang.String' (OPT) NOT SORTABLE,
+        isprivate = 'IsPrivate' : 'java.lang.Boolean' (OPT) NOT SORTABLE,
+        name = 'Name' : 'java.lang.String' (OPT) NOT SORTABLE,
+        description = 'Description' : 'java.lang.String' (OPT) NOT SORTABLE,
+        stagename = 'StageName' : 'java.lang.String' (OPT) NOT SORTABLE,
+        amount = 'Amount' : 'java.lang.Float' (OPT) NOT SORTABLE,
+        probability = 'Probability' : 'java.lang.Long' (OPT) NOT SORTABLE,
+        expectedrevenue = 'ExpectedRevenue' : 'java.lang.Float' (OPT) NOT SORTABLE,
+        totalopportunityquantity = 'TotalOpportunityQuantity' : 'java.lang.Float' (OPT) NOT SORTABLE,
+        closedate = 'CloseDate' : 'java.util.Date' (OPT) NOT SORTABLE,
+        type = 'Type' : 'java.lang.String' (OPT) NOT SORTABLE,
+        nextstep = 'NextStep' : 'java.lang.String' (OPT) NOT SORTABLE,
+        leadsource = 'LeadSource' : 'java.lang.String' (OPT) NOT SORTABLE,
+        isclosed = 'IsClosed' : 'java.lang.Boolean' (OPT) NOT SORTABLE,
+        iswon = 'IsWon' : 'java.lang.Boolean' (OPT) NOT SORTABLE,
+        forecastcategory = 'ForecastCategory' : 'java.lang.String' (OPT) NOT SORTABLE,
+        forecastcategoryname = 'ForecastCategoryName' : 'java.lang.String' (OPT) NOT SORTABLE,
+        campaignid = 'CampaignId' : 'java.lang.String' (OPT) NOT SORTABLE,
+        hasopportunitylineitem = 'HasOpportunityLineItem' : 'java.lang.Boolean' (OPT) NOT SORTABLE,
+        pricebook2id = 'Pricebook2Id' : 'java.lang.String' (OPT) NOT SORTABLE,
+        ownerid = 'OwnerId' : 'java.lang.String' (OPT) NOT SORTABLE,
+        createddate = 'CreatedDate' : 'java.util.Date' (OPT) NOT SORTABLE,
+        createdbyid = 'CreatedById' : 'java.lang.String' (OPT) NOT SORTABLE,
+        lastmodifieddate = 'LastModifiedDate' : 'java.util.Date' (OPT) NOT SORTABLE,
+        lastmodifiedbyid = 'LastModifiedById' : 'java.lang.String' (OPT) NOT SORTABLE,
+        systemmodstamp = 'SystemModstamp' : 'java.util.Date' (OPT) NOT SORTABLE,
+        lastactivitydate = 'LastActivityDate' : 'java.util.Date' (OPT) NOT SORTABLE,
+        fiscalquarter = 'FiscalQuarter' : 'java.lang.Long' (OPT) NOT SORTABLE,
+        fiscalyear = 'FiscalYear' : 'java.lang.Long' (OPT) NOT SORTABLE,
+        fiscal = 'Fiscal' : 'java.lang.String' (OPT) NOT SORTABLE,
+        deliveryinstallationstatus__c = 'DeliveryInstallationStatus__c' : 'java.lang.String' (OPT) NOT SORTABLE,
+        currentgenerators__c = 'CurrentGenerators__c' : 'java.lang.String' (OPT) NOT SORTABLE,
+        trackingnumber__c = 'TrackingNumber__c' : 'java.lang.String' (OPT) NOT SORTABLE,
+        maincompetitors__c = 'MainCompetitors__c' : 'java.lang.String' (OPT) NOT SORTABLE,
+        ordernumber__c = 'OrderNumber__c' : 'java.lang.String' (OPT) NOT SORTABLE
+    );
+
+CREATE OR REPLACE TABLE sf_opportunity I18N es_euro (
+        id:text,
+        isdeleted:boolean,
+        accountid:text,
+        isprivate:boolean,
+        name:text,
+        description:text,
+        stagename:text,
+        amount:float,
+        probability:long,
+        expectedrevenue:float,
+        totalopportunityquantity:float,
+        closedate:date,
+        type:text,
+        nextstep:text,
+        leadsource:text,
+        isclosed:boolean,
+        iswon:boolean,
+        forecastcategory:text,
+        forecastcategoryname:text,
+        campaignid:text,
+        hasopportunitylineitem:boolean,
+        pricebook2id:text,
+        ownerid:text,
+        createddate:date,
+        createdbyid:text,
+        lastmodifieddate:date,
+        lastmodifiedbyid:text,
+        systemmodstamp:date,
+        lastactivitydate:date,
+        fiscalquarter:long,
+        fiscalyear:long,
+        fiscal:text,
+        deliveryinstallationstatus__c:text,
+        currentgenerators__c:text,
+        trackingnumber__c:text,
+        maincompetitors__c:text,
+        ordernumber__c:text
+    )
+    FOLDER = '/sources/07.saas/salesforce.com/entities'
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD sf_opportunity(
+        I18N es_euro
+        CONSTRAINTS (
+             ADD id (any) OPT ANY
+             ADD isdeleted (any) OPT ANY
+             ADD accountid (any) OPT ANY
+             ADD isprivate (any) OPT ANY
+             ADD name (any) OPT ANY
+             ADD stagename (any) OPT ANY
+             ADD amount (any) OPT ANY
+             ADD probability (any) OPT ANY
+             ADD expectedrevenue (any) OPT ANY
+             ADD totalopportunityquantity (any) OPT ANY
+             ADD closedate (any) OPT ANY
+             ADD type (any) OPT ANY
+             ADD nextstep (any) OPT ANY
+             ADD leadsource (any) OPT ANY
+             ADD isclosed (any) OPT ANY
+             ADD iswon (any) OPT ANY
+             ADD forecastcategory (any) OPT ANY
+             ADD forecastcategoryname (any) OPT ANY
+             ADD campaignid (any) OPT ANY
+             ADD hasopportunitylineitem (any) OPT ANY
+             ADD pricebook2id (any) OPT ANY
+             ADD ownerid (any) OPT ANY
+             ADD createddate (any) OPT ANY
+             ADD createdbyid (any) OPT ANY
+             ADD lastmodifieddate (any) OPT ANY
+             ADD lastmodifiedbyid (any) OPT ANY
+             ADD systemmodstamp (any) OPT ANY
+             ADD lastactivitydate (any) OPT ANY
+             ADD fiscalquarter (any) OPT ANY
+             ADD fiscalyear (any) OPT ANY
+             ADD fiscal (any) OPT ANY
+             ADD deliveryinstallationstatus__c (any) OPT ANY
+             ADD currentgenerators__c (any) OPT ANY
+             ADD trackingnumber__c (any) OPT ANY
+             ADD maincompetitors__c (any) OPT ANY
+             ADD ordernumber__c (any) OPT ANY
+             ADD description NOS ZERO ()
+        )
+        OUTPUTLIST (accountid, amount, campaignid, closedate, createdbyid, createddate, currentgenerators__c, deliveryinstallationstatus__c, description, expectedrevenue, fiscal, fiscalquarter, fiscalyear, forecastcategory, forecastcategoryname, hasopportunitylineitem, id, isclosed, isdeleted, isprivate, iswon, lastactivitydate, lastmodifiedbyid, lastmodifieddate, leadsource, maincompetitors__c, name, nextstep, ordernumber__c, ownerid, pricebook2id, probability, stagename, systemmodstamp, totalopportunityquantity, trackingnumber__c, type
+        )
+        WRAPPER (custom sf_opportunity)
+    );
+

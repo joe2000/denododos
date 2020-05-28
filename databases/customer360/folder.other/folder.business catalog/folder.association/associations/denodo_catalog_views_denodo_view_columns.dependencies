@@ -1,0 +1,6 @@
+﻿/databases/customer360/folder.other/other.vql
+/databases/customer360/folder.other/folder.business catalog/business catalog.vql
+/databases/customer360/folder.other/folder.business catalog/folder.association/association.vql
+/databases/customer360/folder.other/folder.business catalog/views/denodo_catalog_views.vql
+/databases/customer360/folder.other/folder.business catalog/views/inter_catalog_metadata_views.vql
+/databases/customer360/folder.other/folder.business catalog/views/denodo_view_columns.vql

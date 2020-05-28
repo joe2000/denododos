@@ -1,0 +1,5 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+UNDEPLOY IF EXISTS WIDGET WEBSERVICE customer;
+
+DEPLOY WIDGET WEBSERVICE customer LOGIN = '${databases.customer360.webcontainer.widgets.customer.LOGIN}' PASSWORD = '${databases.customer360.webcontainer.widgets.customer.PASSWORD}' ${databases.customer360.webcontainer.widgets.customer.PASSWORD.ENCRYPTED};
+

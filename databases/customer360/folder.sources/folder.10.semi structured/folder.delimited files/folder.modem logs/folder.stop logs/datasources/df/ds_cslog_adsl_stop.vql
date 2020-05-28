@@ -1,0 +1,8 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE DATASOURCE DF ds_cslog_adsl_stop
+    FOLDER = '/sources/10.semi structured/delimited files/modem logs/stop logs'
+    ROUTE LOCAL 'LocalConnection' '${databases.customer360.folder.sources.folder.10..semi structured.folder.delimited files.folder.modem logs.folder.stop logs.datasources.df.ds_cslog_adsl_stop.ROUTE.LOCAL.PATH}'
+    TUPLEPATTERN = '(\S+)\s+(\S+)\s+(\S+)\s+-\s+stop\s+.+time=(\d{{2}}:\d{{2}}:\d{{2}})\s+date=(\d{{2}}/\d{{2}}/\d{{4}})\s+task_id=(\S+).+client-mac-address=(\S+).+addr=(\d{{1,3}}\.\d{{1,3}}\.\d{{1,3}}\.\d{{1,3}}).*'
+    ENDOFLINEDELIMITER = '\n'
+    HEADER = FALSE;
+

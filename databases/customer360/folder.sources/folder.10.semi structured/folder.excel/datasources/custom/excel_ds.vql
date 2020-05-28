@@ -1,0 +1,26 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE DATASOURCE CUSTOM excel_ds
+    FOLDER = '/sources/10.semi structured/excel'
+    CLASSNAME='com.denodo.vdb.contrib.wrapper.xls.ExcelWrapper';
+
+CREATE OR REPLACE WRAPPER CUSTOM excel_ds
+    FOLDER = '/sources/10.semi structured/excel'
+    DATASOURCENAME=excel_ds
+    PARAMETERS (
+      'Type of file' = 'Excel 97-2003 (*.xls)',
+      'File location' = ROUTE LOCAL 'LocalConnection' '${databases.customer360.folder.sources.folder.10..semi structured.folder.excel.views.custom.excel_ds.File location.ROUTE.LOCAL.PATH}',
+      'Extract data from all sheets' = false,
+      'Extract sheet name as a new column' = false,
+      'Start cell' = 'A4',
+      'End cell' = 'E104',
+      'Has headers' = true,
+      'Stream tuples' = false
+    )
+    OUTPUTSCHEMA (
+        name = 'name' : 'java.lang.String' (OPT) SORTABLE,
+        company = 'company' : 'java.lang.String' (OPT) SORTABLE,
+        city = 'city' : 'java.lang.String' (OPT) SORTABLE,
+        phone = 'phone' : 'java.lang.String' (OPT) SORTABLE,
+        mobilephone = 'mobilephone' : 'java.lang.String' (OPT) SORTABLE
+    );
+

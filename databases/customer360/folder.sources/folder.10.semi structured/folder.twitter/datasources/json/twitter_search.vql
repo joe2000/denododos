@@ -1,0 +1,13 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE DATASOURCE JSON twitter_search
+    FOLDER = '/sources/10.semi structured/twitter'
+    ROUTE HTTP 'http.CommonsHttpClientConnection,120000' GET '${databases.customer360.folder.sources.folder.10..semi structured.folder.twitter.datasources.json.twitter_search.ROUTE.HTTP.URL}'
+    AUTHENTICATION OAUTH10A ( 
+      CLIENTIDENTIFIER = '${databases.customer360.folder.sources.folder.10..semi structured.folder.twitter.datasources.json.twitter_search.ROUTE.HTTP.CLIENTIDENTIFIER}'
+      CLIENTSHAREDSECRET = '${databases.customer360.folder.sources.folder.10..semi structured.folder.twitter.datasources.json.twitter_search.ROUTE.HTTP.CLIENTSHAREDSECRET}' ${databases.customer360.folder.sources.folder.10..semi structured.folder.twitter.datasources.json.twitter_search.ROUTE.HTTP.CLIENTSHAREDSECRET.ENCRYPTED}
+      ACCESSTOKEN = '${databases.customer360.folder.sources.folder.10..semi structured.folder.twitter.datasources.json.twitter_search.ROUTE.HTTP.ACCESSTOKEN}' ${databases.customer360.folder.sources.folder.10..semi structured.folder.twitter.datasources.json.twitter_search.ROUTE.HTTP.ACCESSTOKEN.ENCRYPTED}
+      ACCESSTOKENSECRET = '${databases.customer360.folder.sources.folder.10..semi structured.folder.twitter.datasources.json.twitter_search.ROUTE.HTTP.ACCESSTOKENSECRET}' ${databases.customer360.folder.sources.folder.10..semi structured.folder.twitter.datasources.json.twitter_search.ROUTE.HTTP.ACCESSTOKENSECRET.ENCRYPTED}
+      SIGNATUREMETHOD = ${databases.customer360.folder.sources.folder.10..semi structured.folder.twitter.datasources.json.twitter_search.ROUTE.HTTP.SIGNATUREMETHOD}
+    )
+    PROXY OFF;
+

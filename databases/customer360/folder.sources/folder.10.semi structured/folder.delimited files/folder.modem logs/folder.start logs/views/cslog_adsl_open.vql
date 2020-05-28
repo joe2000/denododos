@@ -1,0 +1,2 @@
+﻿CREATE OR REPLACE VIEW cslog_adsl_open FOLDER = '/sources/10.semi structured/delimited files/modem logs/start logs' AS SELECT cslog_adsl_start.network_equipment AS networkequipment, cslog_adsl_start.login AS login, cslog_adsl_start.interface AS ntu, cslog_adsl_start.task_id AS id, cslog_adsl_start.client_mac_addr AS macpc, cslog_adsl_start.filepath AS filepath, textconstant('ADSL') AS accesstype, textconstant('') AS ip, (regexp(cslog_adsl_start.date, '(\\d{{2}})/(\\d{{2}})/(\\d{{4}})', '$$3-$$1-$$2 ')||time) AS date_from FROM cslog_adsl_start CONTEXT ('I18N' = 'us_cst');
+

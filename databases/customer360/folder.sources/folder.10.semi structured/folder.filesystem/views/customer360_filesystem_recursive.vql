@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW customer360_filesystem_recursive FOLDER = '/sources/10.semi structured/filesystem' AS SELECT filesystem.parentfolder AS parentfolder, filesystem."relativePath" AS "relativePath", filesystem.filename AS filename, filesystem.extension AS extension, filesystem.fullpath AS fullpath, filesystem.filetype AS filetype, filesystem.hidden AS hidden, filesystem.datemodified AS datemodified, filesystem.canread AS canread, filesystem.canwrite AS canwrite, filesystem.canexecute AS canexecute, filesystem.size AS size, filesystem.recursive AS recursive FROM filesystem WHERE (recursive is true  AND parentfolder = 'C:\\demos\\customer360');
+
+ALTER VIEW customer360_filesystem_recursive
+ LAYOUT (filesystem = [20, 20, 221, 287]);
+

@@ -1,0 +1,8 @@
+﻿/databases/customer360/folder.sources/sources.vql
+/databases/customer360/folder.sources/folder.06.web services/06.web services.vql
+/databases/customer360/folder.sources/folder.06.web services/folder.rest/rest.vql
+/databases/customer360/folder.sources/folder.06.web services/folder.rest/folder.invoicing/invoicing.vql
+/databases/customer360/folder.sources/folder.06.web services/folder.rest/folder.invoicing/folder.%61%75%78/%61%75%78.vql
+/extensions/jars/array-functions.vql
+/databases/customer360/folder.sources/folder.06.web services/folder.rest/folder.invoicing/datasources/xml/invoicing.vql
+/databases/customer360/folder.sources/folder.06.web services/folder.rest/folder.invoicing/views/invoicing.vql

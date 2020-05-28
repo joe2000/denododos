@@ -1,0 +1,36 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE DATASOURCE JDBC oracle_crm
+    FOLDER = '/sources/01.databases/oracle'
+    DRIVERCLASSNAME = 'oracle.jdbc.OracleDriver'
+    DATABASEURI = '${databases.customer360.folder.sources.folder.01..databases.folder.oracle.datasources.jdbc.oracle_crm.DATABASEURI}'
+    USERNAME = '${databases.customer360.folder.sources.folder.01..databases.folder.oracle.datasources.jdbc.oracle_crm.USERNAME}'
+    USERPASSWORD = '${databases.customer360.folder.sources.folder.01..databases.folder.oracle.datasources.jdbc.oracle_crm.USERPASSWORD}' ${databases.customer360.folder.sources.folder.01..databases.folder.oracle.datasources.jdbc.oracle_crm.USERPASSWORD.ENCRYPTED}
+    CLASSPATH = 'oracle-11g-v11.2.0.1'
+    DATABASENAME = 'oracle'
+    DATABASEVERSION = '11g'
+    IGNORETRAILINGSPACES = TRUE
+    FETCHSIZE = 1000
+    VALIDATIONQUERY = 'SELECT COUNT(*) FROM SYS.DUAL'
+    INITIALSIZE = 4
+    MAXIDLE = -1
+    MINIDLE = 0
+    MAXACTIVE = 20
+    EXHAUSTEDACTION = 1
+    TESTONBORROW = false
+    TESTONRETURN = false
+    TESTWHILEIDLE = false
+    TIMEBETWEENEVICTION = -1
+    NUMTESTPEREVICTION = 3
+    MINEVICTABLETIME = 1800000
+    POOLPREPAREDSTATEMENTS = false
+    MAXOPENPREPAREDSTATEMENTS = -1
+    DATA_LOAD_CONFIGURATION (
+        BATCHINSERTSIZE = 200
+    )
+    SOURCECONFIGURATION (
+        supportsbatchinsert = false,
+        supportsclobinbatch = false,
+        delegateinvalidnumberliteralsasnull = false,
+        delegatescalarfunctionslist = (abs, acos, addday, addhour, addminute, addmonth, addsecond, addweek, addyear, asin, atan, atan2, case, ceil, coalesce, concat, cos, current_date, degrees, div, exp, firstdayofmonth, firstdayofweek, floor, formatdate, getday, getdayofweek, getdayofyear, getdaysbetween, gethour, getmillisecond, getminute, getmonth, getmonthsbetween, getsecond, gettimeinmillis, getyear, instr, lastdayofmonth, lastdayofweek, len, ln, log, lower, ltrim, max, min, mod, mult, nextweekday, now, nullif, power, previousweekday, radians, regexp, removeaccents, replace, round, rtrim, sin, sqrt, substr, substring, subtract, sum, tan, textconstant, to_date, trim, trunc, upper, xmlquery, xpath)
+    );
+

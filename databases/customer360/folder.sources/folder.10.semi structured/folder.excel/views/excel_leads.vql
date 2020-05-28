@@ -1,0 +1,24 @@
+﻿CREATE OR REPLACE TABLE excel_leads I18N es_euro (
+        name:text,
+        company:text,
+        city:text,
+        phone:text,
+        mobilephone:text
+    )
+    FOLDER = '/sources/10.semi structured/excel'
+    CACHE PARTIAL
+    TIMETOLIVEINCACHE 3600
+    ADD SEARCHMETHOD excel_ds(
+        I18N es_euro
+        CONSTRAINTS (
+             ADD name (any) OPT ANY
+             ADD company (any) OPT ANY
+             ADD city (any) OPT ANY
+             ADD phone (any) OPT ANY
+             ADD mobilephone (any) OPT ANY
+        )
+        OUTPUTLIST (city, company, mobilephone, name, phone
+        )
+        WRAPPER (custom excel_ds)
+    );
+

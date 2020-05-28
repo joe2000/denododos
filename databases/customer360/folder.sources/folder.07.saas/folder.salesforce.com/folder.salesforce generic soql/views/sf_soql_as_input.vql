@@ -1,0 +1,49 @@
+﻿CREATE OR REPLACE WRAPPER CUSTOM sf_soql_as_input_copy
+    FOLDER = '/sources/07.saas/salesforce.com/salesforce generic soql'
+    DATASOURCENAME=salesforce_soql_as_input
+    PARAMETERS (
+      'BASE_URL' = 'https://na3.salesforce.com',
+      'ACCESS_TOKEN' = '00D5000000077zi!ARcAQE_qUZ9l3JhH3yr4nQpPucD.NDJxUphbjCjx6oetX8mQ1C2qVi770L1RBnPJcdK53ck4UP0pY1QAdQPHexh50o1cRMD.',
+      'CLIENT_ID' = '3MVG9Km_cBLhsuPzuEJ8T.2uUkOGhpBPs0UH6ejd6RFAmuHgCV_zeHh_GE0cUfnTCyKkf.m4fghfEeLpqMdus',
+      'REFRESH_TOKEN (required for web flow)' = '5Aep861eWO5D.7wJBsLFjitX6L3M98eYEYnVfxbfZ6rwYOkMG4OhB3bBRaYfPD5xCWNEh0D6LkRzbfkUhbk3Lin'
+    )
+    OUTPUTSCHEMA (
+        query = 'QUERY' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        result_json = 'RESULT_JSON' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        result_complex = 'RESULT_COMPLEX' : ARRAY OF (
+            result_complex_record = 'RESULT_COMPLEX_record' : REGISTER OF (
+                field_name = 'FIELD_NAME' : 'java.lang.String' (OPT) SORTABLE,
+                field_value = 'FIELD_VALUE' : 'java.lang.Object' (OPT) SORTABLE
+            )
+        )
+    );
+
+CREATE OR REPLACE TYPE salesforce_soql_as_input_result_complex_result_complex_record AS REGISTER OF (field_name:text, field_value:text);
+
+CREATE OR REPLACE TYPE salesforce_soql_as_input_result_complex AS ARRAY OF salesforce_soql_as_input_result_complex_result_complex_record;
+
+CREATE OR REPLACE TABLE sf_soql_as_input I18N us_pst (
+        query:text,
+        result_json:text,
+        result_complex:salesforce_soql_as_input_result_complex
+    )
+    FOLDER = '/sources/07.saas/salesforce.com/salesforce generic soql'
+    DESCRIPTION = 'use with condition:  Query = ''Select id,name from account''
+
+SELECT * FROM salesforce_soql_as_input WHERE "QUERY" = ''Select id,name from account'''
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD salesforce_soql_as_input(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD query (any) OPT ANY
+             ADD result_json NOS ZERO ()
+             ADD result_complex.field_name (any) OPT ANY
+             ADD result_complex.field_value (any) OPT ANY
+             ADD result_complex NOS ZERO ()
+        )
+        OUTPUTLIST (query, result_complex, result_json
+        )
+        WRAPPER (custom sf_soql_as_input_copy)
+    );
+

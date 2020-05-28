@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW customer_company FOLDER = '/other/optimizations/cost-based optimization' AS SELECT client_crm.street AS street, client_crm.city AS city, client_crm.zip AS zip, client_crm.state AS state, client_crm.primary_phone AS primary_phone, client_crm.country AS country, client_crm.client_id AS client_id, client_crm.name AS name, client_crm.surname AS surname, client_crm.value AS client_type, company.name AS company_name FROM full_client_crm AS client_crm INNER JOIN company AS company ON client_crm.company_code = replace(company.code, 'ENT', 'COM') ;
+
+ALTER VIEW customer_company
+ LAYOUT (full_client_crm = [20, 20, 200, 225], company = [0, 275, 200, 167]);
+

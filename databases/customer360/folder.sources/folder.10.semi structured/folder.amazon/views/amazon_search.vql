@@ -1,0 +1,20 @@
+﻿CREATE OR REPLACE TABLE amazon_search I18N us_pst (
+        name:text,
+        price:text,
+        search_term:text
+    )
+    FOLDER = '/sources/10.semi structured/amazon'
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD amazon_search(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD search_term (=) OBL ONE
+             ADD name NOS ZERO ()
+             ADD price NOS ZERO ()
+        )
+        OUTPUTLIST (name, price
+        )
+        WRAPPER (itp amazon_search)
+    );
+

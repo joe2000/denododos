@@ -1,0 +1,2 @@
+﻿CREATE OR REPLACE FOLDER '/data services/SOAP' DESCRIPTION 'Denodo SOAP Web Services' ;
+

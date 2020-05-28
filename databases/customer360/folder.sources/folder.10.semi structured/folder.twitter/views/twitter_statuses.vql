@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW twitter_statuses FOLDER = '/sources/10.semi structured/twitter' AS SELECT ("user").name AS name, ("user").screen_name AS screen_name, ("user").location AS location, ("user").description AS description, created_at AS created_at, text AS text, "QUERY" AS query, "COUNT" AS count FROM FLATTEN twitter_search AS v ( v.statuses);
+
+ALTER VIEW twitter_statuses
+ LAYOUT (twitter_search = [20, 20, 446, 532]);
+

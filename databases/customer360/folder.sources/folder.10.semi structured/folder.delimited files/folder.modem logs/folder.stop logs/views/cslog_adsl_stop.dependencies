@@ -1,0 +1,6 @@
+﻿/databases/customer360/folder.sources/sources.vql
+/databases/customer360/folder.sources/folder.10.semi structured/10.semi structured.vql
+/databases/customer360/folder.sources/folder.10.semi structured/folder.delimited files/delimited files.vql
+/databases/customer360/folder.sources/folder.10.semi structured/folder.delimited files/folder.modem logs/modem logs.vql
+/databases/customer360/folder.sources/folder.10.semi structured/folder.delimited files/folder.modem logs/folder.stop logs/stop logs.vql
+/databases/customer360/folder.sources/folder.10.semi structured/folder.delimited files/folder.modem logs/folder.stop logs/datasources/df/ds_cslog_adsl_stop.vql

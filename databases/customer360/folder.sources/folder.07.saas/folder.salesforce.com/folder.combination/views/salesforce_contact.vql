@@ -1,0 +1,6 @@
+﻿CREATE OR REPLACE VIEW salesforce_contact FOLDER = '/sources/07.saas/salesforce.com/combination'
+    PRIMARY KEY ( 'contactid' ) AS SELECT sf_contact.contactid__c AS contactid, sf_contact.name AS name, sf_contact.taxid__c AS taxid, sf_contact.ssn__c AS ssn, sf_contact.mailingstreet AS street, sf_contact.mailingcity AS city, sf_contact.mailingpostalcode AS postalcode, sf_contact.mailingstate AS state, sf_contact.phone AS phone, sf_contact.businessname__c AS company_name, sf_contact.businesstype__c AS client_type FROM sf_contact;
+
+ALTER VIEW salesforce_contact
+ LAYOUT (sf_contact = [20, 20, 236, 464]);
+

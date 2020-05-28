@@ -1,0 +1,11 @@
+﻿/databases/customer360/folder.other/other.vql
+/databases/customer360/folder.other/folder.optimizations/optimizations.vql
+/databases/customer360/folder.other/folder.optimizations/folder.push-up non-delegable derived attributes/push-up non-delegable derived attributes.vql
+/databases/customer360/folder.other/folder.optimizations/folder.push-up non-delegable derived attributes/folder.%61%75%78/%61%75%78.vql
+/extensions/jars/denodo-xtrafuncs-vdp-string-6.0.vql
+/databases/customer360/maps/us_states_map.vql
+/databases/customer360/folder.sources/sources.vql
+/databases/customer360/folder.sources/folder.01.databases/01.databases.vql
+/databases/customer360/folder.sources/folder.01.databases/folder.mysql/mysql.vql
+/databases/customer360/folder.sources/folder.01.databases/folder.mysql/datasources/jdbc/acme_crm.vql
+/databases/customer360/folder.sources/folder.01.databases/folder.mysql/views/address.vql

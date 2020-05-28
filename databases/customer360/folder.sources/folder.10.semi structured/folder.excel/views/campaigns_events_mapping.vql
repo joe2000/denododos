@@ -1,0 +1,18 @@
+﻿CREATE OR REPLACE TABLE campaigns_events_mapping I18N es_euro (
+        "Campaigns identifiers":text,
+        "Events identifiers":text
+    )
+    FOLDER = '/sources/10.semi structured/excel'
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD campaigns_events_mapping(
+        I18N es_euro
+        CONSTRAINTS (
+             ADD "Campaigns identifiers" (any) OPT ANY
+             ADD "Events identifiers" (any) OPT ANY
+        )
+        OUTPUTLIST ("Campaigns identifiers", "Events identifiers"
+        )
+        WRAPPER (custom campaigns_events_mapping)
+    );
+

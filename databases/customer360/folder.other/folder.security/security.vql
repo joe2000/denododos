@@ -1,0 +1,2 @@
+﻿CREATE OR REPLACE FOLDER '/other/Security' DESCRIPTION 'Security Catalog and User/Role Permissions' ;
+

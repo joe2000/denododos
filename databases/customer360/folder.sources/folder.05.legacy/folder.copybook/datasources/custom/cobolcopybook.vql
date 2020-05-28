@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE DATASOURCE CUSTOM cobolcopybook
+    FOLDER = '/sources/05.legacy/copybook'
+    CLASSNAME='com.denodo.copybookcw.CobolCopybookCW'
+    JARS 'JRecord', 'cb2xml', 'dt-copybook-vdp-connector';
+

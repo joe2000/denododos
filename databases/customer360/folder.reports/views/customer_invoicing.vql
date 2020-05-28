@@ -1,0 +1,6 @@
+﻿CREATE OR REPLACE VIEW customer_invoicing FOLDER = '/reports' DESCRIPTION = 'Aggregated report for customer invoices.' 
+    PRIMARY KEY ( 'full_name' , 'date' , 'package_name' ) AS SELECT customer.full_name AS full_name, invoice.date AS date, product.package_name AS package_name, invoice.amount_due AS amount_due FROM (customer_2 AS customer INNER JOIN invoice AS invoice ON customer.id = invoice.client_id ) INNER JOIN product AS product ON invoice.package_id = product.package_code  ORDER BY full_name ASC;
+
+ALTER VIEW customer_invoicing
+ LAYOUT (customer_2 = [0, 8, 200, 225], invoice = [250, 47, 200, 147], product = [500, 0, 200, 267]);
+

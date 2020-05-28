@@ -1,0 +1,26 @@
+﻿CREATE OR REPLACE WRAPPER DF client_type_df
+    FOLDER = '/other/metadata governance/source refresh and changes propagation/sources'
+    DATASOURCENAME=client_type_df
+    OUTPUTSCHEMA (
+        code = 'CODE' (OPT),
+        value = 'VALUE' (OPT)
+    );
+
+CREATE OR REPLACE TABLE client_type_df I18N us_pst (
+        code:text,
+        value:text
+    )
+    FOLDER = '/other/metadata governance/source refresh and changes propagation/sources'
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD client_type_df(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD code (=,in) OPT ANY
+             ADD value (=,in) OPT ANY
+        )
+        OUTPUTLIST (code, value
+        )
+        WRAPPER (df client_type_df)
+    );
+

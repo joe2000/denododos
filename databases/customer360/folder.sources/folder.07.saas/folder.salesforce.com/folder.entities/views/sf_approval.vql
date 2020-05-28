@@ -1,0 +1,64 @@
+﻿CREATE OR REPLACE WRAPPER CUSTOM sf_approval_3089
+    FOLDER = '/sources/07.saas/salesforce.com/entities'
+    DATASOURCENAME=salesforce
+    PARAMETERS (
+      'ENTITY' = 'Approval',
+      'BASE_URL' = 'https://na3.salesforce.com',
+      'ACCESS_TOKEN' = '00D5000000077zi!ARcAQE_qUZ9l3JhH3yr4nQpPucD.NDJxUphbjCjx6oetX8mQ1C2qVi770L1RBnPJcdK53ck4UP0pY1QAdQPHexh50o1cRMD.',
+      'CLIENT_ID' = '3MVG9Km_cBLhsuPzuEJ8T.2uUkOGhpBPs0UH6ejd6RFAmuHgCV_zeHh_GE0cUfnTCyKkf.m4fghfEeLpqMdus',
+      'REFRESH_TOKEN (required for web flow)' = '5Aep861eWO5D.7wJBsLFjitX6L3M98eYEYnVfxbfZ6rwYOkMG4OhB3bBRaYfPD5xCWNEh0D6LkRzbfkUhbk3Lin',
+      'RESPONSE_COMPRESSION_TYPE (one of NONE, GZIP or DEFLATE -default is NONE)' = 'DEFLATE'
+    )
+    OUTPUTSCHEMA (
+        id = 'Id' : 'java.lang.String' (OPT) NOT SORTABLE,
+        isdeleted = 'IsDeleted' : 'java.lang.Boolean' (OPT) NOT SORTABLE,
+        parentid = 'ParentId' : 'java.lang.String' (OPT) NOT SORTABLE,
+        ownerid = 'OwnerId' : 'java.lang.String' (OPT) NOT SORTABLE,
+        createddate = 'CreatedDate' : 'java.util.Date' (OPT) NOT SORTABLE,
+        createdbyid = 'CreatedById' : 'java.lang.String' (OPT) NOT SORTABLE,
+        lastmodifieddate = 'LastModifiedDate' : 'java.util.Date' (OPT) NOT SORTABLE,
+        lastmodifiedbyid = 'LastModifiedById' : 'java.lang.String' (OPT) NOT SORTABLE,
+        status = 'Status' : 'java.lang.String' (OPT) NOT SORTABLE,
+        requestcomment = 'RequestComment' : 'java.lang.String' (OPT) NOT SORTABLE,
+        approvecomment = 'ApproveComment' : 'java.lang.String' (OPT) NOT SORTABLE,
+        systemmodstamp = 'SystemModstamp' : 'java.util.Date' (OPT) NOT SORTABLE
+    );
+
+CREATE OR REPLACE TABLE sf_approval I18N us_pst (
+        id:text,
+        isdeleted:boolean,
+        parentid:text,
+        ownerid:text,
+        createddate:date,
+        createdbyid:text,
+        lastmodifieddate:date,
+        lastmodifiedbyid:text,
+        status:text,
+        requestcomment:text,
+        approvecomment:text,
+        systemmodstamp:date
+    )
+    FOLDER = '/sources/07.saas/salesforce.com/entities'
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD sf_approval(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD id (any) OPT ANY
+             ADD isdeleted (any) OPT ANY
+             ADD parentid (any) OPT ANY
+             ADD ownerid (any) OPT ANY
+             ADD createddate (any) OPT ANY
+             ADD createdbyid (any) OPT ANY
+             ADD lastmodifieddate (any) OPT ANY
+             ADD lastmodifiedbyid (any) OPT ANY
+             ADD status (any) OPT ANY
+             ADD requestcomment (any) OPT ANY
+             ADD approvecomment (any) OPT ANY
+             ADD systemmodstamp (any) OPT ANY
+        )
+        OUTPUTLIST (approvecomment, createdbyid, createddate, id, isdeleted, lastmodifiedbyid, lastmodifieddate, ownerid, parentid, requestcomment, status, systemmodstamp
+        )
+        WRAPPER (custom sf_approval_3089)
+    );
+

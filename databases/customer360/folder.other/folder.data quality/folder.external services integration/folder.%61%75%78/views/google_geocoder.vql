@@ -1,0 +1,105 @@
+﻿CREATE OR REPLACE WRAPPER JSON google_geocoder_mdm
+    FOLDER = '/other/data quality/external services integration/aux'
+    DATASOURCENAME=google_geocoder
+    TUPLEROOT '/JSONFile/results'
+    OUTPUTSCHEMA (jsonfile = 'JSONFile' : REGISTER OF (
+        input_address = 'INPUT_ADDRESS' : 'java.lang.String' (OBL) EXTERN,
+        array_address_components = 'JSONFile.results.address_components' : ARRAY OF (
+            address_components = 'address_components' : REGISTER OF (
+                long_name = 'long_name' : 'java.lang.String' (OPT),
+                short_name = 'short_name' : 'java.lang.String' (OPT),
+                array_types = 'types' : ARRAY OF (
+                    types = 'types' : REGISTER OF (
+                        field_0 = 'field_0' : 'java.lang.String' (OPT)
+                    )
+                )
+            )
+        ),
+        formatted_address = 'JSONFile.results.formatted_address' : 'java.lang.String' (OPT),
+        geometry = 'JSONFile.results.geometry' : REGISTER OF (
+            location = 'location' : REGISTER OF (
+                lat = 'lat' : 'java.lang.Double' (OPT),
+                lng = 'lng' : 'java.lang.Double' (OPT)
+            ),
+            location_type = 'location_type' : 'java.lang.String' (OPT),
+            viewport = 'viewport' : REGISTER OF (
+                northeast = 'northeast' : REGISTER OF (
+                    lat = 'lat' : 'java.lang.Double' (OPT),
+                    lng = 'lng' : 'java.lang.Double' (OPT)
+                ),
+                southwest = 'southwest' : REGISTER OF (
+                    lat = 'lat' : 'java.lang.Double' (OPT),
+                    lng = 'lng' : 'java.lang.Double' (OPT)
+                )
+            )
+        ),
+        array_types = 'JSONFile.results.types' : ARRAY OF (
+            types = 'types' : REGISTER OF (
+                field_0 = 'field_0' : 'java.lang.String' (OPT)
+            )
+        )
+    )
+    );
+
+CREATE OR REPLACE TYPE google_geocoder_mdm_array_address_components_address_components_array_types_types AS REGISTER OF (field_0:text);
+
+CREATE OR REPLACE TYPE google_geocoder_mdm_array_address_components_address_components_array_types AS ARRAY OF google_geocoder_mdm_array_address_components_address_components_array_types_types;
+
+CREATE OR REPLACE TYPE google_geocoder_mdm_array_address_components_address_components AS REGISTER OF (long_name:text, short_name:text, array_types:google_geocoder_mdm_array_address_components_address_components_array_types);
+
+CREATE OR REPLACE TYPE google_geocoder_mdm_array_address_components AS ARRAY OF google_geocoder_mdm_array_address_components_address_components;
+
+CREATE OR REPLACE TYPE google_geocoder_mdm_geometry_location AS REGISTER OF (lat:double, lng:double);
+
+CREATE OR REPLACE TYPE google_geocoder_mdm_geometry_viewport_northeast AS REGISTER OF (lat:double, lng:double);
+
+CREATE OR REPLACE TYPE google_geocoder_mdm_geometry_viewport_southwest AS REGISTER OF (lat:double, lng:double);
+
+CREATE OR REPLACE TYPE google_geocoder_mdm_geometry_viewport AS REGISTER OF (northeast:google_geocoder_mdm_geometry_viewport_northeast, southwest:google_geocoder_mdm_geometry_viewport_southwest);
+
+CREATE OR REPLACE TYPE google_geocoder_mdm_geometry AS REGISTER OF (location:google_geocoder_mdm_geometry_location, location_type:text, viewport:google_geocoder_mdm_geometry_viewport);
+
+CREATE OR REPLACE TYPE google_geocoder_mdm_array_types_types AS REGISTER OF (field_0:text);
+
+CREATE OR REPLACE TYPE google_geocoder_mdm_array_types AS ARRAY OF google_geocoder_mdm_array_types_types;
+
+CREATE OR REPLACE TABLE google_geocoder I18N us_pst (
+        input_address:text,
+        array_address_components:google_geocoder_mdm_array_address_components,
+        formatted_address:text,
+        geometry:google_geocoder_mdm_geometry,
+        array_types:google_geocoder_mdm_array_types
+    )
+    FOLDER = '/other/data quality/external services integration/aux'
+    CACHE PARTIAL
+    TIMETOLIVEINCACHE NOEXPIRE
+    ADD SEARCHMETHOD google_geocoder_mdm(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD array_address_components.long_name NOS ZERO ()
+             ADD array_address_components.short_name NOS ZERO ()
+             ADD array_address_components.array_types.field_0 NOS ZERO ()
+             ADD formatted_address NOS ZERO ()
+             ADD geometry.location.lat NOS ZERO ()
+             ADD geometry.location.lng NOS ZERO ()
+             ADD geometry.location_type NOS ZERO ()
+             ADD geometry.viewport.northeast.lat NOS ZERO ()
+             ADD geometry.viewport.northeast.lng NOS ZERO ()
+             ADD geometry.viewport.southwest.lat NOS ZERO ()
+             ADD geometry.viewport.southwest.lng NOS ZERO ()
+             ADD array_types.field_0 NOS ZERO ()
+             ADD array_address_components NOS ZERO ()
+             ADD array_address_components.array_types NOS ZERO ()
+             ADD geometry NOS ZERO ()
+             ADD geometry.location NOS ZERO ()
+             ADD geometry.viewport NOS ZERO ()
+             ADD geometry.viewport.northeast NOS ZERO ()
+             ADD geometry.viewport.southwest NOS ZERO ()
+             ADD array_types NOS ZERO ()
+             ADD input_address (any) OBL ONE
+        )
+        OUTPUTLIST (array_address_components, array_types, formatted_address, geometry, input_address
+        )
+        WRAPPER (json google_geocoder_mdm)
+    );
+

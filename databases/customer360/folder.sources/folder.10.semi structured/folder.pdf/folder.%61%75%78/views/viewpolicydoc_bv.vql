@@ -1,0 +1,41 @@
+﻿CREATE OR REPLACE TYPE policydoc_nameaddress_record_constructor_1_output AS REGISTER OF (name:text, address:text, city:text);
+
+CREATE OR REPLACE TYPE policydoc_nameaddress AS ARRAY OF policydoc_nameaddress_record_constructor_1_output;
+
+CREATE OR REPLACE TYPE policydoc_coverage_record_constructor_4_output AS REGISTER OF (coveragetype:text, insurancelimits:text, premium:text);
+
+CREATE OR REPLACE TYPE policydoc_coverage AS ARRAY OF policydoc_coverage_record_constructor_4_output;
+
+CREATE OR REPLACE TYPE policydoc_disclaimer_iterator_1_output AS REGISTER OF (textinfo:text);
+
+CREATE OR REPLACE TYPE policydoc_disclaimer AS ARRAY OF policydoc_disclaimer_iterator_1_output;
+
+CREATE OR REPLACE TABLE viewpolicydoc_bv I18N be (
+        inputdoc:text,
+        nameaddress:policydoc_nameaddress,
+        coverage:policydoc_coverage,
+        disclaimer:policydoc_disclaimer
+    )
+    FOLDER = '/sources/10.semi structured/pdf/aux'
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD policydoc(
+        I18N be
+        CONSTRAINTS (
+             ADD inputdoc (any) OBL ONE
+             ADD nameaddress NOS ZERO ()
+             ADD coverage NOS ZERO ()
+             ADD disclaimer NOS ZERO ()
+             ADD nameaddress.name NOS ZERO ()
+             ADD nameaddress.address NOS ZERO ()
+             ADD nameaddress.city NOS ZERO ()
+             ADD coverage.coveragetype NOS ZERO ()
+             ADD coverage.insurancelimits NOS ZERO ()
+             ADD coverage.premium NOS ZERO ()
+             ADD disclaimer.textinfo NOS ZERO ()
+        )
+        OUTPUTLIST (coverage, disclaimer, inputdoc, nameaddress
+        )
+        WRAPPER (itp policydoc)
+    );
+

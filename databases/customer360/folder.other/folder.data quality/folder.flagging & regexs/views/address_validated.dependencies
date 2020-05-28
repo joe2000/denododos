@@ -1,0 +1,9 @@
+﻿/databases/customer360/folder.other/other.vql
+/databases/customer360/folder.other/folder.data quality/data quality.vql
+/databases/customer360/folder.other/folder.data quality/folder.flagging & regexs/flagging & regexs.vql
+/databases/customer360/maps/field_validator_map.vql
+/databases/customer360/folder.sources/sources.vql
+/databases/customer360/folder.sources/folder.01.databases/01.databases.vql
+/databases/customer360/folder.sources/folder.01.databases/folder.mysql/mysql.vql
+/databases/customer360/folder.sources/folder.01.databases/folder.mysql/datasources/jdbc/acme_crm.vql
+/databases/customer360/folder.sources/folder.01.databases/folder.mysql/views/address.vql

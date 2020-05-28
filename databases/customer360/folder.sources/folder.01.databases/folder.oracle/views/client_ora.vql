@@ -1,0 +1,44 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE WRAPPER JDBC client_ora
+    FOLDER = '/sources/01.databases/oracle'
+    DATASOURCENAME=oracle_crm
+    SCHEMANAME='${databases.customer360.folder.sources.folder.01..databases.folder.oracle.views.jdbc.client_ora.SCHEMANAME}' 
+    RELATIONNAME='CLIENT' 
+    OUTPUTSCHEMA (
+        client_id = 'CLIENT_ID' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypename='VARCHAR2', sourcetypeid='12', sourcetypesize='50')  NOT NULL SORTABLE,
+        name = 'NAME' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypename='VARCHAR2', sourcetypeid='12', sourcetypesize='100')  SORTABLE,
+        surname = 'SURNAME' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypename='VARCHAR2', sourcetypeid='12', sourcetypesize='100')  SORTABLE,
+        client_type = 'CLIENT_TYPE' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypename='VARCHAR2', sourcetypeid='12', sourcetypesize='10')  SORTABLE,
+        company_code = 'COMPANY_CODE' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypename='VARCHAR2', sourcetypeid='12', sourcetypesize='50')  SORTABLE,
+        ssn = 'SSN' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypename='VARCHAR2', sourcetypeid='12', sourcetypesize='50')  SORTABLE
+    )
+    CONSTRAINT 'CLIENT_PK' PRIMARY KEY ( 'CLIENT_ID' )
+    INDEX 'CLIENT_PK' CLUSTER UNIQUE PRIMARY ( 'CLIENT_ID' );
+
+CREATE OR REPLACE TABLE client_ora I18N us_pst (
+        client_id:text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '50'),
+        name:text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '100'),
+        surname:text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '100'),
+        client_type:text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '10'),
+        company_code:text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '50'),
+        ssn:text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '50')
+    )
+    FOLDER = '/sources/01.databases/oracle'
+    PRIMARY KEY ( 'client_id' )
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD client_ora(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD client_id (any) OPT ANY
+             ADD name (any) OPT ANY
+             ADD surname (any) OPT ANY
+             ADD client_type (any) OPT ANY
+             ADD company_code (any) OPT ANY
+             ADD ssn (any) OPT ANY
+        )
+        OUTPUTLIST (client_id, client_type, company_code, name, ssn, surname
+        )
+        WRAPPER (jdbc client_ora)
+    );
+

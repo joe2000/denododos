@@ -1,0 +1,7 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE DATASOURCE JSON knowledgebase_solr
+    FOLDER = '/sources/11.unstructured/solr'
+    ROUTE HTTP 'http.CommonsHttpClientConnection,120000' GET '${databases.customer360.folder.sources.folder.11..unstructured.folder.solr.datasources.json.knowledgebase_solr.ROUTE.HTTP.URL}'
+    AUTHENTICATION OFF
+    PROXY OFF;
+

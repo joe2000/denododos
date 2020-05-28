@@ -1,0 +1,5 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+UNDEPLOY IF EXISTS WEBSERVICE invoicing_service_aux;
+
+DEPLOY WEBSERVICE invoicing_service_aux LOGIN = '${databases.customer360.webcontainer.webservices.invoicing_service_aux.LOGIN}' PASSWORD = '${databases.customer360.webcontainer.webservices.invoicing_service_aux.PASSWORD}' ${databases.customer360.webcontainer.webservices.invoicing_service_aux.PASSWORD.ENCRYPTED};
+

@@ -1,0 +1,2 @@
+﻿CREATE OR REPLACE VIEW catalog_permissions FOLDER = '/other/security' AS SELECT * FROM catalog_permissions();
+

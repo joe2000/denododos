@@ -1,0 +1,6 @@
+﻿CREATE OR REPLACE VIEW denodo_view_columns FOLDER = '/other/business catalog' DESCRIPTION = 'Denodo metadata catalog view column detail information' 
+    PRIMARY KEY ( 'database_name' , 'view_name' , 'column_name' ) AS SELECT inter_catalog_metadata_views.database_name AS database_name, inter_catalog_metadata_views.view_name AS view_name, inter_catalog_metadata_views.view_type AS view_type, inter_catalog_metadata_views.column_name AS column_name, inter_catalog_metadata_views.column_type_name AS column_type_name, inter_catalog_metadata_views.column_type AS column_type, inter_catalog_metadata_views.column_type_precision AS column_type_precision, inter_catalog_metadata_views.column_type_length AS column_type_length, inter_catalog_metadata_views.column_type_scale AS column_type_scale, (((('<a href="http://localhost:9090/server/customer360/metadata/views/'||inter_catalog_metadata_views.view_name)||'?$$select=')||inter_catalog_metadata_views.column_name)||'">view data</a>') AS view_data FROM inter_catalog_metadata_views WHERE (database_name = getsession('database') AND view_name in ('customer', 'invoice', 'product', 'incident', 'diagnostic', 'serviceusage'));
+
+ALTER VIEW denodo_view_columns
+ LAYOUT (inter_catalog_metadata_views = [20, 20, 200, 105]);
+

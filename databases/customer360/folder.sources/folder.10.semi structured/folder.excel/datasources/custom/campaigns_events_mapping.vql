@@ -1,0 +1,20 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE DATASOURCE CUSTOM campaigns_events_mapping
+    FOLDER = '/sources/10.semi structured/excel'
+    CLASSNAME='com.denodo.vdb.contrib.wrapper.xls.ExcelWrapper';
+
+CREATE OR REPLACE WRAPPER CUSTOM campaigns_events_mapping
+    FOLDER = '/sources/10.semi structured/excel'
+    DATASOURCENAME=campaigns_events_mapping
+    PARAMETERS (
+      'Type of file' = 'Excel 2007 or later (*.xlsx)',
+      'File location' = ROUTE LOCAL 'LocalConnection' '${databases.customer360.folder.sources.folder.10..semi structured.folder.excel.views.custom.campaigns_events_mapping.File location.ROUTE.LOCAL.PATH}',
+      'Extract data from all sheets' = false,
+      'Has headers' = true,
+      'Stream tuples' = true
+    )
+    OUTPUTSCHEMA (
+        "Campaigns identifiers" = 'Campaigns identifiers' : 'java.lang.String' (OPT) SORTABLE,
+        "Events identifiers" = 'Events identifiers' : 'java.lang.String' (OPT) SORTABLE
+    );
+

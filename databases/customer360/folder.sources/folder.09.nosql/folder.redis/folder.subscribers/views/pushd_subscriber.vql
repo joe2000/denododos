@@ -1,0 +1,51 @@
+﻿CREATE OR REPLACE WRAPPER CUSTOM pushd_subscriber
+    FOLDER = '/sources/09.nosql/redis/subscribers'
+    DATASOURCENAME=pushd_redis
+    PARAMETERS (
+      'Hostname' = 'roding.denodo.com',
+      'TCP port' = 6379,
+      'Introspection key' = 'subscriber:LP3SjnYg0OI',
+      'DB number' = 0
+    )
+    OUTPUTSCHEMA (
+        key = 'key' : 'java.lang.String' (OPT) SORTABLE,
+        "hash" = 'hash' : REGISTER OF (
+            category = 'category' : 'java.lang.String' (OPT) SORTABLE,
+            "contentAvailable" = 'contentAvailable' : 'java.lang.String' (OPT) SORTABLE,
+            created = 'created' : 'java.lang.String' (OPT) SORTABLE,
+            updated = 'updated' : 'java.lang.String' (OPT) SORTABLE,
+            token = 'token' : 'java.lang.String' (OPT) SORTABLE,
+            badge = 'badge' : 'java.lang.String' (OPT) SORTABLE,
+            lang = 'lang' : 'java.lang.String' (OPT) SORTABLE,
+            proto = 'proto' : 'java.lang.String' (OPT) SORTABLE
+        )
+    );
+
+CREATE OR REPLACE TYPE pushd_subscriber_hash AS REGISTER OF (category:text, "contentAvailable":text, created:text, updated:text, token:text, badge:text, lang:text, proto:text);
+
+CREATE OR REPLACE TABLE pushd_subscriber I18N es_euro (
+        key:text,
+        "hash":pushd_subscriber_hash
+    )
+    FOLDER = '/sources/09.nosql/redis/subscribers'
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD pushd_subscriber(
+        I18N es_euro
+        CONSTRAINTS (
+             ADD key (any) OPT ANY
+             ADD "hash".category (any) OPT ANY
+             ADD "hash"."contentAvailable" (any) OPT ANY
+             ADD "hash".created (any) OPT ANY
+             ADD "hash".updated (any) OPT ANY
+             ADD "hash".token (any) OPT ANY
+             ADD "hash".badge (any) OPT ANY
+             ADD "hash".lang (any) OPT ANY
+             ADD "hash".proto (any) OPT ANY
+             ADD "hash" NOS ZERO ()
+        )
+        OUTPUTLIST ("hash", key
+        )
+        WRAPPER (custom pushd_subscriber)
+    );
+

@@ -1,0 +1,5 @@
+﻿/databases/customer360/folder.sources/sources.vql
+/databases/customer360/folder.sources/folder.10.semi structured/10.semi structured.vql
+/databases/customer360/folder.sources/folder.10.semi structured/folder.filesystem/filesystem.vql
+/extensions/jars/denodo-filesystem-customwrapper-6.0.vql
+/databases/customer360/folder.sources/folder.10.semi structured/folder.filesystem/datasources/custom/filesystem.vql

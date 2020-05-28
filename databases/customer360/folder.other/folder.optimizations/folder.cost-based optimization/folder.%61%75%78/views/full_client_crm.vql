@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW full_client_crm FOLDER = '/other/optimizations/cost-based optimization/aux' AS SELECT address.street AS street, address.city AS city, address.zip AS zip, address.state AS state, address.primary_phone AS primary_phone, address.country AS country, client.client_id AS client_id, client.name AS name, client.surname AS surname, client.company_code AS company_code, client_type.value AS value FROM (client AS client INNER JOIN client_type AS client_type ON client.client_type = client_type.code ) INNER JOIN address AS address ON client.client_id = address.client_identifier ;
+
+ALTER VIEW full_client_crm
+ LAYOUT (client = [290, 20, 200, 127], client_type = [100, 270, 200, 67], address = [570, 20, 200, 167]);
+

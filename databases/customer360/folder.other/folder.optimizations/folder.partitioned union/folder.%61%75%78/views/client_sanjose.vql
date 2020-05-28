@@ -1,0 +1,44 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE WRAPPER JDBC client_sanjose
+    FOLDER = '/other/optimizations/partitioned union/aux'
+    DATASOURCENAME=acme_crm_sanjose
+    CATALOGNAME='${databases.customer360.folder.other.folder.optimizations.folder.partitioned union.folder.aux.views.jdbc.client_sanjose.CATALOGNAME}' 
+    RELATIONNAME='client' 
+    OUTPUTSCHEMA (
+        client_id = 'client_id' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypename='VARCHAR', sourcetypeid='12', sourcetypesize='50')  NOT NULL SORTABLE,
+        name = 'name' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypename='VARCHAR', sourcetypeid='12', sourcetypesize='100')  NOT NULL SORTABLE,
+        surname = 'surname' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypename='VARCHAR', sourcetypeid='12', sourcetypesize='100')  NOT NULL SORTABLE,
+        client_type = 'client_type' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypename='VARCHAR', sourcetypeid='12', sourcetypesize='10')  NOT NULL SORTABLE,
+        company_code = 'company_code' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypename='VARCHAR', sourcetypeid='12', sourcetypesize='50')  NOT NULL SORTABLE,
+        ssn = 'ssn' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypename='VARCHAR', sourcetypeid='12', sourcetypesize='50')  SORTABLE
+    )
+    CONSTRAINT 'PRIMARY' PRIMARY KEY ( 'client_id' )
+    INDEX 'PRIMARY' CLUSTER UNIQUE PRIMARY ( 'client_id' );
+
+CREATE OR REPLACE TABLE client_sanjose I18N us_pst (
+        client_id:text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '50', description = ''),
+        name:text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '100', description = ''),
+        surname:text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '100', description = ''),
+        client_type:text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '10', description = ''),
+        company_code:text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '50', description = ''),
+        ssn:text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '50', description = '')
+    )
+    FOLDER = '/other/optimizations/partitioned union/aux'
+    PRIMARY KEY ( 'client_id' )
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD client_sanjose(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD client_id (any) OPT ANY
+             ADD name (any) OPT ANY
+             ADD surname (any) OPT ANY
+             ADD client_type (any) OPT ANY
+             ADD company_code (any) OPT ANY
+             ADD ssn (any) OPT ANY
+        )
+        OUTPUTLIST (client_id, client_type, company_code, name, ssn, surname
+        )
+        WRAPPER (jdbc client_sanjose)
+    );
+

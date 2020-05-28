@@ -1,0 +1,68 @@
+﻿CREATE OR REPLACE WRAPPER JSON knowledgebase_solr_aux
+    FOLDER = '/sources/11.unstructured/solr'
+    DATASOURCENAME=knowledgebase_solr
+    TUPLEROOT '/JSONFile'
+    OUTPUTSCHEMA ("JSONFile" = 'JSONFile' : REGISTER OF (
+        "responseHeader" = 'responseHeader' : REGISTER OF (
+            status = 'status' : 'java.lang.Integer' (OPT),
+            "QTime" = 'QTime' : 'java.lang.Integer' (OPT),
+            params = 'params' : REGISTER OF (
+                q = 'q' : 'java.lang.String' (OPT),
+                wt = 'wt' : 'java.lang.String' (OPT),
+                rows = 'rows' : 'java.lang.String' (OPT)
+            )
+        ),
+        response = 'response' : REGISTER OF (
+            "numFound" = 'numFound' : 'java.lang.Integer' (OPT),
+            start = 'start' : 'java.lang.Integer' (OPT),
+            docs = 'docs' : ARRAY OF (
+                docs = 'docs' : REGISTER OF (
+                    message = 'message' : 'java.lang.String' (OPT),
+                    forum_name = 'forum_name' : 'java.lang.String' (OPT),
+                    topic_name = 'topic_name' : 'java.lang.String' (OPT)
+                )
+            )
+        )
+    )
+    );
+
+CREATE OR REPLACE TYPE "knowledgebase_solr_responseHeader_params" AS REGISTER OF (q:text, wt:text, rows:text);
+
+CREATE OR REPLACE TYPE "knowledgebase_solr_responseHeader" AS REGISTER OF (status:int, "QTime":int, params:"knowledgebase_solr_responseHeader_params");
+
+CREATE OR REPLACE TYPE knowledgebase_solr_response_docs_docs AS REGISTER OF (message:text, forum_name:text, topic_name:text);
+
+CREATE OR REPLACE TYPE knowledgebase_solr_response_docs AS ARRAY OF knowledgebase_solr_response_docs_docs;
+
+CREATE OR REPLACE TYPE knowledgebase_solr_response AS REGISTER OF ("numFound":int, start:int, docs:knowledgebase_solr_response_docs);
+
+CREATE OR REPLACE TABLE knowledgebase_solr_aux I18N es_euro (
+        "responseHeader":"knowledgebase_solr_responseHeader",
+        response:knowledgebase_solr_response
+    )
+    FOLDER = '/sources/11.unstructured/solr'
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD knowledgebase_solr_aux(
+        I18N es_euro
+        CONSTRAINTS (
+             ADD "responseHeader".status NOS ZERO ()
+             ADD "responseHeader"."QTime" NOS ZERO ()
+             ADD "responseHeader".params.q NOS ZERO ()
+             ADD "responseHeader".params.wt NOS ZERO ()
+             ADD "responseHeader".params.rows NOS ZERO ()
+             ADD response."numFound" NOS ZERO ()
+             ADD response.start NOS ZERO ()
+             ADD response.docs.message NOS ZERO ()
+             ADD response.docs.forum_name NOS ZERO ()
+             ADD response.docs.topic_name NOS ZERO ()
+             ADD "responseHeader" NOS ZERO ()
+             ADD "responseHeader".params NOS ZERO ()
+             ADD response NOS ZERO ()
+             ADD response.docs NOS ZERO ()
+        )
+        OUTPUTLIST (response, "responseHeader"
+        )
+        WRAPPER (json knowledgebase_solr_aux)
+    );
+

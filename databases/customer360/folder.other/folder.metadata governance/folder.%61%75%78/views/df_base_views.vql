@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW df_base_views FOLDER = '/other/metadata governance/aux' AS SELECT resultname AS resultname, resulttype AS resulttype, resultsubtype AS resultsubtype, resultusercreator AS resultusercreator, resultlastusermodifier AS resultlastusermodifier, resultcreatedate AS resultcreatedate, resultlastmodificationdate AS resultlastmodificationdate FROM catalog_elements() WHERE (resultsubtype = 'base' AND resultname like '%df%');
+
+ALTER VIEW df_base_views
+ LAYOUT (catalog_elements = [20, 20, 200, 128]);
+

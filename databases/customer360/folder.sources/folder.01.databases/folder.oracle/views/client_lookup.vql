@@ -1,0 +1,33 @@
+﻿CREATE OR REPLACE WRAPPER JDBC "CLIENT_LOOKUP"
+    FOLDER = '/sources/01.databases/oracle'
+    DATASOURCENAME=oracle_crm
+    PROCEDURENAME='CLIENT_LOOKUP' 
+    OUTPUTSCHEMA (
+        "IN_ID" = 'IN_ID' :'java.lang.String' (sourcetyperadix='10', sourcetypename='VARCHAR2', sourcetypeid='12', sourcetypesize='4')  NOT NULL SORTABLE PARAMINDEX=1 PARAMTYPE=1,
+        "FIRSTNAME" = 'FIRSTNAME' :'java.lang.String' (sourcetyperadix='10', sourcetypename='VARCHAR2', sourcetypeid='12', sourcetypesize='19')  NOT NULL SORTABLE PARAMINDEX=2 PARAMTYPE=4,
+        "LASTNAME" = 'LASTNAME' :'java.lang.String' (sourcetyperadix='10', sourcetypename='VARCHAR2', sourcetypeid='12', sourcetypesize='16')  NOT NULL SORTABLE PARAMINDEX=3 PARAMTYPE=4,
+        "SSN" = 'SSN' :'java.lang.String' (sourcetyperadix='10', sourcetypename='VARCHAR2', sourcetypeid='12', sourcetypesize='11')  NOT NULL SORTABLE PARAMINDEX=4 PARAMTYPE=4
+    );
+
+CREATE OR REPLACE TABLE client_lookup I18N es_euro (
+        "IN_ID":text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '4'),
+        "FIRSTNAME":text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '19'),
+        "LASTNAME":text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '16'),
+        "SSN":text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '11')
+    )
+    FOLDER = '/sources/01.databases/oracle'
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD "CLIENT_LOOKUP"(
+        I18N es_euro
+        CONSTRAINTS (
+             ADD "IN_ID" (=,is null) OBL ONE
+             ADD "FIRSTNAME" NOS ZERO ()
+             ADD "LASTNAME" NOS ZERO ()
+             ADD "SSN" NOS ZERO ()
+        )
+        OUTPUTLIST ("FIRSTNAME", "IN_ID", "LASTNAME", "SSN"
+        )
+        WRAPPER (jdbc "CLIENT_LOOKUP")
+    );
+

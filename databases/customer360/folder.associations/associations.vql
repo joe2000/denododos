@@ -1,0 +1,2 @@
+﻿CREATE OR REPLACE FOLDER '/Associations' DESCRIPTION 'Associations between related Business Entities' ;
+

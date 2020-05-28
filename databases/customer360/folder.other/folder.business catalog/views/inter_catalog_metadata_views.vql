@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW inter_catalog_metadata_views FOLDER = '/other/business catalog' DESCRIPTION = 'This view returns all the view and column names in the Denodo Server executing the catalog_metadata_views SP'  AS SELECT input_database_name AS input_database_name, input_view_name AS input_view_name, database_name AS database_name, view_name AS view_name, view_type AS view_type, column_name AS column_name, column_type_name AS column_type_name, column_type AS column_type, column_type_precision AS column_type_precision, column_type_length AS column_type_length, column_type_scale AS column_type_scale FROM catalog_metadata_views(NULL,NULL);
+
+ALTER VIEW inter_catalog_metadata_views
+ LAYOUT (catalog_metadata_views = [20, 20, 200, 105]);
+

@@ -1,0 +1,5 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE DATASOURCE XML product_catalog
+    FOLDER = '/sources/03.olap - multidimensional/mondrian/products/aux'
+    ROUTE LOCAL 'LocalConnection' '${databases.customer360.folder.sources.folder.03..olap - multidimensional.folder.mondrian.folder.products.folder.aux.datasources.xml.product_catalog.ROUTE.LOCAL.PATH}';
+

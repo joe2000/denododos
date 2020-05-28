@@ -1,0 +1,9 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE DATASOURCE DF address_df
+    FOLDER = '/other/metadata governance/source refresh and changes propagation/sources'
+    IGNOREMATCHINGERRORS = FALSE
+    ROUTE LOCAL 'LocalConnection' '${databases.customer360.folder.other.folder.metadata governance.folder.source refresh and changes propagation.folder.sources.datasources.df.address_df.ROUTE.LOCAL.PATH}'
+    COLUMNDELIMITER = ','
+    ENDOFLINEDELIMITER = '\n'
+    HEADER = TRUE;
+

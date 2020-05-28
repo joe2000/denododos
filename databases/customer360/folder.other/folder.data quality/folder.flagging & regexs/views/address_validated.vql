@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW address_validated FOLDER = '/other/data quality/flagging & regexs' AS SELECT address.client_identifier AS client_identifier, address.primary_phone AS primary_phone, address.street AS street, address.city AS city, address.zip AS zip, case WHEN (len(zip) < 4) THEN (('Zip length less than 4 characters, for client_identifier:'||client_identifier)||'p. Please review') ELSE 'Zip lenght OK' END AS validatezip_size, case WHEN (NOT zip regexp_like map('zip', 'field_validator_map')) THEN (('Zip structure incorrect for client_identifier:'||client_identifier)||' , please review') ELSE 'Zip structure OK' END AS validatezip_structure, case WHEN (NOT primary_phone regexp_like map('phone', 'field_validator_map')) THEN (('Phone structure incorrect for client_identifier:'||client_identifier)||' , please review') ELSE 'Phone structure OK' END AS validatephone_structure, ((((((address.street||' , ')||address.city)||' ,')||address.zip)||' , ')||address.state) AS full_address FROM address;
+
+ALTER VIEW address_validated
+ LAYOUT (address = [20, 20, 200, 105]);
+

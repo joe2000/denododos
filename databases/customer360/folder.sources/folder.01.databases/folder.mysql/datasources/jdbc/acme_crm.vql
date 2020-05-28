@@ -1,0 +1,37 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE DATASOURCE JDBC acme_crm
+    FOLDER = '/sources/01.databases/mysql'
+    DRIVERCLASSNAME = 'com.mysql.jdbc.Driver'
+    DATABASEURI = '${databases.customer360.folder.sources.folder.01..databases.folder.mysql.datasources.jdbc.acme_crm.DATABASEURI}'
+    USERNAME = '${databases.customer360.folder.sources.folder.01..databases.folder.mysql.datasources.jdbc.acme_crm.USERNAME}'
+    USERPASSWORD = '${databases.customer360.folder.sources.folder.01..databases.folder.mysql.datasources.jdbc.acme_crm.USERPASSWORD}' ${databases.customer360.folder.sources.folder.01..databases.folder.mysql.datasources.jdbc.acme_crm.USERPASSWORD.ENCRYPTED}
+    CLASSPATH = 'mysql-5.1'
+    DATABASENAME = 'mysql'
+    DATABASEVERSION = '5'
+    FETCHSIZE = 1000
+    VALIDATIONQUERY = 'Select 1'
+    INITIALSIZE = 4
+    MAXIDLE = 0
+    MINIDLE = 0
+    MAXACTIVE = 20
+    EXHAUSTEDACTION = 0
+    TESTONBORROW = true
+    TESTONRETURN = false
+    TESTWHILEIDLE = false
+    TIMEBETWEENEVICTION = 0
+    NUMTESTPEREVICTION = 0
+    MINEVICTABLETIME = 0
+    POOLPREPAREDSTATEMENTS = false
+    MAXOPENPREPAREDSTATEMENTS = -1
+    PROPERTIES ('vdp.streamRows'='yes')
+    DATA_LOAD_CONFIGURATION (
+        BATCHINSERTSIZE = 200
+        USEEXTERNALTABLES ( 
+            ONMOVEREAD = false,
+            ONMOVEWRITE = true
+        )
+    )
+    SOURCECONFIGURATION (
+        delegatescalarfunctionslist = (abs, acos, addday, addhour, addminute, addmonth, addsecond, addweek, addyear, ascii, asin, atan, atan2, case, cast, ceil, char, coalesce, concat, cos, cot, current_date, degrees, div, exp, firstdayofmonth, floor, formatdate, getday, getdayofweek, getdayofyear, getdaysbetween, gethour, getmicrosecond, getmillisecond, getminute, getmonth, getmonthsbetween, getnanosecond, getsecond, gettimeinmillis, getyear, instr, lastdayofmonth, len, ln, log, lower, ltrim, max, min, mod, mult, now, nullif, pi, position, pow, power, radians, rand, removeaccents, repeat, replace, round, rtrim, sign, sin, sql_trim, sqrt, substr, substring, subtract, sum, tan, textcat, textconstant, to_date, to_localdate, to_time, to_timestamp, trim, upper)
+    );
+

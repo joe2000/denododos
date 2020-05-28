@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW customer_website FOLDER = '/other/data quality/fuzzy matching/aux' AS SELECT DISTINCT incidents_website.customer_id AS customer_id, incidents_website.name AS name, incidents_website.age AS age, incidents_website.ssn AS ssn, incidents_website.tax_id AS tax_id, incidents_website.address AS address, incidents_website.city AS city, incidents_website.state AS state, incidents_website.phone AS phone, incidents_website.email AS email FROM incidents_website;
+
+ALTER VIEW customer_website
+ LAYOUT (incidents_website = [20, 20, 357, 467]);
+

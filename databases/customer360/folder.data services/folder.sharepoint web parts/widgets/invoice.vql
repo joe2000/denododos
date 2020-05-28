@@ -1,0 +1,107 @@
+﻿CREATE OR REPLACE WIDGET invoice
+    DISPLAYNAME = 'invoice'
+    DESCRIPTION = 'invoice'
+    FOLDER = '/data services/sharepoint web parts'
+    ELEMENTTOPUBLISH = invoice
+    ELEMENTTOPUBLISHTYPE = VIEW
+    CHUNKSIZE = 1000
+    CHUNKTIMEOUT = 80000
+    QUERYTIMEOUT = 800000
+    POOLENABLED = true
+    POOLINITSIZE = 0
+    POOLMAXACTIVE = 30
+    I18N = us_cst
+    HELPMODEENABLED = true
+    CUSTOMIZEDHELPMODECONTENTS = '<div>
+<h1>Help</h1>
+
+<h2>View Mode</h2>
+<p>Contains the <i>Results Table</i> with the data obtained from the Server.<br />
+</p>
+
+In this mode you can:
+<ul>
+    <li><b>Sort</b> the data alphabetically by clicking the header of a
+    column.</li>
+    <br />
+
+    <li><b>Share</b> the data of a <b>row</b> with other widgets by clicking
+    the icon in the first cell of that row.</li>
+    <br />
+
+    <li><b>Share</b> the data of the whole <i>Results Table</i> with other
+    widgets by clicking the icon in the header of the first column (this option is
+    not always available)</li>
+</ul>
+
+<hr />
+
+<h2>Edit Mode</h2>
+<p>In this mode you can configure the query sent to the Server.</p>
+
+<h3>Input Parameters</h3>
+<p>Input Parameters are used to configure the query sent to the Server.</p>
+
+<p>Fill the values of the desired fields and click the <b>Search</b> button
+(the required fields have an * behind its name)</p>
+
+<p>Besides setting an input value for each field, you can also choose an
+operator for each of them (=, &lt;, &gt;, ...) The choices vary depending on the
+field''s type.</p>
+
+<p>If an Input Parameter''s type is <i>date</i>, you have to fill in the
+value following a certain pattern.<br />
+In these case, the current date appears behind the text field, formatted with
+the required date pattern.</p>
+
+
+
+<h3>Results Table Columns</h3>
+<p>Select the columns that will appear in the <i>Results Table</i> (select
+at least one)</p>
+
+<h3>Results Table Configuration</h3>
+<dl>
+    <dt><b>Max. Results</b></dt>
+    <dd>Maximum number of rows that will be obtained from the server.</dd>
+    <br />
+    <dt><b>Rows per page</b></dt>
+    <dd>The <i>Results Table</i> can split the content of the table into
+    several pages to ease the navigation through the data.</dd>
+    <br />
+    <dt><b>Show extended date format</b></dt>
+    <dd>For the columns of type <i>date</i>, you can choose if you want to
+    display its date and time or just the date.</dd>
+    <br />
+    <dt><b>Results table height</b> and <b>Results table width</b></dt>
+    <dd>Change the height and width (pixels) of the <i>Results Table</i>.<br />
+    If the table doesn''t fit in that space, a horizontal or vertical scroll bar
+    will be added so you don''t miss any data.</dd>
+    <br />
+    <dt><b>Results table cell height</b> and <b>Results table cell width</b></dt>
+    <dd>Change the height and width (pixels) of every cell in the <i>Results
+    Table</i>.<br />
+    If the content of a cell doesn''t fit in that space, the part that doesn''t fit
+    will be hidden.
+</i>
+</dd>
+<br />
+<dt><b>Non HTML-escaped columns</b></dt>
+<dd>By default, if any cell contains HTML it will be escaped. If you don''t
+want so, select the columns that you don''t want its HTML to be escaped.<br />
+Use the <i>Select All</i> and <i>Clear Selection</i> links behind to
+select/unselect all the columns. If you only want to select a few, press <kbd>CTRL</kbd>
+and click each field with the mouse.</dd>
+<dt>
+</dl>
+
+
+<p>For more information, visit the <a href="http://help.denodo.com/"
+    onclick="window.open(this.href);return false;">Denodo Online Help</a> <i>(new
+window)</i></p>
+</div>'
+    OPTIONS (
+      PORTLETJSR286 ( PUBLISHCUSTOMTABLEEVENT = false )
+    )
+;
+

@@ -1,0 +1,5 @@
+﻿/databases/customer360/folder.sources/sources.vql
+/databases/customer360/folder.sources/folder.11.unstructured/11.unstructured.vql
+/databases/customer360/folder.sources/folder.11.unstructured/folder.solr/solr.vql
+/databases/customer360/folder.sources/folder.11.unstructured/folder.solr/datasources/json/knowledgebase_solr.vql
+/databases/customer360/folder.sources/folder.11.unstructured/folder.solr/views/knowledgebase_solr_aux.vql

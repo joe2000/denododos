@@ -1,0 +1,10 @@
+﻿/databases/customer360/folder.other/other.vql
+/databases/customer360/folder.other/folder.data quality/data quality.vql
+/databases/customer360/folder.other/folder.data quality/folder.fuzzy matching/fuzzy matching.vql
+/databases/customer360/folder.other/folder.data quality/folder.fuzzy matching/folder.%61%75%78/%61%75%78.vql
+/databases/customer360/folder.sources/sources.vql
+/databases/customer360/folder.sources/folder.10.semi structured/10.semi structured.vql
+/databases/customer360/folder.sources/folder.10.semi structured/folder.incidents website/incidents website.vql
+/databases/customer360/folder.sources/folder.10.semi structured/folder.incidents website/datasources/itp/incidents_no_credentials.vql
+/databases/customer360/folder.sources/folder.10.semi structured/folder.incidents website/views/incidents_no_credentials.vql
+/databases/customer360/folder.sources/folder.10.semi structured/folder.incidents website/views/incidents_website.vql

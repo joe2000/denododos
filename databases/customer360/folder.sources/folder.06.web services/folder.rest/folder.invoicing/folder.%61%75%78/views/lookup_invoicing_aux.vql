@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW lookup_invoicing_aux FOLDER = '/sources/06.web services/rest/invoicing/aux' AS SELECT client_id AS client_id, to_date('yyyy/mm/dd', date) AS date, lookup_array((array_package).item, 'p001', 'package_id', 'amount_due') AS p001_amountdue, (array_package).item AS item FROM FLATTEN invoicing AS v ( v.invoicing_data_aux_item.bills.item);
+
+ALTER VIEW lookup_invoicing_aux
+ LAYOUT (invoicing = [20, 20, 446, 324]);
+

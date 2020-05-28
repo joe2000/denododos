@@ -1,0 +1,41 @@
+﻿CREATE OR REPLACE WRAPPER DF address_df_5052
+    FOLDER = '/other/metadata governance/source refresh and changes propagation/sources'
+    DATASOURCENAME=address_df
+    OUTPUTSCHEMA (
+        "CLIENT_ID" = 'CLIENT_ID' (OPT),
+        "STREET" = 'STREET' (OPT),
+        "CITY" = 'CITY' (OPT),
+        "ZIP" = 'ZIP' (OPT),
+        "STATE" = 'STATE' (OPT),
+        "PRIMARY_PHONE" = 'PRIMARY_PHONE' (OPT),
+        "COUNTRY" = 'COUNTRY' (OPT)
+    );
+
+CREATE OR REPLACE TABLE address_df I18N us_pst (
+        "CLIENT_ID":text,
+        "STREET":text,
+        "CITY":text,
+        "ZIP":text,
+        "STATE":text,
+        "PRIMARY_PHONE":text,
+        "COUNTRY":text
+    )
+    FOLDER = '/other/metadata governance/source refresh and changes propagation/sources'
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD address_df(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD "CLIENT_ID" (=,in) OPT ANY
+             ADD "STREET" (=,in) OPT ANY
+             ADD "CITY" (=,in) OPT ANY
+             ADD "ZIP" (=,in) OPT ANY
+             ADD "STATE" (=,in) OPT ANY
+             ADD "PRIMARY_PHONE" (=,in) OPT ANY
+             ADD "COUNTRY" (=,in) OPT ANY
+        )
+        OUTPUTLIST ("CITY", "CLIENT_ID", "COUNTRY", "PRIMARY_PHONE", "STATE", "STREET", "ZIP"
+        )
+        WRAPPER (df address_df_5052)
+    );
+

@@ -1,0 +1,353 @@
+﻿CREATE OR REPLACE WEBSERVICE personaldata_df
+    CHUNKSIZE = 1000
+    CHUNKTIMEOUT = 80000
+    QUERYTIMEOUT = 80000000
+    POOLENABLED = true
+    POOLINITSIZE = 0
+    POOLMAXACTIVE = 30
+    I18N us_pst
+    DATETYPEMAPPING DATE
+    OUTPUT TYPE (
+      SOAP        ( STYLE RPC  )
+      REST
+            (
+            OPCONFIGS (
+                OPERATION = 'getAlllPersonalData'
+                PRETTYOUTPUT))
+      JSON
+      HTML( CSS = '/*
+.dnd-no-style html, body, div, span, applet, object, iframe,
+    h1, h2, h3, h4, h5, h6, p,
+    blockquote, pre, a, abbr, acronym, address, big,
+    cite, code, del, dfn, em, font, img,
+    ins, kbd, q, s, samp, small, strike,
+    strong, sub, sup, tt, var, dl, dt, dd, ol, ul, li,
+    fieldset, form, label, legend,
+    table, caption, tbody, tfoot, thead, tr, th, td,
+    center, u, b, i {{
+     margin: 0;
+     padding: 0;
+     border: 0;
+     outline: 0;
+     font-weight: normal;
+     font-style: normal;
+     font-size: 100%;
+     font-family: inherit;
+     vertical-align: baseline
+}}
+*/ /* basic skin styles */
+.dnd-skin-vdp .dnd-dt-table {{
+    margin: 0;
+    padding: 0;
+    font-family: Tahoma;
+    font-size: inherit;
+    border-collapse: collapse;
+    border: 1px solid #7F7F7F;
+}}
+
+.dnd-skin-vdp .dnd-dt-table caption {{
+    padding-bottom: 1em;
+    text-align: left;
+}}
+
+.dnd-skin-vdp .dnd-dt-table th {{
+    background: url(../resources/img/sprite.png) repeat-x 0 0;
+    /* header gradient */
+}}
+
+.dnd-skin-vdp .dnd-dt-table th,.dnd-skin-vdp .dnd-dt-table th a {{
+    font-weight: normal;
+    text-decoration: none;
+    color: #000; /* header text */
+    vertical-align: bottom;
+}}
+
+.dnd-skin-vdp .dnd-dt-table th,.dnd-skin-vdp .dnd-dt-table td {{
+    padding: 4px 10px 4px 10px; /* cell padding */
+    border-right: 1px solid #CBCBCB; /* inner column border */
+}}
+
+.dnd-skin-vdp .dnd-dt-table td {{
+    white-space: nowrap;
+    text-align: left;
+}}
+
+.dnd-skin-vdp .dnd-dt-table th.dnd-dt-last,.dnd-skin-vdp .dnd-dt-table td.dnd-dt-last
+    {{
+    border-right: 1px solid #7F7F7F; /* outer border */
+}}
+
+.dnd-skin-vdp .dnd-dt-list td {{
+    border-right: none; /* disable inner column border in list mode */
+}}
+
+.dnd-skin-vdp .dnd-dt-table thead {{
+    border: 1px solid #989898; /* outer border */
+}}
+
+.dnd-skin-vdp .dnd-dt-table tbody {{
+    border-left: 1px solid #7F7F7F;
+    border-right: 1px solid #7F7F7F;
+    border-bottom: 1px solid #7F7F7F; /* outer border */
+}}
+
+.dnd-skin-vdp .dnd-dt-hd {{ /*background: #4d82bb;*/
+    
+}}
+
+textarea {{
+    font-family: tahoma, arial, helvetica, clean, sans-serif;
+    font-size: 13px;
+}}
+
+a {{
+    color: white;
+}}
+
+.dnd-dt-sortable a {{
+    color: white;
+    display: block;
+    margin: 0 auto;
+}}
+
+.dnd-dt-sortable {{
+    text-align: center;
+}}
+
+.dnd-skin-vdp .dnd-dt-hd a {{
+    color: white;
+    display: block;
+    margin: 0 auto;
+}}
+
+/* messaging */
+.dnd-skin-vdp .dnd-dt-loading {{
+    background-color: #FFF;
+}}
+
+.dnd-skin-vdp .dnd-dt-loading {{
+    background-color: #FFF;
+}}
+
+/* sortable columns */
+.dnd-skin-vdp .dnd-dt-sortable {{
+    cursor: pointer;
+}}
+
+.dnd-skin-vdp th.dnd-dt-sortable {{
+    text-align: center;
+    /*padding-right:5px;*/ /* room for arrow */
+}}
+
+.dnd-dt-label {{
+    text-align: center;
+}}
+
+.dnd-dt-sortable a {{
+    text-align: center;
+    background: #4d82bb;
+}}
+
+thead {{
+    background: #4d82bb;
+}}
+
+table {{
+    overflow: auto;
+}}
+
+.dnd-skin-vdp th.dnd-dt-sortable .dnd-dt-label {{
+    margin-right: 15px; /* room for arrow */
+}}
+
+.dnd-skin-vdp th.dnd-dt-asc,.dnd-skin-vdp th.dnd-dt-desc {{
+    background: url(../resources/img/sprite.png) repeat-x 0 -100px;
+    /* sorted header gradient */
+}}
+
+.dnd-skin-vdp th.dnd-dt-asc .dnd-dt-header {{
+    background: url(../resources/img/dt-arrow-up.png) no-repeat right;
+    /* sorted header gradient */
+}}
+
+.dnd-skin-vdp th.dnd-dt-desc .dnd-dt-header {{
+    background: url(../resources/img/dt-arrow-dn.png) no-repeat right;
+    /* sorted header gradient */
+}}
+
+/* striping */
+.dnd-skin-vdp tr.dnd-dt-even {{
+    background-color: #bad8f8;
+}}  /* white */
+.dnd-skin-vdp tr.dnd-dt-odd {{
+    background-color: #EDF5FF;
+}}  /* light blue EDF5FF */
+.dnd-skin-vdp tr.dnd-dt-even td.dnd-dt-asc,.dnd-skin-vdp tr.dnd-dt-even td.dnd-dt-desc {{
+    background-color: #bad8f8;
+}}  /* light blue sorted EDF5FF */
+.dnd-skin-vdp tr.dnd-dt-odd td.dnd-dt-asc,.dnd-skin-vdp tr.dnd-dt-odd td.dnd-dt-desc {{
+    background-color: #EDF5FF;
+}}  /* dark blue sorted DBEAFF */ /* disable striping in list mode */
+.dnd-skin-vdp .dnd-dt-list tr.dnd-dt-even {{
+    background-color: #FFF;
+}}  /* white */
+.dnd-skin-vdp .dnd-dt-list tr.dnd-dt-odd {{
+    background-color: #FFF;
+}}  /* white */
+.dnd-skin-vdp .dnd-dt-list tr.dnd-dt-even td.dnd-dt-asc,.dnd-skin-vdp .dnd-dt-list tr.dnd-dt-even td.dnd-dt-desc {{
+    background-color: #bad8f8;
+}}  /* light blue sorted EDF5FF */
+.dnd-skin-vdp .dnd-dt-list tr.dnd-dt-odd td.dnd-dt-asc,.dnd-skin-vdp .dnd-dt-list tr.dnd-dt-odd td.dnd-dt-desc {{
+    background-color: #4d82bb;
+}}  /* light blue sorted EDF5FF */ /* highlighting */
+.dnd-skin-vdp tr.dnd-dt-highlighted,.dnd-skin-vdp tr.dnd-dt-highlighted td.dnd-dt-asc,.dnd-skin-vdp tr.dnd-dt-highlighted td.dnd-dt-desc,.dnd-skin-vdp tr.dnd-dt-even td.dnd-dt-highlighted,.dnd-skin-vdp tr.dnd-dt-odd td.dnd-dt-highlighted {{
+    cursor: pointer;
+    background-color: #B2D2FF; /* med blue hover */
+}}
+
+/* enable highlighting in list mode */
+.dnd-skin-vdp .dnd-dt-list tr.dnd-dt-highlighted,.dnd-skin-vdp .dnd-dt-list tr.dnd-dt-highlighted td.dnd-dt-asc,.dnd-skin-vdp .dnd-dt-list tr.dnd-dt-highlighted td.dnd-dt-desc,.dnd-skin-vdp .dnd-dt-list tr.dnd-dt-even td.dnd-dt-highlighted,.dnd-skin-vdp .dnd-dt-list tr.dnd-dt-odd td.dnd-dt-highlighted {{
+    cursor: pointer;
+    background-color: #B2D2FF; /* med blue  hover */
+}}
+
+/* selection */
+.dnd-skin-vdp tr.dnd-dt-selected td,.dnd-skin-vdp tr.dnd-dt-selected td.dnd-dt-asc,.dnd-skin-vdp tr.dnd-dt-selected td.dnd-dt-desc {{
+    background-color: #426FD9; /* bright blue selected row */
+    color: #FFF;
+}}
+
+.dnd-skin-vdp tr.dnd-dt-even td.dnd-dt-selected,.dnd-skin-vdp tr.dnd-dt-odd td.dnd-dt-selected {{
+    background-color: #446CD7; /* bright blue selected cell */
+    color: #FFF;
+}}
+
+/* enable selection in list mode */
+.dnd-skin-vdp .dnd-dt-list tr.dnd-dt-selected td,.dnd-skin-vdp .dnd-dt-list tr.dnd-dt-selected td.dnd-dt-asc,.dnd-skin-vdp .dnd-dt-list tr.dnd-dt-selected td.dnd-dt-desc {{
+    background-color: #426FD9; /* bright blue selected row */
+    color: #FFF;
+}}
+
+.dnd-skin-vdp .dnd-dt-list tr.dnd-dt-even td.dnd-dt-selected,.dnd-skin-vdp .dnd-dt-list tr.dnd-dt-odd td.dnd-dt-selected {{
+    background-color: #446CD7; /* bright blue selected cell */
+    color: #FFF;
+}}
+
+/* pagination */
+.dnd-skin-vdp .dnd-dt-paginator {{
+    display: block;
+    margin: 6px 0;
+    white-space: nowrap;
+}}
+
+.dnd-dt-first {{ /*background: #4d82bb;*/
+    border: none;
+}}
+
+.dnd-dt-sortable {{
+    border: none;
+}}
+
+.dnd-skin-vdp .dnd-dt-paginator .dnd-dt-first,.dnd-skin-vdp .dnd-dt-paginator .dnd-dt-last,.dnd-skin-vdp .dnd-dt-paginator .dnd-dt-selected {{
+    padding: 2px 6px;
+    background: #4d82bb;
+}}
+
+.dnd-skin-vdp .dnd-dt-paginator a.dnd-dt-first,.dnd-skin-vdp .dnd-dt-paginator a.dnd-dt-last {{
+    text-decoration: none;
+}}
+
+.dnd-skin-vdp .dnd-dt-paginator .dnd-dt-previous,.dnd-skin-vdp .dnd-dt-paginator .dnd-dt-next {{
+    display: none;
+}}
+
+.dnd-skin-vdp a.dnd-dt-page {{
+    border: 1px solid #CBCBCB;
+    padding: 2px 6px;
+    text-decoration: none;
+}}
+
+.dnd-pg-pages {{
+    margin-left: 1ex;
+    margin-right: 1ex;
+}}
+
+.dnd-pg-page {{
+    background-color: #FFFFFF;
+    border: 1px solid #CBCBCB;
+    padding: 2px 6px;
+    text-decoration: none;
+}}
+
+.dnd-dt-selected {{
+    background-color: #FFFFFF;
+    border: 1px solid #FFFFFF;
+}}
+
+/* Reset of CSS */
+.dnd-no-style {{ /* background-color: #ADD8E6 !important; */
+    vertical-align: baseline overflow : hidden !important;
+    text-align: left !important;
+}}
+
+.dnd-no-style a {{
+    display: inline !important;
+    vertical-align: baseline /* background-color: #ADD8E6 !important; */
+    text-align: left !important;
+    color: #FFF !important;
+}}
+
+.dnd-no-style li {{
+    font-weight: normal !important;
+    vertical-align: baseline /* background-color: #ADD8E6 !important; */
+    font-style :     normal !important;
+    text-align: left !important;
+}}
+
+.dnd-no-style li {{
+    vertical-align: baseline;
+    font-weight : normal !important;
+    /*background-color: #ADD8E6 !important;*/
+    text-align: left !important;
+    font-style: normal !important;
+}}' )
+    )
+    OPERATION 'getAlllPersonalData' (
+        TYPE SELECT
+        SCHEMA VIEW personaldata_df
+        VQL = 'SELECT client_id, name, surname, ssn, street, city, zip, state, country, phone FROM personaldata_df ^ExecuteIfIsNotNull("WHERE ",@WHEREEXPRESSION,"") CONTEXT (''i18n'' = ''us_pst'')'
+        INPUTS (
+            'STREET' street:'text' '=' 
+            'CITY' city:'text' '=' 
+            'ZIP' zip:'text' '=' 
+            'STATE' state:'text' '=' 
+            'COUNTRY' country:'text' '=' 
+            'PHONE' phone:'text' '=' 
+        )
+        OUTPUT 
+            'PERSONALDATA_DFReturn': Array of ( 'getAlllPersonalDataRow': Register of (
+                client_id : 'text',
+                name : 'text',
+                surname : 'text',
+                ssn : 'text',
+                street : 'text',
+                city : 'text',
+                zip : 'text',
+                state : 'text',
+                country : 'text',
+                phone : 'text'
+            ) (
+                    '/client_id'='CLIENT_ID',
+                    '/name'='NAME',
+                    '/ssn'='SSN',
+                    '/surname'='SURNAME',
+                    '/street'='STREET',
+                    '/city'='CITY',
+                    '/zip'='ZIP',
+                    '/state'='STATE',
+                    '/country'='COUNTRY',
+                    '/phone'='PHONE'))
+    )
+    FOLDER = '/other/metadata governance/source refresh and changes propagation/services'
+    CASE_SENSITIVE = true;
+

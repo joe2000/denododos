@@ -1,0 +1,7 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE DATASOURCE XML invoicing
+    FOLDER = '/sources/06.web services/rest/invoicing'
+    ROUTE HTTP 'http.CommonsHttpClientConnection,120000' GET '${databases.customer360.folder.sources.folder.06..web services.folder.rest.folder.invoicing.datasources.xml.invoicing.ROUTE.HTTP.URL}'
+    AUTHENTICATION OFF
+    PROXY OFF;
+

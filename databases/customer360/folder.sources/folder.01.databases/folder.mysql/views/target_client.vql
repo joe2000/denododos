@@ -1,0 +1,35 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE WRAPPER JDBC target_client
+    FOLDER = '/sources/01.databases/mysql'
+    DATASOURCENAME=acme_crm
+    CATALOGNAME='${databases.customer360.folder.sources.folder.01..databases.folder.mysql.views.jdbc.target_client.CATALOGNAME}' 
+    RELATIONNAME='target_client' 
+    OUTPUTSCHEMA (
+        client_id = 'client_id' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypename='VARCHAR', sourcetypeid='12', sourcetypesize='255')  SORTABLE,
+        name = 'name' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypename='VARCHAR', sourcetypeid='12', sourcetypesize='255')  SORTABLE,
+        surname = 'surname' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypename='VARCHAR', sourcetypeid='12', sourcetypesize='255')  SORTABLE,
+        client_type = 'client_type' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypename='VARCHAR', sourcetypeid='12', sourcetypesize='255')  SORTABLE
+    );
+
+CREATE OR REPLACE TABLE target_client I18N us_pst (
+        client_id:text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '255', description = ''),
+        name:text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '255', description = ''),
+        surname:text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '255', description = ''),
+        client_type:text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '255', description = '')
+    )
+    FOLDER = '/sources/01.databases/mysql'
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD target_client(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD client_id (any) OPT ANY
+             ADD name (any) OPT ANY
+             ADD surname (any) OPT ANY
+             ADD client_type (any) OPT ANY
+        )
+        OUTPUTLIST (client_id, client_type, name, surname
+        )
+        WRAPPER (jdbc target_client)
+    );
+

@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW lookup_invoicing FOLDER = '/sources/06.web services/rest/invoicing' DESCRIPTION = 'View that uses LOOKUP function to get filtered array elements'  AS SELECT lookup_invoicing_aux.client_id AS client_id, date AS date, lookup_invoicing_aux.p001_amountdue AS p001_amountdue FROM lookup_invoicing_aux;
+
+ALTER VIEW lookup_invoicing
+ LAYOUT (lookup_invoicing_aux = [20, 20, 491, 105]);
+

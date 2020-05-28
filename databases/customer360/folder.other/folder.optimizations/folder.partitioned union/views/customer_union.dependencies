@@ -1,0 +1,17 @@
+﻿/databases/customer360/folder.other/other.vql
+/databases/customer360/folder.other/folder.optimizations/optimizations.vql
+/databases/customer360/folder.other/folder.optimizations/folder.partitioned union/partitioned union.vql
+/extensions/jars/denodo-xtrafuncs-vdp-string-6.0.vql
+/databases/customer360/folder.other/folder.optimizations/folder.partitioned union/folder.%61%75%78/%61%75%78.vql
+/databases/customer360/folder.other/folder.optimizations/folder.partitioned union/folder.%61%75%78/datasources/jdbc/acme_crm_oakland.vql
+/databases/customer360/folder.other/folder.optimizations/folder.partitioned union/folder.%61%75%78/views/address_oakland.vql
+/databases/customer360/folder.other/folder.optimizations/folder.partitioned union/folder.%61%75%78/views/client_oakland.vql
+/databases/customer360/folder.other/folder.optimizations/folder.partitioned union/folder.%61%75%78/views/customer_oakland.vql
+/databases/customer360/folder.other/folder.optimizations/folder.partitioned union/folder.%61%75%78/datasources/jdbc/acme_crm_palo_alto.vql
+/databases/customer360/folder.other/folder.optimizations/folder.partitioned union/folder.%61%75%78/views/address_pa.vql
+/databases/customer360/folder.other/folder.optimizations/folder.partitioned union/folder.%61%75%78/views/client_pa.vql
+/databases/customer360/folder.other/folder.optimizations/folder.partitioned union/folder.%61%75%78/views/customer_pa.vql
+/databases/customer360/folder.other/folder.optimizations/folder.partitioned union/folder.%61%75%78/datasources/jdbc/acme_crm_sanjose.vql
+/databases/customer360/folder.other/folder.optimizations/folder.partitioned union/folder.%61%75%78/views/address_sanjose.vql
+/databases/customer360/folder.other/folder.optimizations/folder.partitioned union/folder.%61%75%78/views/client_sanjose.vql
+/databases/customer360/folder.other/folder.optimizations/folder.partitioned union/folder.%61%75%78/views/customer_sanjose.vql

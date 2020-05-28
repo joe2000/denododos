@@ -1,0 +1,8 @@
+﻿/databases/customer360/folder.sources/sources.vql
+/databases/customer360/folder.sources/folder.06.web services/06.web services.vql
+/databases/customer360/folder.sources/folder.06.web services/folder.rest/rest.vql
+/databases/customer360/folder.sources/folder.06.web services/folder.rest/folder.invoicing/invoicing.vql
+/databases/customer360/folder.sources/folder.06.web services/folder.rest/folder.invoicing/folder.%61%75%78/%61%75%78.vql
+/databases/customer360/folder.sources/folder.06.web services/folder.rest/folder.invoicing/folder.%61%75%78/datasources/xml/invoicing_aux_ds.vql
+/databases/customer360/folder.sources/folder.06.web services/folder.rest/folder.invoicing/folder.%61%75%78/views/invoicing_data_aux.vql
+/databases/customer360/folder.sources/folder.06.web services/folder.rest/folder.invoicing/folder.%61%75%78/views/invoicing_data_aux_flatten.vql

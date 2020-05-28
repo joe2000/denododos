@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE PROCEDURE tableprofiler
+    CLASSNAME='com.denodo.vdp.storedprocedure.profiling.TableProfiler'
+    JARS 'denodo-dataquality-1.1-jar-with-dependencies'
+    FOLDER = '/other/data quality/sps';
+

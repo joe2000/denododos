@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE DATASOURCE CUSTOM salesforce_soql_as_input
+    FOLDER = '/sources/07.saas/salesforce.com/salesforce generic soql'
+    CLASSNAME='com.denodo.connect.salesforce.rest.wrapper.SalesforceSOQLWrapper'
+    JARS 'denodo-salesforce-rest-wrapper-6.0';
+

@@ -1,0 +1,11 @@
+﻿CREATE OR REPLACE ASSOCIATION invoice_product REFERENTIAL CONSTRAINT 
+FOLDER = '/associations'
+    ENDPOINT product invoice (0,*)
+    DESCRIPTION = 'Product details'
+    ENDPOINT invoices product PRINCIPAL (1)
+    DESCRIPTION = 'Featuring invoices'
+    ADD MAPPING package_id=package_code;
+
+ALTER ASSOCIATION invoice_product
+ LAYOUT (invoice = [20, 20, 200, 147], product = [477, 61, 200, 231]);
+

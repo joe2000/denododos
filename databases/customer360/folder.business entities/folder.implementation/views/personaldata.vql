@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW personaldata FOLDER = '/business entities/implementation' AS SELECT client_df.client_id AS client_id, client_df.name AS name, client_df.surname AS surname, client_df.ssn AS ssn, client_type_df.value AS type, address_df."STREET" AS street, address_df."CITY" AS city, address_df."ZIP" AS zip, address_df."STATE" AS state, address_df."COUNTRY" AS country, address_df."PRIMARY_PHONE" AS primary_phone FROM (client_df AS client_df INNER JOIN address_df AS address_df ON client_df.client_id = address_df."CLIENT_ID" ) INNER JOIN client_type_df AS client_type_df ON client_df.client_type = client_type_df.code ;
+
+ALTER VIEW personaldata
+ LAYOUT (client_df = [20, 20, 200, 107], address_df = [510, 80, 200, 167], client_type_df = [536, 268, 200, 67]);
+

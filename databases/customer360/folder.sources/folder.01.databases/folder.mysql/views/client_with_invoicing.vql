@@ -1,0 +1,6 @@
+﻿CREATE OR REPLACE VIEW client_with_invoicing FOLDER = '/sources/01.databases/mysql'
+    PRIMARY KEY ( 'client_id' ) AS SELECT client.client_id AS client_id, client.name AS name, client.surname AS surname, client.client_type AS client_type, client.company_code AS company_code, client.ssn AS ssn, client_type.value AS value, flattened_invoicing.invoicing_address AS invoicing_address, flattened_invoicing.date AS date, flattened_invoicing.package_id AS package_id, flattened_invoicing.description AS description, flattened_invoicing.amount_due AS amount_due, ((client.name||' ')||client.surname) AS full_name FROM (client AS client INNER JOIN client_type AS client_type ON client.client_type = client_type.code ) INNER JOIN flattened_invoicing AS flattened_invoicing ON client.client_id = flattened_invoicing.client_id ;
+
+ALTER VIEW client_with_invoicing
+ LAYOUT (client = [211, 109, 200, 146], client_type = [699, 116, 200, 66], flattened_invoicing = [877, 346, 200, 146]);
+

@@ -1,0 +1,6 @@
+﻿CREATE OR REPLACE VIEW customer_union FOLDER = '/other/optimizations/partitioned union' DESCRIPTION = 'Partitioned union allows delegating to the data source the operations on top of the union view' 
+    PRIMARY KEY ( 'client_id' ) AS SELECT client_id, ((name||' ')||surname) AS fullname, ssn, street, city, zip, state, primary_phone, propercase(country) AS country FROM (SELECT * FROM customer_oakland EXTENDED UNION ALL SELECT name, primary_phone, client_id, zip, city, country, ssn, state, client_type, street, surname FROM customer_pa EXTENDED UNION ALL SELECT surname, zip, city, client_id, name, state, client_type, primary_phone, street, country, ssn FROM customer_sanjose);
+
+ALTER VIEW customer_union
+ LAYOUT (customer_oakland = [20, 20, 200, 225], customer_pa = [250, 20, 200, 225], customer_sanjose = [480, 20, 200, 225]);
+

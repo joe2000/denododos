@@ -1,0 +1,4 @@
+﻿/databases/customer360/folder.other/other.vql
+/databases/customer360/folder.other/folder.data quality/data quality.vql
+/databases/customer360/folder.other/folder.data quality/folder.sps/sps.vql
+/extensions/jars/denodo-dataquality-1.1-jar-with-dependencies.vql

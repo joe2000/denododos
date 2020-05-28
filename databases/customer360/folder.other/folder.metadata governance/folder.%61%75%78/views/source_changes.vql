@@ -1,0 +1,2 @@
+﻿CREATE OR REPLACE VIEW source_changes FOLDER = '/other/metadata governance/aux' AS SELECT * FROM source_changes() CONTEXT ('formatted' = 'yes');
+

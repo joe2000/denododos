@@ -1,0 +1,5 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE DATASOURCE XML invoicing_aux_ds
+    FOLDER = '/sources/06.web services/rest/invoicing/aux'
+    ROUTE LOCAL 'LocalConnection' '${databases.customer360.folder.sources.folder.06..web services.folder.rest.folder.invoicing.folder.aux.datasources.xml.invoicing_aux_ds.ROUTE.LOCAL.PATH}';
+

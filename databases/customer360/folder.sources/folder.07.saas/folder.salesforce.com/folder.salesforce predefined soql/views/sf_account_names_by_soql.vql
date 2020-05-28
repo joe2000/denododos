@@ -1,0 +1,53 @@
+﻿CREATE OR REPLACE WRAPPER CUSTOM sf_account_names_by_soql_5623
+    FOLDER = '/sources/07.saas/salesforce.com/salesforce predefined soql'
+    DATASOURCENAME=salesforce_predefined_soql
+    PARAMETERS (
+      'BASE_URL' = 'https://na3.salesforce.com',
+      'ACCESS_TOKEN' = '00D5000000077zi!ARcAQE_qUZ9l3JhH3yr4nQpPucD.NDJxUphbjCjx6oetX8mQ1C2qVi770L1RBnPJcdK53ck4UP0pY1QAdQPHexh50o1cRMD.',
+      'CLIENT_ID' = '3MVG9Km_cBLhsuPzuEJ8T.2uUkOGhpBPs0UH6ejd6RFAmuHgCV_zeHh_GE0cUfnTCyKkf.m4fghfEeLpqMdus',
+      'REFRESH_TOKEN (required for web flow)' = '5Aep861eWO5D.7wJBsLFjitX6L3M98eYEYnVfxbfZ6rwYOkMG4OhB3bBRaYfPD5xCWNEh0D6LkRzbfkUhbk3Lin',
+      'SOQL_QUERY' = 'SELECT Contact.Id, Contact.Owner.Id, Contact.Name, Contact.Owner.email, Contact.Account.Id, Contact.Account.Name, Contact.Account.Phone, Contact.Account.Type from Contact'
+    )
+    OUTPUTSCHEMA (
+        id = 'Id' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        owner_result_json = 'Owner_RESULT_JSON' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        owner_result_complex = 'Owner_RESULT_COMPLEX' : ARRAY OF (
+            owner_result_complex_record = 'Owner_RESULT_COMPLEX_record' : REGISTER OF (
+                field_name = 'FIELD_NAME' : 'java.lang.String' (OPT) SORTABLE,
+                field_value = 'FIELD_VALUE' : 'java.lang.Object' (OPT) SORTABLE
+            )
+        ),
+        name = 'Name' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        account = 'Account' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE
+    );
+
+CREATE OR REPLACE TYPE sf_account_names_by_soql_owner_result_complex_owner_result_complex_record AS REGISTER OF (field_name:text, field_value:text);
+
+CREATE OR REPLACE TYPE sf_account_names_by_soql_owner_result_complex AS ARRAY OF sf_account_names_by_soql_owner_result_complex_owner_result_complex_record;
+
+CREATE OR REPLACE TABLE sf_account_names_by_soql I18N us_pst (
+        id:text,
+        owner_result_json:text,
+        owner_result_complex:sf_account_names_by_soql_owner_result_complex,
+        name:text,
+        account:text
+    )
+    FOLDER = '/sources/07.saas/salesforce.com/salesforce predefined soql'
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD sf_account_names_by_soql(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD id (any) OPT ANY
+             ADD name (any) OPT ANY
+             ADD account (any) OPT ANY
+             ADD owner_result_json NOS ZERO ()
+             ADD owner_result_complex.field_name (any) OPT ANY
+             ADD owner_result_complex.field_value (any) OPT ANY
+             ADD owner_result_complex NOS ZERO ()
+        )
+        OUTPUTLIST (account, id, name, owner_result_complex, owner_result_json
+        )
+        WRAPPER (custom sf_account_names_by_soql_5623)
+    );
+

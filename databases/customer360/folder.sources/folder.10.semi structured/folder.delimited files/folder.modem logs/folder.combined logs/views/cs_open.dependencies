@@ -1,0 +1,12 @@
+﻿/databases/customer360/folder.sources/sources.vql
+/databases/customer360/folder.sources/folder.10.semi structured/10.semi structured.vql
+/databases/customer360/folder.sources/folder.10.semi structured/folder.delimited files/delimited files.vql
+/databases/customer360/folder.sources/folder.10.semi structured/folder.delimited files/folder.modem logs/modem logs.vql
+/databases/customer360/folder.sources/folder.10.semi structured/folder.delimited files/folder.modem logs/folder.combined logs/combined logs.vql
+/databases/customer360/folder.sources/folder.10.semi structured/folder.delimited files/folder.modem logs/folder.start logs/start logs.vql
+/databases/customer360/folder.sources/folder.10.semi structured/folder.delimited files/folder.modem logs/folder.start logs/datasources/df/ds_cslog_adsl_start.vql
+/databases/customer360/folder.sources/folder.10.semi structured/folder.delimited files/folder.modem logs/folder.start logs/views/cslog_adsl_start.vql
+/databases/customer360/folder.sources/folder.10.semi structured/folder.delimited files/folder.modem logs/folder.start logs/views/cslog_adsl_open.vql
+/databases/customer360/folder.sources/folder.10.semi structured/folder.delimited files/folder.modem logs/folder.start logs/datasources/df/ds_cslog_isdn_start.vql
+/databases/customer360/folder.sources/folder.10.semi structured/folder.delimited files/folder.modem logs/folder.start logs/views/cslog_isdn_start.vql
+/databases/customer360/folder.sources/folder.10.semi structured/folder.delimited files/folder.modem logs/folder.start logs/views/cslog_isdn_open.vql

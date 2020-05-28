@@ -1,0 +1,436 @@
+﻿CREATE OR REPLACE WRAPPER CUSTOM cobolcopybook_shipping
+    FOLDER = '/sources/05.legacy/copybook'
+    DATASOURCENAME=cobolcopybook
+    PARAMETERS (
+      'Data' = 'C:/demos/customer360/Datasources/Copybook/sampleFiles/data/Ams_Shipping_04DEC02190132.txt',
+      'Copybook' = 'C:/demos/customer360/Datasources/Copybook/sampleFiles/copybook/AmsShipping-Fixed-False.cbl',
+      'Fixed' = 'false'
+    )
+    OUTPUTSCHEMA (
+        record_type = 'RECORD_TYPE' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        record_type_0 = 'RECORD_TYPE' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        fh_description = 'FH_DESCRIPTION' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        fh_brand_id = 'FH_BRAND_ID' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        fh_create_date = 'FH_CREATE_DATE' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        fh_create_time = 'FH_CREATE_TIME' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        fh_filler = 'FH_FILLER' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        record_type_1 = 'RECORD_TYPE' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        mnfst_no_dh = 'MNFST_NO_DH' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        dc_no_dh = 'DC_NO_DH' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        brand_id_dh = 'BRAND_ID_DH' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        str_no_dh = 'STR_NO_DH' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        desp_dt_dh = 'DESP_DT_DH' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        desp_tm_dh = 'DESP_TM_DH' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        occurs_type_a_dh = 'OCCURS_TYPE_A_DH' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        occurs_type_b_dh = 'OCCURS_TYPE_B_DH' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        occurs_type_c_dh = 'OCCURS_TYPE_C_DH' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        processed_ind_dh = 'PROCESSED_IND_DH' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        c_usr_updt_dh = 'C_USR_UPDT_DH' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        ts_updt_dh = 'TS_UPDT_DH' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        dh_num_do = 'DH_NUM_DO' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        dh_filler = 'DH_FILLER' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        record_type_2 = 'RECORD_TYPE' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        mnfst_no_do = 'MNFST_NO_DO' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        dc_no_do = 'DC_NO_DO' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        brand_id_do = 'BRAND_ID_DO' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        str_no_do = 'STR_NO_DO' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        order_no_do = 'ORDER_NO_DO' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        receipt_no_do = 'RECEIPT_NO_DO' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        order_type_do = 'ORDER_TYPE_DO' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        tot_inners_desp_do = 'TOT_INNERS_DESP_DO' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        c_usr_updt_do = 'C_USR_UPDT_DO' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        ts_updt_do = 'TS_UPDT_DO' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        do_num_ds = 'DO_NUM_DS' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        do_num_dp = 'DO_NUM_DP' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        do_num_di = 'DO_NUM_DI' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        asn_do = 'ASN_DO' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        asn_seq_no_do = 'ASN_SEQ_NO_DO' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        brand_dc_do = 'BRAND_DC_DO' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        do_filler = 'DO_FILLER' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        record_type_3 = 'RECORD_TYPE' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        mnfst_no_ds = 'MNFST_NO_DS' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        dc_no_ds = 'DC_NO_DS' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        brand_id_ds = 'BRAND_ID_DS' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        str_no_ds = 'STR_NO_DS' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        order_no_ds = 'ORDER_NO_DS' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        scm_inner_ds = 'SCM_INNER_DS' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        scm_outer_ds = 'SCM_OUTER_DS' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        c_usr_updt_ds = 'C_USR_UPDT_DS' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        ts_updt_ds = 'TS_UPDT_DS' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        ds_num_ap = 'DS_NUM_AP' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        ds_num_ar = 'DS_NUM_AR' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        asn_ds = 'ASN_DS' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        asn_seq_no_ds = 'ASN_SEQ_NO_DS' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        receipt_no_ds = 'RECEIPT_NO_DS' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        ds_filler = 'DS_FILLER' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        record_type_4 = 'RECORD_TYPE' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        asn_ap = 'ASN_AP' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        asn_seq_no_ap = 'ASN_SEQ_NO_AP' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        order_no_ap = 'ORDER_NO_AP' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        store_ap = 'STORE_AP' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        scm_ap = 'SCM_AP' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        scm_seq_no_ap = 'SCM_SEQ_NO_AP' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        prod_no_ap = 'PROD_NO_AP' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        prod_seq_no_ap = 'PROD_SEQ_NO_AP' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        prod_qualifier_ap = 'PROD_QUALIFIER_AP' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        qty_shipped_ap = 'QTY_SHIPPED_AP' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        prod_measure_cd_ap = 'PROD_MEASURE_CD_AP' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        use_by_date_ap = 'USE_BY_DATE_AP' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        keycode_ap = 'KEYCODE_AP' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        error_code_ap = 'ERROR_CODE_AP' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        dangr_goods_no_ap = 'DANGR_GOODS_NO_AP' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        dangr_goods_cls_ap = 'DANGR_GOODS_CLS_AP' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        c_usr_updt_ap = 'C_USR_UPDT_AP' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        ts_updt_ap = 'TS_UPDT_AP' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        ap_filler = 'AP_FILLER' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        record_type_5 = 'RECORD_TYPE' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        brand_id_ar = 'BRAND_ID_AR' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        order_no_ar = 'ORDER_NO_AR' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        logistics_loc_noar = 'LOGISTICS_LOC_NOAR' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        receipt_no_ar = 'RECEIPT_NO_AR' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        scm_ar = 'SCM_AR' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        prod_no_ar = 'PROD_NO_AR' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        prod_qualifier_ar = 'PROD_QUALIFIER_AR' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        quality_code_ar = 'QUALITY_CODE_AR' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        checked_qty_ar = 'CHECKED_QTY_AR' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        sup_id_ar = 'SUP_ID_AR' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        asn_ar = 'ASN_AR' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        brand_dc_ar = 'BRAND_DC_AR' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        valid_prod_ind_ar = 'VALID_PROD_IND_AR' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        processed_ind_ar = 'PROCESSED_IND_AR' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        checked_by_ar = 'CHECKED_BY_AR' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        checked_date_ar = 'CHECKED_DATE_AR' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        checked_time_ar = 'CHECKED_TIME_AR' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        c_usr_updt_ar = 'C_USR_UPDT_AR' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        ts_updt_ar = 'TS_UPDT_AR' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        ar_filler = 'AR_FILLER' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        record_type_6 = 'RECORD_TYPE' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        mnfst_no_dp = 'MNFST_NO_DP' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        dc_no_dp = 'DC_NO_DP' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        brand_id_dp = 'BRAND_ID_DP' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        str_no_dp = 'STR_NO_DP' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        order_no_dp = 'ORDER_NO_DP' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        keycode_dp = 'KEYCODE_DP' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        prod_no_dp = 'PROD_NO_DP' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        prod_qualifier_dp = 'PROD_QUALIFIER_DP' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        desp_qty_dp = 'DESP_QTY_DP' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        itms_per_ctn_qtydp = 'ITMS_PER_CTN_QTYDP' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        c_usr_updt_dp = 'C_USR_UPDT_DP' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        ts_updt_dp = 'TS_UPDT_DP' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        receipt_no_dp = 'RECEIPT_NO_DP' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        dp_filler = 'DP_FILLER' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        record_type_7 = 'RECORD_TYPE' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        mnfst_no_di = 'MNFST_NO_DI' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        dc_no_di = 'DC_NO_DI' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        brand_id_di = 'BRAND_ID_DI' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        str_no_di = 'STR_NO_DI' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        order_no_di = 'ORDER_NO_DI' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        keycode_di = 'KEYCODE_DI' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        prod_no_di = 'PROD_NO_DI' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        prod_qualifier_di = 'PROD_QUALIFIER_DI' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        desp_qty_di = 'DESP_QTY_DI' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        itms_per_ctn_qtydi = 'ITMS_PER_CTN_QTYDI' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        c_usr_updt_di = 'C_USR_UPDT_DI' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        ts_updt_di = 'TS_UPDT_DI' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        receipt_no_di = 'RECEIPT_NO_DI' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        record_type_8 = 'RECORD_TYPE' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        ft_num_recds = 'FT_NUM_RECDS' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        ft_num_fh = 'FT_NUM_FH' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        ft_num_dh = 'FT_NUM_DH' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        ft_num_do = 'FT_NUM_DO' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        ft_num_ds = 'FT_NUM_DS' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        ft_num_ap = 'FT_NUM_AP' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        ft_num_ar = 'FT_NUM_AR' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        ft_num_dp = 'FT_NUM_DP' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        ft_num_di = 'FT_NUM_DI' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        ft_num_ft = 'FT_NUM_FT' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE
+    );
+
+CREATE OR REPLACE TABLE cobolcopybook_shipping I18N es_euro (
+        record_type:text,
+        record_type_0:text,
+        fh_description:text,
+        fh_brand_id:text,
+        fh_create_date:text,
+        fh_create_time:text,
+        fh_filler:text,
+        record_type_1:text,
+        mnfst_no_dh:text,
+        dc_no_dh:text,
+        brand_id_dh:text,
+        str_no_dh:text,
+        desp_dt_dh:text,
+        desp_tm_dh:text,
+        occurs_type_a_dh:text,
+        occurs_type_b_dh:text,
+        occurs_type_c_dh:text,
+        processed_ind_dh:text,
+        c_usr_updt_dh:text,
+        ts_updt_dh:text,
+        dh_num_do:text,
+        dh_filler:text,
+        record_type_2:text,
+        mnfst_no_do:text,
+        dc_no_do:text,
+        brand_id_do:text,
+        str_no_do:text,
+        order_no_do:text,
+        receipt_no_do:text,
+        order_type_do:text,
+        tot_inners_desp_do:text,
+        c_usr_updt_do:text,
+        ts_updt_do:text,
+        do_num_ds:text,
+        do_num_dp:text,
+        do_num_di:text,
+        asn_do:text,
+        asn_seq_no_do:text,
+        brand_dc_do:text,
+        do_filler:text,
+        record_type_3:text,
+        mnfst_no_ds:text,
+        dc_no_ds:text,
+        brand_id_ds:text,
+        str_no_ds:text,
+        order_no_ds:text,
+        scm_inner_ds:text,
+        scm_outer_ds:text,
+        c_usr_updt_ds:text,
+        ts_updt_ds:text,
+        ds_num_ap:text,
+        ds_num_ar:text,
+        asn_ds:text,
+        asn_seq_no_ds:text,
+        receipt_no_ds:text,
+        ds_filler:text,
+        record_type_4:text,
+        asn_ap:text,
+        asn_seq_no_ap:text,
+        order_no_ap:text,
+        store_ap:text,
+        scm_ap:text,
+        scm_seq_no_ap:text,
+        prod_no_ap:text,
+        prod_seq_no_ap:text,
+        prod_qualifier_ap:text,
+        qty_shipped_ap:text,
+        prod_measure_cd_ap:text,
+        use_by_date_ap:text,
+        keycode_ap:text,
+        error_code_ap:text,
+        dangr_goods_no_ap:text,
+        dangr_goods_cls_ap:text,
+        c_usr_updt_ap:text,
+        ts_updt_ap:text,
+        ap_filler:text,
+        record_type_5:text,
+        brand_id_ar:text,
+        order_no_ar:text,
+        logistics_loc_noar:text,
+        receipt_no_ar:text,
+        scm_ar:text,
+        prod_no_ar:text,
+        prod_qualifier_ar:text,
+        quality_code_ar:text,
+        checked_qty_ar:text,
+        sup_id_ar:text,
+        asn_ar:text,
+        brand_dc_ar:text,
+        valid_prod_ind_ar:text,
+        processed_ind_ar:text,
+        checked_by_ar:text,
+        checked_date_ar:text,
+        checked_time_ar:text,
+        c_usr_updt_ar:text,
+        ts_updt_ar:text,
+        ar_filler:text,
+        record_type_6:text,
+        mnfst_no_dp:text,
+        dc_no_dp:text,
+        brand_id_dp:text,
+        str_no_dp:text,
+        order_no_dp:text,
+        keycode_dp:text,
+        prod_no_dp:text,
+        prod_qualifier_dp:text,
+        desp_qty_dp:text,
+        itms_per_ctn_qtydp:text,
+        c_usr_updt_dp:text,
+        ts_updt_dp:text,
+        receipt_no_dp:text,
+        dp_filler:text,
+        record_type_7:text,
+        mnfst_no_di:text,
+        dc_no_di:text,
+        brand_id_di:text,
+        str_no_di:text,
+        order_no_di:text,
+        keycode_di:text,
+        prod_no_di:text,
+        prod_qualifier_di:text,
+        desp_qty_di:text,
+        itms_per_ctn_qtydi:text,
+        c_usr_updt_di:text,
+        ts_updt_di:text,
+        receipt_no_di:text,
+        record_type_8:text,
+        ft_num_recds:text,
+        ft_num_fh:text,
+        ft_num_dh:text,
+        ft_num_do:text,
+        ft_num_ds:text,
+        ft_num_ap:text,
+        ft_num_ar:text,
+        ft_num_dp:text,
+        ft_num_di:text,
+        ft_num_ft:text
+    )
+    FOLDER = '/sources/05.legacy/copybook'
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD cobolcopybook_shipping(
+        I18N es_euro
+        CONSTRAINTS (
+             ADD record_type NOS ZERO ()
+             ADD record_type_0 NOS ZERO ()
+             ADD fh_description NOS ZERO ()
+             ADD fh_brand_id NOS ZERO ()
+             ADD fh_create_date NOS ZERO ()
+             ADD fh_create_time NOS ZERO ()
+             ADD fh_filler NOS ZERO ()
+             ADD record_type_1 NOS ZERO ()
+             ADD mnfst_no_dh NOS ZERO ()
+             ADD dc_no_dh NOS ZERO ()
+             ADD brand_id_dh NOS ZERO ()
+             ADD str_no_dh NOS ZERO ()
+             ADD desp_dt_dh NOS ZERO ()
+             ADD desp_tm_dh NOS ZERO ()
+             ADD occurs_type_a_dh NOS ZERO ()
+             ADD occurs_type_b_dh NOS ZERO ()
+             ADD occurs_type_c_dh NOS ZERO ()
+             ADD processed_ind_dh NOS ZERO ()
+             ADD c_usr_updt_dh NOS ZERO ()
+             ADD ts_updt_dh NOS ZERO ()
+             ADD dh_num_do NOS ZERO ()
+             ADD dh_filler NOS ZERO ()
+             ADD record_type_2 NOS ZERO ()
+             ADD mnfst_no_do NOS ZERO ()
+             ADD dc_no_do NOS ZERO ()
+             ADD brand_id_do NOS ZERO ()
+             ADD str_no_do NOS ZERO ()
+             ADD order_no_do NOS ZERO ()
+             ADD receipt_no_do NOS ZERO ()
+             ADD order_type_do NOS ZERO ()
+             ADD tot_inners_desp_do NOS ZERO ()
+             ADD c_usr_updt_do NOS ZERO ()
+             ADD ts_updt_do NOS ZERO ()
+             ADD do_num_ds NOS ZERO ()
+             ADD do_num_dp NOS ZERO ()
+             ADD do_num_di NOS ZERO ()
+             ADD asn_do NOS ZERO ()
+             ADD asn_seq_no_do NOS ZERO ()
+             ADD brand_dc_do NOS ZERO ()
+             ADD do_filler NOS ZERO ()
+             ADD record_type_3 NOS ZERO ()
+             ADD mnfst_no_ds NOS ZERO ()
+             ADD dc_no_ds NOS ZERO ()
+             ADD brand_id_ds NOS ZERO ()
+             ADD str_no_ds NOS ZERO ()
+             ADD order_no_ds NOS ZERO ()
+             ADD scm_inner_ds NOS ZERO ()
+             ADD scm_outer_ds NOS ZERO ()
+             ADD c_usr_updt_ds NOS ZERO ()
+             ADD ts_updt_ds NOS ZERO ()
+             ADD ds_num_ap NOS ZERO ()
+             ADD ds_num_ar NOS ZERO ()
+             ADD asn_ds NOS ZERO ()
+             ADD asn_seq_no_ds NOS ZERO ()
+             ADD receipt_no_ds NOS ZERO ()
+             ADD ds_filler NOS ZERO ()
+             ADD record_type_4 NOS ZERO ()
+             ADD asn_ap NOS ZERO ()
+             ADD asn_seq_no_ap NOS ZERO ()
+             ADD order_no_ap NOS ZERO ()
+             ADD store_ap NOS ZERO ()
+             ADD scm_ap NOS ZERO ()
+             ADD scm_seq_no_ap NOS ZERO ()
+             ADD prod_no_ap NOS ZERO ()
+             ADD prod_seq_no_ap NOS ZERO ()
+             ADD prod_qualifier_ap NOS ZERO ()
+             ADD qty_shipped_ap NOS ZERO ()
+             ADD prod_measure_cd_ap NOS ZERO ()
+             ADD use_by_date_ap NOS ZERO ()
+             ADD keycode_ap NOS ZERO ()
+             ADD error_code_ap NOS ZERO ()
+             ADD dangr_goods_no_ap NOS ZERO ()
+             ADD dangr_goods_cls_ap NOS ZERO ()
+             ADD c_usr_updt_ap NOS ZERO ()
+             ADD ts_updt_ap NOS ZERO ()
+             ADD ap_filler NOS ZERO ()
+             ADD record_type_5 NOS ZERO ()
+             ADD brand_id_ar NOS ZERO ()
+             ADD order_no_ar NOS ZERO ()
+             ADD logistics_loc_noar NOS ZERO ()
+             ADD receipt_no_ar NOS ZERO ()
+             ADD scm_ar NOS ZERO ()
+             ADD prod_no_ar NOS ZERO ()
+             ADD prod_qualifier_ar NOS ZERO ()
+             ADD quality_code_ar NOS ZERO ()
+             ADD checked_qty_ar NOS ZERO ()
+             ADD sup_id_ar NOS ZERO ()
+             ADD asn_ar NOS ZERO ()
+             ADD brand_dc_ar NOS ZERO ()
+             ADD valid_prod_ind_ar NOS ZERO ()
+             ADD processed_ind_ar NOS ZERO ()
+             ADD checked_by_ar NOS ZERO ()
+             ADD checked_date_ar NOS ZERO ()
+             ADD checked_time_ar NOS ZERO ()
+             ADD c_usr_updt_ar NOS ZERO ()
+             ADD ts_updt_ar NOS ZERO ()
+             ADD ar_filler NOS ZERO ()
+             ADD record_type_6 NOS ZERO ()
+             ADD mnfst_no_dp NOS ZERO ()
+             ADD dc_no_dp NOS ZERO ()
+             ADD brand_id_dp NOS ZERO ()
+             ADD str_no_dp NOS ZERO ()
+             ADD order_no_dp NOS ZERO ()
+             ADD keycode_dp NOS ZERO ()
+             ADD prod_no_dp NOS ZERO ()
+             ADD prod_qualifier_dp NOS ZERO ()
+             ADD desp_qty_dp NOS ZERO ()
+             ADD itms_per_ctn_qtydp NOS ZERO ()
+             ADD c_usr_updt_dp NOS ZERO ()
+             ADD ts_updt_dp NOS ZERO ()
+             ADD receipt_no_dp NOS ZERO ()
+             ADD dp_filler NOS ZERO ()
+             ADD record_type_7 NOS ZERO ()
+             ADD mnfst_no_di NOS ZERO ()
+             ADD dc_no_di NOS ZERO ()
+             ADD brand_id_di NOS ZERO ()
+             ADD str_no_di NOS ZERO ()
+             ADD order_no_di NOS ZERO ()
+             ADD keycode_di NOS ZERO ()
+             ADD prod_no_di NOS ZERO ()
+             ADD prod_qualifier_di NOS ZERO ()
+             ADD desp_qty_di NOS ZERO ()
+             ADD itms_per_ctn_qtydi NOS ZERO ()
+             ADD c_usr_updt_di NOS ZERO ()
+             ADD ts_updt_di NOS ZERO ()
+             ADD receipt_no_di NOS ZERO ()
+             ADD record_type_8 NOS ZERO ()
+             ADD ft_num_recds NOS ZERO ()
+             ADD ft_num_fh NOS ZERO ()
+             ADD ft_num_dh NOS ZERO ()
+             ADD ft_num_do NOS ZERO ()
+             ADD ft_num_ds NOS ZERO ()
+             ADD ft_num_ap NOS ZERO ()
+             ADD ft_num_ar NOS ZERO ()
+             ADD ft_num_dp NOS ZERO ()
+             ADD ft_num_di NOS ZERO ()
+             ADD ft_num_ft NOS ZERO ()
+        )
+        OUTPUTLIST (ap_filler, ar_filler, asn_ap, asn_ar, asn_do, asn_ds, asn_seq_no_ap, asn_seq_no_do, asn_seq_no_ds, brand_dc_ar, brand_dc_do, brand_id_ar, brand_id_dh, brand_id_di, brand_id_do, brand_id_dp, brand_id_ds, c_usr_updt_ap, c_usr_updt_ar, c_usr_updt_dh, c_usr_updt_di, c_usr_updt_do, c_usr_updt_dp, c_usr_updt_ds, checked_by_ar, checked_date_ar, checked_qty_ar, checked_time_ar, dangr_goods_cls_ap, dangr_goods_no_ap, dc_no_dh, dc_no_di, dc_no_do, dc_no_dp, dc_no_ds, desp_dt_dh, desp_qty_di, desp_qty_dp, desp_tm_dh, dh_filler, dh_num_do, do_filler, do_num_di, do_num_dp, do_num_ds, dp_filler, ds_filler, ds_num_ap, ds_num_ar, error_code_ap, fh_brand_id, fh_create_date, fh_create_time, fh_description, fh_filler, ft_num_ap, ft_num_ar, ft_num_dh, ft_num_di, ft_num_do, ft_num_dp, ft_num_ds, ft_num_fh, ft_num_ft, ft_num_recds, itms_per_ctn_qtydi, itms_per_ctn_qtydp, keycode_ap, keycode_di, keycode_dp, logistics_loc_noar, mnfst_no_dh, mnfst_no_di, mnfst_no_do, mnfst_no_dp, mnfst_no_ds, occurs_type_a_dh, occurs_type_b_dh, occurs_type_c_dh, order_no_ap, order_no_ar, order_no_di, order_no_do, order_no_dp, order_no_ds, order_type_do, processed_ind_ar, processed_ind_dh, prod_measure_cd_ap, prod_no_ap, prod_no_ar, prod_no_di, prod_no_dp, prod_qualifier_ap, prod_qualifier_ar, prod_qualifier_di, prod_qualifier_dp, prod_seq_no_ap, qty_shipped_ap, quality_code_ar, receipt_no_ar, receipt_no_di, receipt_no_do, receipt_no_dp, receipt_no_ds, record_type, record_type_0, record_type_1, record_type_2, record_type_3, record_type_4, record_type_5, record_type_6, record_type_7, record_type_8, scm_ap, scm_ar, scm_inner_ds, scm_outer_ds, scm_seq_no_ap, store_ap, str_no_dh, str_no_di, str_no_do, str_no_dp, str_no_ds, sup_id_ar, tot_inners_desp_do, ts_updt_ap, ts_updt_ar, ts_updt_dh, ts_updt_di, ts_updt_do, ts_updt_dp, ts_updt_ds, use_by_date_ap, valid_prod_ind_ar
+        )
+        WRAPPER (custom cobolcopybook_shipping)
+    );
+

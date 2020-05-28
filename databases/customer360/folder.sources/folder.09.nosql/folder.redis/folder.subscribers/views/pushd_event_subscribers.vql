@@ -1,0 +1,43 @@
+﻿CREATE OR REPLACE WRAPPER CUSTOM pushd_event_subscribers
+    FOLDER = '/sources/09.nosql/redis/subscribers'
+    DATASOURCENAME=pushd_redis
+    PARAMETERS (
+      'Hostname' = 'roding.denodo.com',
+      'TCP port' = 6379,
+      'Introspection key' = 'event:conferences:subs',
+      'DB number' = 0
+    )
+    OUTPUTSCHEMA (
+        key = 'key' : 'java.lang.String' (OPT) SORTABLE,
+        zset = 'zset' : ARRAY OF (
+            zset_record = 'zset_record' : REGISTER OF (
+                value = 'value' : 'java.lang.String' (OPT) SORTABLE,
+                score = 'score' : 'java.lang.Float' (OPT) SORTABLE
+            )
+        )
+    );
+
+CREATE OR REPLACE TYPE pushd_event_subscribers_zset_zset_record AS REGISTER OF (value:text, score:float);
+
+CREATE OR REPLACE TYPE pushd_event_subscribers_zset AS ARRAY OF pushd_event_subscribers_zset_zset_record;
+
+CREATE OR REPLACE TABLE pushd_event_subscribers I18N es_euro (
+        key:text,
+        zset:pushd_event_subscribers_zset
+    )
+    FOLDER = '/sources/09.nosql/redis/subscribers'
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD pushd_event_subscribers(
+        I18N es_euro
+        CONSTRAINTS (
+             ADD key (any) OPT ANY
+             ADD zset.value (any) OPT ANY
+             ADD zset.score (any) OPT ANY
+             ADD zset NOS ZERO ()
+        )
+        OUTPUTLIST (key, zset
+        )
+        WRAPPER (custom pushd_event_subscribers)
+    );
+

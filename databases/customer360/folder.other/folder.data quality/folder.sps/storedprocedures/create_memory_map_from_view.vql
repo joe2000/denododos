@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE PROCEDURE create_memory_map_from_view
+    CLASSNAME='com.denodo.vdp.storedprocedure.CreateMemoryMapFromView'
+    JARS 'DT-CreateMapSP'
+    FOLDER = '/other/data quality/sps';
+

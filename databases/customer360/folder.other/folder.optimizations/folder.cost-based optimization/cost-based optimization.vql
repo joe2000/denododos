@@ -1,0 +1,6 @@
+﻿CREATE OR REPLACE FOLDER '/other/optimizations/Cost-based optimization' DESCRIPTION 'Dynamic Optimization using:
+* Views statistics
+* Data Source Indexes Information and I/O parameters
+* Network transfer rate
+' ;
+

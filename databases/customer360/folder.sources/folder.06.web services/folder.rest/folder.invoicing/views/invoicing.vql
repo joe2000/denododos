@@ -1,0 +1,75 @@
+﻿CREATE OR REPLACE WRAPPER XML invoicing_4864
+    FOLDER = '/sources/06.web services/rest/invoicing'
+    DATASOURCENAME=invoicing
+    TUPLEROOT 'ns:invoicing_data_aux'
+    OUTPUTSCHEMA ("ns:invoicing_data_aux" = 'ns:invoicing_data_aux' : REGISTER OF (
+        client_id = 'CLIENT_ID' : 'java.lang.String' (OBL) (DEFAULTVALUE='C002') EXTERN,
+        invoicing_data_aux_item = 'invoicing_data_aux_item' : REGISTER OF (
+            client_id = 'CLIENT_ID' : 'java.lang.String' (OPT),
+            name = 'NAME' : 'java.lang.String' (OPT),
+            surname = 'SURNAME' : 'java.lang.String' (OPT),
+            invoicing_address = 'INVOICING_ADDRESS' : 'java.lang.String' (OPT),
+            bills = 'BILLS' : REGISTER OF (
+                item = 'item' : ARRAY OF (
+                    item = 'item' : REGISTER OF (
+                        date = 'DATE' : 'java.lang.String' (OPT),
+                        array_package = 'ARRAY_PACKAGE' : REGISTER OF (
+                            item = 'item' : ARRAY OF (
+                                item = 'item' : REGISTER OF (
+                                    package_id = 'PACKAGE_ID' : 'java.lang.String' (OPT),
+                                    description = 'DESCRIPTION' : 'java.lang.String' (OPT),
+                                    amount_due = 'AMOUNT_DUE' : 'java.lang.Float' (OPT)
+                                )
+                            )
+                        )
+                    )
+                )
+            )
+        )
+    )
+    );
+
+CREATE OR REPLACE TYPE "invoicing_invoicing_data_aux_item_BILLS_item_item_ARRAY_PACKAGE_item_item" AS REGISTER OF (package_id:text, description:text, amount_due:float);
+
+CREATE OR REPLACE TYPE "invoicing_invoicing_data_aux_item_BILLS_item_item_ARRAY_PACKAGE_item" AS ARRAY OF "invoicing_invoicing_data_aux_item_BILLS_item_item_ARRAY_PACKAGE_item_item";
+
+CREATE OR REPLACE TYPE "invoicing_invoicing_data_aux_item_BILLS_item_item_ARRAY_PACKAGE" AS REGISTER OF (item:"invoicing_invoicing_data_aux_item_BILLS_item_item_ARRAY_PACKAGE_item");
+
+CREATE OR REPLACE TYPE "invoicing_invoicing_data_aux_item_BILLS_item_item" AS REGISTER OF (date:text (sourcetypeid = '1', sourcetypesize = '50'), array_package:"invoicing_invoicing_data_aux_item_BILLS_item_item_ARRAY_PACKAGE");
+
+CREATE OR REPLACE TYPE "invoicing_invoicing_data_aux_item_BILLS_item" AS ARRAY OF "invoicing_invoicing_data_aux_item_BILLS_item_item";
+
+CREATE OR REPLACE TYPE "invoicing_invoicing_data_aux_item_BILLS" AS REGISTER OF (item:"invoicing_invoicing_data_aux_item_BILLS_item");
+
+CREATE OR REPLACE TYPE invoicing_invoicing_data_aux_item_1600 AS REGISTER OF (client_id:text, name:text, surname:text, invoicing_address:text, bills:"invoicing_invoicing_data_aux_item_BILLS");
+
+CREATE OR REPLACE TABLE invoicing I18N es_euro (
+        client_id:text (defaultvalue = 'C002'),
+        invoicing_data_aux_item:invoicing_invoicing_data_aux_item_1600
+    )
+    FOLDER = '/sources/06.web services/rest/invoicing'
+    CACHE OFF
+    TIMETOLIVEINCACHE NOEXPIRE
+    ADD SEARCHMETHOD invoicing(
+        I18N es_euro
+        CONSTRAINTS (
+             ADD invoicing_data_aux_item.client_id NOS ZERO ()
+             ADD invoicing_data_aux_item.name NOS ZERO ()
+             ADD invoicing_data_aux_item.surname NOS ZERO ()
+             ADD invoicing_data_aux_item.invoicing_address NOS ZERO ()
+             ADD invoicing_data_aux_item.bills.item.date NOS ZERO ()
+             ADD invoicing_data_aux_item.bills.item.array_package.item.package_id NOS ZERO ()
+             ADD invoicing_data_aux_item.bills.item.array_package.item.description NOS ZERO ()
+             ADD invoicing_data_aux_item.bills.item.array_package.item.amount_due NOS ZERO ()
+             ADD invoicing_data_aux_item NOS ZERO ()
+             ADD invoicing_data_aux_item.bills NOS ZERO ()
+             ADD invoicing_data_aux_item.bills.item NOS ZERO ()
+             ADD invoicing_data_aux_item.bills.item.array_package NOS ZERO ()
+             ADD invoicing_data_aux_item.bills.item.array_package.item NOS ZERO ()
+             ADD client_id (any) OBL ONE
+        )
+        OUTPUTLIST (client_id, invoicing_data_aux_item
+        )
+        WRAPPER (xml invoicing_4864)
+    );
+

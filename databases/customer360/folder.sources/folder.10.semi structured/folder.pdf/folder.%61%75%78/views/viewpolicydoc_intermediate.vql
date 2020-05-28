@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW viewpolicydoc_intermediate FOLDER = '/sources/10.semi structured/pdf/aux' AS SELECT viewpolicydoc_bv.nameaddress AS nameaddress, viewpolicydoc_bv.coverage AS coverage, viewpolicydoc_bv.disclaimer AS disclaimer FROM viewpolicydoc_bv WHERE inputdoc = 'C:\\demos\\customer360\\Datasources\\pdf\\ClinicalInsuranceProposal.pdf';
+
+ALTER VIEW viewpolicydoc_intermediate
+ LAYOUT (viewpolicydoc_bv = [20, 20, 200, 124]);
+

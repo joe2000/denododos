@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW addresses_geocoder_validation FOLDER = '/other/data quality/external services integration' AS SELECT addresses_to_format.client_identifier AS client_identifier, google_geocoder.input_address AS original_address, google_geocoder.formatted_address AS formatted_address, addresses_to_format.primary_phone AS primary_phone FROM addresses_to_format AS addresses_to_format INNER JOIN google_geocoder AS google_geocoder ON addresses_to_format.full_address = google_geocoder.input_address ;
+
+ALTER VIEW addresses_geocoder_validation
+ LAYOUT (addresses_to_format = [50, 20, 200, 87], google_geocoder = [420, 30, 200, 127]);
+

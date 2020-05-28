@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW customer_golden_record FOLDER = '/other/data quality/fuzzy matching' DESCRIPTION = 'Aggregated report of open incidents group by client'  AS SELECT customer.id AS id, customer.full_name AS name_crm, customer.company_name AS company, customer_website.name AS name_website, customer.ssn AS ssn, customer.type AS type, customer.country AS country, customer.street AS street, customer.zip AS zip, customer_website.age AS age, customer_website.tax_id AS tax_id, customer_website.state AS state, customer_website.phone AS phone, customer_website.email AS email FROM customer_2 AS customer INNER JOIN customer_website AS customer_website ON (customer.full_name ~ (customer_website.name, '0.9', 'JaroWinkler') AND customer.city = customer_website.city) ;
+
+ALTER VIEW customer_golden_record
+ LAYOUT (customer_2 = [0, 10, 200, 287], customer_website = [360, 10, 200, 225]);
+

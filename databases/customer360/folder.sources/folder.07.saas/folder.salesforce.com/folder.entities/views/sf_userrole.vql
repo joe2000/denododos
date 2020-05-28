@@ -1,0 +1,76 @@
+﻿CREATE OR REPLACE WRAPPER CUSTOM sf_userrole_9191
+    FOLDER = '/sources/07.saas/salesforce.com/entities'
+    DATASOURCENAME=salesforce
+    PARAMETERS (
+      'ENTITY' = 'UserRole',
+      'BASE_URL' = 'https://na3.salesforce.com',
+      'ACCESS_TOKEN' = '00D5000000077zi!ARcAQE_qUZ9l3JhH3yr4nQpPucD.NDJxUphbjCjx6oetX8mQ1C2qVi770L1RBnPJcdK53ck4UP0pY1QAdQPHexh50o1cRMD.',
+      'CLIENT_ID' = '3MVG9Km_cBLhsuPzuEJ8T.2uUkOGhpBPs0UH6ejd6RFAmuHgCV_zeHh_GE0cUfnTCyKkf.m4fghfEeLpqMdus',
+      'REFRESH_TOKEN (required for web flow)' = '5Aep861eWO5D.7wJBsLFjitX6L3M98eYEYnVfxbfZ6rwYOkMG4OhB3bBRaYfPD5xCWNEh0D6LkRzbfkUhbk3Lin',
+      'RESPONSE_COMPRESSION_TYPE (one of NONE, GZIP or DEFLATE -default is NONE)' = 'DEFLATE'
+    )
+    OUTPUTSCHEMA (
+        id = 'Id' : 'java.lang.String' (OPT) NOT SORTABLE,
+        name = 'Name' : 'java.lang.String' (OPT) NOT SORTABLE,
+        parentroleid = 'ParentRoleId' : 'java.lang.String' (OPT) NOT SORTABLE,
+        rollupdescription = 'RollupDescription' : 'java.lang.String' (OPT) NOT SORTABLE,
+        opportunityaccessforaccountowner = 'OpportunityAccessForAccountOwner' : 'java.lang.String' (OPT) NOT SORTABLE,
+        caseaccessforaccountowner = 'CaseAccessForAccountOwner' : 'java.lang.String' (OPT) NOT SORTABLE,
+        contactaccessforaccountowner = 'ContactAccessForAccountOwner' : 'java.lang.String' (OPT) NOT SORTABLE,
+        forecastuserid = 'ForecastUserId' : 'java.lang.String' (OPT) NOT SORTABLE,
+        mayforecastmanagershare = 'MayForecastManagerShare' : 'java.lang.Boolean' (OPT) NOT SORTABLE,
+        lastmodifieddate = 'LastModifiedDate' : 'java.util.Date' (OPT) NOT SORTABLE,
+        lastmodifiedbyid = 'LastModifiedById' : 'java.lang.String' (OPT) NOT SORTABLE,
+        systemmodstamp = 'SystemModstamp' : 'java.util.Date' (OPT) NOT SORTABLE,
+        developername = 'DeveloperName' : 'java.lang.String' (OPT) NOT SORTABLE,
+        portalaccountid = 'PortalAccountId' : 'java.lang.String' (OPT) NOT SORTABLE,
+        portaltype = 'PortalType' : 'java.lang.String' (OPT) NOT SORTABLE,
+        portalaccountownerid = 'PortalAccountOwnerId' : 'java.lang.String' (OPT) NOT SORTABLE
+    );
+
+CREATE OR REPLACE TABLE sf_userrole I18N us_pst (
+        id:text,
+        name:text,
+        parentroleid:text,
+        rollupdescription:text,
+        opportunityaccessforaccountowner:text,
+        caseaccessforaccountowner:text,
+        contactaccessforaccountowner:text,
+        forecastuserid:text,
+        mayforecastmanagershare:boolean,
+        lastmodifieddate:date,
+        lastmodifiedbyid:text,
+        systemmodstamp:date,
+        developername:text,
+        portalaccountid:text,
+        portaltype:text,
+        portalaccountownerid:text
+    )
+    FOLDER = '/sources/07.saas/salesforce.com/entities'
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD sf_userrole(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD id (any) OPT ANY
+             ADD name (any) OPT ANY
+             ADD parentroleid (any) OPT ANY
+             ADD rollupdescription (any) OPT ANY
+             ADD opportunityaccessforaccountowner (any) OPT ANY
+             ADD caseaccessforaccountowner (any) OPT ANY
+             ADD contactaccessforaccountowner (any) OPT ANY
+             ADD forecastuserid (any) OPT ANY
+             ADD mayforecastmanagershare (any) OPT ANY
+             ADD lastmodifieddate (any) OPT ANY
+             ADD lastmodifiedbyid (any) OPT ANY
+             ADD systemmodstamp (any) OPT ANY
+             ADD developername (any) OPT ANY
+             ADD portalaccountid (any) OPT ANY
+             ADD portaltype (any) OPT ANY
+             ADD portalaccountownerid (any) OPT ANY
+        )
+        OUTPUTLIST (caseaccessforaccountowner, contactaccessforaccountowner, developername, forecastuserid, id, lastmodifiedbyid, lastmodifieddate, mayforecastmanagershare, name, opportunityaccessforaccountowner, parentroleid, portalaccountid, portalaccountownerid, portaltype, rollupdescription, systemmodstamp
+        )
+        WRAPPER (custom sf_userrole_9191)
+    );
+

@@ -1,0 +1,8 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE DATASOURCE DF ds_cslog_isdn_start
+    FOLDER = '/sources/10.semi structured/delimited files/modem logs/start logs'
+    ROUTE LOCAL 'LocalConnection' '${databases.customer360.folder.sources.folder.10..semi structured.folder.delimited files.folder.modem logs.folder.start logs.datasources.df.ds_cslog_isdn_start.ROUTE.LOCAL.PATH}'
+    TUPLEPATTERN = '(\S+)\s+(\S+)\s+\S+\s+(\d+)\s+start\s+.+time=([\d:]{{8}})\s+date=([\d/]{{10}})\s+task_id=(\S+).*'
+    ENDOFLINEDELIMITER = '\n'
+    HEADER = FALSE;
+

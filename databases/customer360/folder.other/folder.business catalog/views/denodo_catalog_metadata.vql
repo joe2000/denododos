@@ -1,0 +1,2 @@
+﻿CREATE OR REPLACE VIEW denodo_catalog_metadata FOLDER = '/other/business catalog' DESCRIPTION = 'This view returns all the view and column names in the Denodo Server executing the catalog_metadata_views SP'  AS SELECT * FROM catalog_metadata_views(NULL,NULL);
+

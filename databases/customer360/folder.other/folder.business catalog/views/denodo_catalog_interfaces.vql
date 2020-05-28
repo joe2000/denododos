@@ -1,0 +1,6 @@
+﻿CREATE OR REPLACE VIEW denodo_catalog_interfaces FOLDER = '/other/business catalog' DESCRIPTION = 'Denodo metadata catalog interfaces' 
+    PRIMARY KEY ( 'resultname' , 'databasename' ) AS SELECT resultname AS resultname, resulttype AS resulttype, resultsubtype AS resultsubtype, resultusercreator AS resultusercreator, resultlastusermodifier AS resultlastusermodifier, resultcreatedate AS resultcreatedate, resultlastmodificationdate AS resultlastmodificationdate, resultdescription AS resultdescription, getsession('database') AS databasename FROM catalog_elements() WHERE resultsubtype = 'interface';
+
+ALTER VIEW denodo_catalog_interfaces
+ LAYOUT (catalog_elements = [20, 20, 200, 146]);
+

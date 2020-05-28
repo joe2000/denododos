@@ -1,0 +1,100 @@
+﻿CREATE OR REPLACE WRAPPER CUSTOM sf_businesshours_2417
+    FOLDER = '/sources/07.saas/salesforce.com/entities'
+    DATASOURCENAME=salesforce
+    PARAMETERS (
+      'ENTITY' = 'BusinessHours',
+      'BASE_URL' = 'https://na3.salesforce.com',
+      'ACCESS_TOKEN' = '00D5000000077zi!ARcAQE_qUZ9l3JhH3yr4nQpPucD.NDJxUphbjCjx6oetX8mQ1C2qVi770L1RBnPJcdK53ck4UP0pY1QAdQPHexh50o1cRMD.',
+      'CLIENT_ID' = '3MVG9Km_cBLhsuPzuEJ8T.2uUkOGhpBPs0UH6ejd6RFAmuHgCV_zeHh_GE0cUfnTCyKkf.m4fghfEeLpqMdus',
+      'REFRESH_TOKEN (required for web flow)' = '5Aep861eWO5D.7wJBsLFjitX6L3M98eYEYnVfxbfZ6rwYOkMG4OhB3bBRaYfPD5xCWNEh0D6LkRzbfkUhbk3Lin',
+      'RESPONSE_COMPRESSION_TYPE (one of NONE, GZIP or DEFLATE -default is NONE)' = 'DEFLATE'
+    )
+    OUTPUTSCHEMA (
+        id = 'Id' : 'java.lang.String' (OPT) NOT SORTABLE,
+        name = 'Name' : 'java.lang.String' (OPT) NOT SORTABLE,
+        isactive = 'IsActive' : 'java.lang.Boolean' (OPT) NOT SORTABLE,
+        isdefault = 'IsDefault' : 'java.lang.Boolean' (OPT) NOT SORTABLE,
+        sundaystarttime = 'SundayStartTime' : 'java.lang.String' (OPT) NOT SORTABLE,
+        sundayendtime = 'SundayEndTime' : 'java.lang.String' (OPT) NOT SORTABLE,
+        mondaystarttime = 'MondayStartTime' : 'java.lang.String' (OPT) NOT SORTABLE,
+        mondayendtime = 'MondayEndTime' : 'java.lang.String' (OPT) NOT SORTABLE,
+        tuesdaystarttime = 'TuesdayStartTime' : 'java.lang.String' (OPT) NOT SORTABLE,
+        tuesdayendtime = 'TuesdayEndTime' : 'java.lang.String' (OPT) NOT SORTABLE,
+        wednesdaystarttime = 'WednesdayStartTime' : 'java.lang.String' (OPT) NOT SORTABLE,
+        wednesdayendtime = 'WednesdayEndTime' : 'java.lang.String' (OPT) NOT SORTABLE,
+        thursdaystarttime = 'ThursdayStartTime' : 'java.lang.String' (OPT) NOT SORTABLE,
+        thursdayendtime = 'ThursdayEndTime' : 'java.lang.String' (OPT) NOT SORTABLE,
+        fridaystarttime = 'FridayStartTime' : 'java.lang.String' (OPT) NOT SORTABLE,
+        fridayendtime = 'FridayEndTime' : 'java.lang.String' (OPT) NOT SORTABLE,
+        saturdaystarttime = 'SaturdayStartTime' : 'java.lang.String' (OPT) NOT SORTABLE,
+        saturdayendtime = 'SaturdayEndTime' : 'java.lang.String' (OPT) NOT SORTABLE,
+        timezonesidkey = 'TimeZoneSidKey' : 'java.lang.String' (OPT) NOT SORTABLE,
+        systemmodstamp = 'SystemModstamp' : 'java.util.Date' (OPT) NOT SORTABLE,
+        createddate = 'CreatedDate' : 'java.util.Date' (OPT) NOT SORTABLE,
+        createdbyid = 'CreatedById' : 'java.lang.String' (OPT) NOT SORTABLE,
+        lastmodifieddate = 'LastModifiedDate' : 'java.util.Date' (OPT) NOT SORTABLE,
+        lastmodifiedbyid = 'LastModifiedById' : 'java.lang.String' (OPT) NOT SORTABLE
+    );
+
+CREATE OR REPLACE TABLE sf_businesshours I18N us_pst (
+        id:text,
+        name:text,
+        isactive:boolean,
+        isdefault:boolean,
+        sundaystarttime:text,
+        sundayendtime:text,
+        mondaystarttime:text,
+        mondayendtime:text,
+        tuesdaystarttime:text,
+        tuesdayendtime:text,
+        wednesdaystarttime:text,
+        wednesdayendtime:text,
+        thursdaystarttime:text,
+        thursdayendtime:text,
+        fridaystarttime:text,
+        fridayendtime:text,
+        saturdaystarttime:text,
+        saturdayendtime:text,
+        timezonesidkey:text,
+        systemmodstamp:date,
+        createddate:date,
+        createdbyid:text,
+        lastmodifieddate:date,
+        lastmodifiedbyid:text
+    )
+    FOLDER = '/sources/07.saas/salesforce.com/entities'
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD sf_businesshours(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD id (any) OPT ANY
+             ADD name (any) OPT ANY
+             ADD isactive (any) OPT ANY
+             ADD isdefault (any) OPT ANY
+             ADD sundaystarttime (any) OPT ANY
+             ADD sundayendtime (any) OPT ANY
+             ADD mondaystarttime (any) OPT ANY
+             ADD mondayendtime (any) OPT ANY
+             ADD tuesdaystarttime (any) OPT ANY
+             ADD tuesdayendtime (any) OPT ANY
+             ADD wednesdaystarttime (any) OPT ANY
+             ADD wednesdayendtime (any) OPT ANY
+             ADD thursdaystarttime (any) OPT ANY
+             ADD thursdayendtime (any) OPT ANY
+             ADD fridaystarttime (any) OPT ANY
+             ADD fridayendtime (any) OPT ANY
+             ADD saturdaystarttime (any) OPT ANY
+             ADD saturdayendtime (any) OPT ANY
+             ADD timezonesidkey (any) OPT ANY
+             ADD systemmodstamp (any) OPT ANY
+             ADD createddate (any) OPT ANY
+             ADD createdbyid (any) OPT ANY
+             ADD lastmodifieddate (any) OPT ANY
+             ADD lastmodifiedbyid (any) OPT ANY
+        )
+        OUTPUTLIST (createdbyid, createddate, fridayendtime, fridaystarttime, id, isactive, isdefault, lastmodifiedbyid, lastmodifieddate, mondayendtime, mondaystarttime, name, saturdayendtime, saturdaystarttime, sundayendtime, sundaystarttime, systemmodstamp, thursdayendtime, thursdaystarttime, timezonesidkey, tuesdayendtime, tuesdaystarttime, wednesdayendtime, wednesdaystarttime
+        )
+        WRAPPER (custom sf_businesshours_2417)
+    );
+

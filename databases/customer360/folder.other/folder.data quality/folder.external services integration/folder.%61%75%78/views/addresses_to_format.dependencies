@@ -1,0 +1,9 @@
+﻿/databases/customer360/folder.other/other.vql
+/databases/customer360/folder.other/folder.data quality/data quality.vql
+/databases/customer360/folder.other/folder.data quality/folder.external services integration/external services integration.vql
+/databases/customer360/folder.other/folder.data quality/folder.external services integration/folder.%61%75%78/%61%75%78.vql
+/databases/customer360/folder.sources/sources.vql
+/databases/customer360/folder.sources/folder.01.databases/01.databases.vql
+/databases/customer360/folder.sources/folder.01.databases/folder.mysql/mysql.vql
+/databases/customer360/folder.sources/folder.01.databases/folder.mysql/datasources/jdbc/acme_crm.vql
+/databases/customer360/folder.sources/folder.01.databases/folder.mysql/views/address.vql

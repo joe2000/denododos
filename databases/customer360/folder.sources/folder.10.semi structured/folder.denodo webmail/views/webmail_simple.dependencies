@@ -1,0 +1,5 @@
+﻿/databases/customer360/folder.sources/sources.vql
+/databases/customer360/folder.sources/folder.10.semi structured/10.semi structured.vql
+/databases/customer360/folder.sources/folder.10.semi structured/folder.denodo webmail/denodo webmail.vql
+/databases/customer360/folder.sources/folder.10.semi structured/folder.denodo webmail/datasources/itp/webmail_simple.vql
+/databases/customer360/folder.sources/folder.10.semi structured/folder.denodo webmail/views/webmail_simple_no_credentials.vql

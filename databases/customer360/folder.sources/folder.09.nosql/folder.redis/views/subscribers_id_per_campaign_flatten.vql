@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW subscribers_id_per_campaign_flatten FOLDER = '/sources/09.nosql/redis' AS SELECT value AS subscriber_id, name AS name, description AS description, type AS type, enddate AS enddate, startdate AS startdate, status AS status FROM FLATTEN subscribers_id_per_campaign AS v ( v.subscribers);
+
+ALTER VIEW subscribers_id_per_campaign_flatten
+ LAYOUT (subscribers_id_per_campaign = [20, 20, 214, 224]);
+

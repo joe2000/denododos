@@ -1,0 +1,124 @@
+﻿CREATE OR REPLACE WRAPPER CUSTOM sf_contract
+    FOLDER = '/sources/07.saas/salesforce.com/entities'
+    DATASOURCENAME=salesforce
+    PARAMETERS (
+      'ENTITY' = 'Contract',
+      'BASE_URL' = 'https://na3.salesforce.com',
+      'ACCESS_TOKEN' = '00D5000000077zi!ARcAQE_qUZ9l3JhH3yr4nQpPucD.NDJxUphbjCjx6oetX8mQ1C2qVi770L1RBnPJcdK53ck4UP0pY1QAdQPHexh50o1cRMD.',
+      'CLIENT_ID' = '3MVG9Km_cBLhsuPzuEJ8T.2uUkOGhpBPs0UH6ejd6RFAmuHgCV_zeHh_GE0cUfnTCyKkf.m4fghfEeLpqMdus',
+      'REFRESH_TOKEN (required for web flow)' = '5Aep861eWO5D.7wJBsLFjitX6L3M98eYEYnVfxbfZ6rwYOkMG4OhB3bBRaYfPD5xCWNEh0D6LkRzbfkUhbk3Lin',
+      'RESPONSE_COMPRESSION_TYPE (one of NONE, GZIP or DEFLATE -default is NONE)' = 'DEFLATE'
+    )
+    OUTPUTSCHEMA (
+        id = 'Id' : 'java.lang.String' (OPT) NOT SORTABLE,
+        accountid = 'AccountId' : 'java.lang.String' (OPT) NOT SORTABLE,
+        ownerexpirationnotice = 'OwnerExpirationNotice' : 'java.lang.String' (OPT) NOT SORTABLE,
+        startdate = 'StartDate' : 'java.util.Date' (OPT) NOT SORTABLE,
+        enddate = 'EndDate' : 'java.util.Date' (OPT) NOT SORTABLE,
+        billingstreet = 'BillingStreet' : 'java.lang.String' (OPT) NOT SORTABLE,
+        billingcity = 'BillingCity' : 'java.lang.String' (OPT) NOT SORTABLE,
+        billingstate = 'BillingState' : 'java.lang.String' (OPT) NOT SORTABLE,
+        billingpostalcode = 'BillingPostalCode' : 'java.lang.String' (OPT) NOT SORTABLE,
+        billingcountry = 'BillingCountry' : 'java.lang.String' (OPT) NOT SORTABLE,
+        contractterm = 'ContractTerm' : 'java.lang.Long' (OPT) NOT SORTABLE,
+        ownerid = 'OwnerId' : 'java.lang.String' (OPT) NOT SORTABLE,
+        status = 'Status' : 'java.lang.String' (OPT) NOT SORTABLE,
+        companysignedid = 'CompanySignedId' : 'java.lang.String' (OPT) NOT SORTABLE,
+        companysigneddate = 'CompanySignedDate' : 'java.util.Date' (OPT) NOT SORTABLE,
+        customersignedid = 'CustomerSignedId' : 'java.lang.String' (OPT) NOT SORTABLE,
+        customersignedtitle = 'CustomerSignedTitle' : 'java.lang.String' (OPT) NOT SORTABLE,
+        customersigneddate = 'CustomerSignedDate' : 'java.util.Date' (OPT) NOT SORTABLE,
+        specialterms = 'SpecialTerms' : 'java.lang.String' (OPT) NOT SORTABLE,
+        activatedbyid = 'ActivatedById' : 'java.lang.String' (OPT) NOT SORTABLE,
+        activateddate = 'ActivatedDate' : 'java.util.Date' (OPT) NOT SORTABLE,
+        statuscode = 'StatusCode' : 'java.lang.String' (OPT) NOT SORTABLE,
+        description = 'Description' : 'java.lang.String' (OPT) NOT SORTABLE,
+        isdeleted = 'IsDeleted' : 'java.lang.Boolean' (OPT) NOT SORTABLE,
+        contractnumber = 'ContractNumber' : 'java.lang.String' (OPT) NOT SORTABLE,
+        lastapproveddate = 'LastApprovedDate' : 'java.util.Date' (OPT) NOT SORTABLE,
+        createddate = 'CreatedDate' : 'java.util.Date' (OPT) NOT SORTABLE,
+        createdbyid = 'CreatedById' : 'java.lang.String' (OPT) NOT SORTABLE,
+        lastmodifieddate = 'LastModifiedDate' : 'java.util.Date' (OPT) NOT SORTABLE,
+        lastmodifiedbyid = 'LastModifiedById' : 'java.lang.String' (OPT) NOT SORTABLE,
+        systemmodstamp = 'SystemModstamp' : 'java.util.Date' (OPT) NOT SORTABLE,
+        lastactivitydate = 'LastActivityDate' : 'java.util.Date' (OPT) NOT SORTABLE
+    );
+
+CREATE OR REPLACE TABLE sf_contract I18N us_pst (
+        id:text,
+        accountid:text,
+        ownerexpirationnotice:text,
+        startdate:date,
+        enddate:date,
+        billingstreet:text,
+        billingcity:text,
+        billingstate:text,
+        billingpostalcode:text,
+        billingcountry:text,
+        contractterm:long,
+        ownerid:text,
+        status:text,
+        companysignedid:text,
+        companysigneddate:date,
+        customersignedid:text,
+        customersignedtitle:text,
+        customersigneddate:date,
+        specialterms:text,
+        activatedbyid:text,
+        activateddate:date,
+        statuscode:text,
+        description:text,
+        isdeleted:boolean,
+        contractnumber:text,
+        lastapproveddate:date,
+        createddate:date,
+        createdbyid:text,
+        lastmodifieddate:date,
+        lastmodifiedbyid:text,
+        systemmodstamp:date,
+        lastactivitydate:date
+    )
+    FOLDER = '/sources/07.saas/salesforce.com/entities'
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD sf_contract(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD id (any) OPT ANY
+             ADD accountid (any) OPT ANY
+             ADD ownerexpirationnotice (any) OPT ANY
+             ADD startdate (any) OPT ANY
+             ADD enddate (any) OPT ANY
+             ADD billingstreet (any) OPT ANY
+             ADD billingcity (any) OPT ANY
+             ADD billingstate (any) OPT ANY
+             ADD billingpostalcode (any) OPT ANY
+             ADD billingcountry (any) OPT ANY
+             ADD contractterm (any) OPT ANY
+             ADD ownerid (any) OPT ANY
+             ADD status (any) OPT ANY
+             ADD companysignedid (any) OPT ANY
+             ADD companysigneddate (any) OPT ANY
+             ADD customersignedid (any) OPT ANY
+             ADD customersignedtitle (any) OPT ANY
+             ADD customersigneddate (any) OPT ANY
+             ADD specialterms (any) OPT ANY
+             ADD activatedbyid (any) OPT ANY
+             ADD activateddate (any) OPT ANY
+             ADD statuscode (any) OPT ANY
+             ADD isdeleted (any) OPT ANY
+             ADD contractnumber (any) OPT ANY
+             ADD lastapproveddate (any) OPT ANY
+             ADD createddate (any) OPT ANY
+             ADD createdbyid (any) OPT ANY
+             ADD lastmodifieddate (any) OPT ANY
+             ADD lastmodifiedbyid (any) OPT ANY
+             ADD systemmodstamp (any) OPT ANY
+             ADD lastactivitydate (any) OPT ANY
+             ADD description NOS ZERO ()
+        )
+        OUTPUTLIST (accountid, activatedbyid, activateddate, billingcity, billingcountry, billingpostalcode, billingstate, billingstreet, companysigneddate, companysignedid, contractnumber, contractterm, createdbyid, createddate, customersigneddate, customersignedid, customersignedtitle, description, enddate, id, isdeleted, lastactivitydate, lastapproveddate, lastmodifiedbyid, lastmodifieddate, ownerexpirationnotice, ownerid, specialterms, startdate, status, statuscode, systemmodstamp
+        )
+        WRAPPER (custom sf_contract)
+    );
+

@@ -1,0 +1,6 @@
+﻿CREATE OR REPLACE VIEW sfdc_customer FOLDER = '/sources/07.saas/salesforce.com/combination'
+    PRIMARY KEY ( 'contactid' ) AS SELECT salesforce_contact.contactid AS contactid, customer.name AS name, customer.surname AS surname, customer.type AS client_type, salesforce_contact.street AS street, salesforce_contact.city AS city, salesforce_contact.postalcode AS postalcode, salesforce_contact.state AS state, customer.country AS country, salesforce_contact.phone AS phone, salesforce_contact.ssn AS ssn FROM customer AS customer INNER JOIN salesforce_contact AS salesforce_contact ON customer.id = replace(salesforce_contact.contactid, 'C', 'C0')  ORDER BY contactid ASC;
+
+ALTER VIEW sfdc_customer
+ LAYOUT (customer = [130, 40, 200, 225], salesforce_contact = [470, 40, 200, 225]);
+

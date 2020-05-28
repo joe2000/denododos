@@ -1,0 +1,44 @@
+﻿CREATE OR REPLACE WRAPPER DF ds_cslog_adsl_start
+    FOLDER = '/sources/10.semi structured/delimited files/modem logs/start logs'
+    DATASOURCENAME=ds_cslog_adsl_start
+    OUTPUTSCHEMA (
+        network_equipment = 'Column0' (OPT),
+        login = 'Column1' (OPT),
+        interface = 'Column2' (OPT),
+        time = 'Column3' (OPT),
+        date = 'Column4' (OPT),
+        task_id = 'Column5' (OPT),
+        client_mac_addr = 'Column6' (OPT),
+        filepath = 'filepath' (OBL) EXTERN
+    );
+
+CREATE OR REPLACE TABLE ds_cslog_adsl_start I18N us_pst (
+        network_equipment:text,
+        login:text,
+        interface:text,
+        time:text,
+        date:text,
+        task_id:text,
+        client_mac_addr:text,
+        filepath:text
+    )
+    FOLDER = '/sources/10.semi structured/delimited files/modem logs/start logs'
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD ds_cslog_adsl_start(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD network_equipment (=) OPT ANY
+             ADD login (=) OPT ANY
+             ADD interface (=) OPT ANY
+             ADD time (=) OPT ANY
+             ADD date (=) OPT ANY
+             ADD task_id (=) OPT ANY
+             ADD client_mac_addr (=) OPT ANY
+             ADD filepath (=) OBL ONE
+        )
+        OUTPUTLIST (client_mac_addr, date, interface, login, network_equipment, task_id, time
+        )
+        WRAPPER (df ds_cslog_adsl_start)
+    );
+

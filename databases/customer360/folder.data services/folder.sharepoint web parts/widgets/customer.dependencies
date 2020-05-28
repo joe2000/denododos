@@ -1,0 +1,16 @@
+﻿/databases/customer360/folder.data services/data services.vql
+/databases/customer360/folder.data services/folder.sharepoint web parts/sharepoint web parts.vql
+/databases/customer360/folder.business entities/business entities.vql
+/databases/customer360/folder.business entities/folder.implementation/implementation.vql
+/databases/customer360/folder.sources/sources.vql
+/databases/customer360/folder.sources/folder.01.databases/01.databases.vql
+/databases/customer360/folder.sources/folder.01.databases/folder.mysql/mysql.vql
+/databases/customer360/folder.sources/folder.01.databases/folder.mysql/datasources/jdbc/acme_crm.vql
+/databases/customer360/folder.sources/folder.01.databases/folder.mysql/views/client.vql
+/databases/customer360/folder.sources/folder.01.databases/folder.mysql/views/client_type.vql
+/databases/customer360/folder.sources/folder.01.databases/folder.mysql/views/address.vql
+/databases/customer360/folder.sources/folder.01.databases/folder.sql server/sql server.vql
+/databases/customer360/folder.sources/folder.01.databases/folder.sql server/folder.company/company.vql
+/databases/customer360/folder.sources/folder.01.databases/folder.sql server/folder.company/datasources/jdbc/acme_erp.vql
+/databases/customer360/folder.sources/folder.01.databases/folder.sql server/folder.company/views/company.vql
+/databases/customer360/folder.business entities/folder.implementation/views/customer_2.vql

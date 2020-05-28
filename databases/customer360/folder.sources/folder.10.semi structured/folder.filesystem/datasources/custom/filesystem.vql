@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE DATASOURCE CUSTOM filesystem
+    FOLDER = '/sources/10.semi structured/filesystem'
+    CLASSNAME='com.denodo.connect.filesystem.ReadFileSystemConnector'
+    JARS 'denodo-filesystem-customwrapper-6.0';
+

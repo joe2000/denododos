@@ -1,0 +1,10 @@
+﻿/databases/customer360/folder.data services/data services.vql
+/databases/customer360/folder.data services/folder.sharepoint web parts/sharepoint web parts.vql
+/databases/customer360/folder.business entities/business entities.vql
+/databases/customer360/folder.sources/sources.vql
+/databases/customer360/folder.sources/folder.06.web services/06.web services.vql
+/databases/customer360/folder.sources/folder.06.web services/folder.rest/rest.vql
+/databases/customer360/folder.sources/folder.06.web services/folder.rest/folder.invoicing/invoicing.vql
+/databases/customer360/folder.sources/folder.06.web services/folder.rest/folder.invoicing/datasources/xml/invoicing.vql
+/databases/customer360/folder.sources/folder.06.web services/folder.rest/folder.invoicing/views/invoicing.vql
+/databases/customer360/folder.business entities/views/invoice.vql

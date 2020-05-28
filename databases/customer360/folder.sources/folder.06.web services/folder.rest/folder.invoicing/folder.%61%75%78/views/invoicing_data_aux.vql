@@ -1,0 +1,60 @@
+﻿CREATE OR REPLACE WRAPPER XML invoicing_data_aux
+    FOLDER = '/sources/06.web services/rest/invoicing/aux'
+    DATASOURCENAME=invoicing_aux_ds
+    OUTPUTSCHEMA (invoicing_records = 'invoicing_records' : REGISTER OF (
+        client_id = 'client_id' : 'java.lang.String' (OBL),
+        name = 'name' : 'java.lang.String' (OPT),
+        surname = 'surname' : 'java.lang.String' (OPT),
+        invoicing_address = 'invoicing_address' : 'java.lang.String' (OPT),
+        bills = 'bill' : ARRAY OF (
+            bill = 'bill' : REGISTER OF (
+                date = 'date' : 'java.lang.String' (OPT),
+                array_package = 'package' : ARRAY OF (
+                    package = 'package' : REGISTER OF (
+                        package_id = 'package_id' : 'java.lang.String' (OPT),
+                        description = 'description' : 'java.lang.String' (OPT),
+                        amount_due = 'amount_due' : 'java.lang.Float' (OPT)
+                    )
+                )
+            )
+        )
+    )
+    );
+
+CREATE OR REPLACE TYPE invoicing_aux_ds_array_bill_bill_array_package_package AS REGISTER OF (package_id:text, description:text, amount_due:float);
+
+CREATE OR REPLACE TYPE invoicing_aux_ds_array_bill_bill_array_package AS ARRAY OF invoicing_aux_ds_array_bill_bill_array_package_package;
+
+CREATE OR REPLACE TYPE invoicing_aux_ds_array_bill_bill AS REGISTER OF (date:text, array_package:invoicing_aux_ds_array_bill_bill_array_package);
+
+CREATE OR REPLACE TYPE invoicing_aux_ds_array_bill AS ARRAY OF invoicing_aux_ds_array_bill_bill;
+
+CREATE OR REPLACE TABLE invoicing_data_aux I18N es_euro (
+        client_id:text,
+        name:text,
+        surname:text,
+        invoicing_address:text,
+        bills:invoicing_aux_ds_array_bill
+    )
+    FOLDER = '/sources/06.web services/rest/invoicing/aux'
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD invoicing_data_aux(
+        I18N es_euro
+        CONSTRAINTS (
+             ADD name NOS ZERO ()
+             ADD surname NOS ZERO ()
+             ADD invoicing_address NOS ZERO ()
+             ADD bills.date NOS ZERO ()
+             ADD bills.array_package.package_id NOS ZERO ()
+             ADD bills.array_package.description NOS ZERO ()
+             ADD bills.array_package.amount_due NOS ZERO ()
+             ADD bills NOS ZERO ()
+             ADD bills.array_package NOS ZERO ()
+             ADD client_id (=) OBL ONE
+        )
+        OUTPUTLIST (bills, client_id, invoicing_address, name, surname
+        )
+        WRAPPER (xml invoicing_data_aux)
+    );
+

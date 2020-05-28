@@ -1,0 +1,7 @@
+﻿/databases/customer360/folder.other/other.vql
+/databases/customer360/folder.other/folder.optimizations/optimizations.vql
+/databases/customer360/folder.other/folder.optimizations/folder.partitioned union/partitioned union.vql
+/databases/customer360/folder.other/folder.optimizations/folder.partitioned union/folder.%61%75%78/%61%75%78.vql
+/databases/customer360/folder.other/folder.optimizations/folder.partitioned union/folder.%61%75%78/datasources/jdbc/acme_crm_sanjose.vql
+/databases/customer360/folder.other/folder.optimizations/folder.partitioned union/folder.%61%75%78/views/address_sanjose.vql
+/databases/customer360/folder.other/folder.optimizations/folder.partitioned union/folder.%61%75%78/views/client_sanjose.vql

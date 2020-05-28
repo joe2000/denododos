@@ -1,0 +1,353 @@
+﻿CREATE OR REPLACE WRAPPER CUSTOM sf_user
+    FOLDER = '/sources/07.saas/salesforce.com/entities'
+    DATASOURCENAME=salesforce
+    PARAMETERS (
+      'ENTITY' = 'User',
+      'BASE_URL' = 'https://na3.salesforce.com',
+      'SANDBOX' = false,
+      'ACCESS_TOKEN' = '00D5000000077zi!ARcAQE_qUZ9l3JhH3yr4nQpPucD.NDJxUphbjCjx6oetX8mQ1C2qVi770L1RBnPJcdK53ck4UP0pY1QAdQPHexh50o1cRMD.',
+      'CLIENT_ID' = '3MVG9Km_cBLhsuPzuEJ8T.2uUkOGhpBPs0UH6ejd6RFAmuHgCV_zeHh_GE0cUfnTCyKkf.m4fghfEeLpqMdus',
+      'REFRESH_TOKEN (required for web flow)' = '5Aep861eWO5D.7wJBsLFjitX6L3M98eYEYnVfxbfZ6rwYOkMG4OhB3bBRaYfPD5xCWNEh0D6LkRzbfkUhbk3Lin',
+      'RESPONSE_COMPRESSION_TYPE (one of NONE, GZIP or DEFLATE -default is NONE)' = 'DEFLATE'
+    )
+    OUTPUTSCHEMA (
+        id = 'Id' : 'java.lang.String' (OPT) SORTABLE,
+        username = 'Username' : 'java.lang.String' (OPT) SORTABLE,
+        lastname = 'LastName' : 'java.lang.String' (OPT) SORTABLE,
+        firstname = 'FirstName' : 'java.lang.String' (OPT) SORTABLE,
+        name = 'Name' : 'java.lang.String' (OPT) SORTABLE,
+        companyname = 'CompanyName' : 'java.lang.String' (OPT) SORTABLE,
+        division = 'Division' : 'java.lang.String' (OPT) SORTABLE,
+        department = 'Department' : 'java.lang.String' (OPT) SORTABLE,
+        title = 'Title' : 'java.lang.String' (OPT) SORTABLE,
+        street = 'Street' : 'java.lang.String' (OPT) SORTABLE,
+        city = 'City' : 'java.lang.String' (OPT) SORTABLE,
+        state = 'State' : 'java.lang.String' (OPT) SORTABLE,
+        postalcode = 'PostalCode' : 'java.lang.String' (OPT) SORTABLE,
+        country = 'Country' : 'java.lang.String' (OPT) SORTABLE,
+        latitude = 'Latitude' : 'java.math.BigDecimal' (OPT) SORTABLE,
+        longitude = 'Longitude' : 'java.math.BigDecimal' (OPT) SORTABLE,
+        address = 'Address' : 'java.lang.String' (OPT) NOT SORTABLE,
+        email = 'Email' : 'java.lang.String' (OPT) SORTABLE,
+        emailpreferencesautobcc = 'EmailPreferencesAutoBcc' : 'java.lang.Boolean' (OPT) NOT SORTABLE,
+        emailpreferencesautobccstayintouch = 'EmailPreferencesAutoBccStayInTouch' : 'java.lang.Boolean' (OPT) NOT SORTABLE,
+        emailpreferencesstayintouchreminder = 'EmailPreferencesStayInTouchReminder' : 'java.lang.Boolean' (OPT) NOT SORTABLE,
+        senderemail = 'SenderEmail' : 'java.lang.String' (OPT) SORTABLE,
+        sendername = 'SenderName' : 'java.lang.String' (OPT) SORTABLE,
+        signature = 'Signature' : 'java.lang.String' (OPT) SORTABLE,
+        stayintouchsubject = 'StayInTouchSubject' : 'java.lang.String' (OPT) SORTABLE,
+        stayintouchsignature = 'StayInTouchSignature' : 'java.lang.String' (OPT) SORTABLE,
+        stayintouchnote = 'StayInTouchNote' : 'java.lang.String' (OPT) SORTABLE,
+        phone = 'Phone' : 'java.lang.String' (OPT) SORTABLE,
+        fax = 'Fax' : 'java.lang.String' (OPT) SORTABLE,
+        mobilephone = 'MobilePhone' : 'java.lang.String' (OPT) SORTABLE,
+        alias = 'Alias' : 'java.lang.String' (OPT) SORTABLE,
+        communitynickname = 'CommunityNickname' : 'java.lang.String' (OPT) SORTABLE,
+        isbadged = 'IsBadged' : 'java.lang.Boolean' (OPT) SORTABLE,
+        isactive = 'IsActive' : 'java.lang.Boolean' (OPT) SORTABLE,
+        timezonesidkey = 'TimeZoneSidKey' : 'java.lang.String' (OPT) SORTABLE,
+        userroleid = 'UserRoleId' : 'java.lang.String' (OPT) SORTABLE,
+        localesidkey = 'LocaleSidKey' : 'java.lang.String' (OPT) SORTABLE,
+        receivesinfoemails = 'ReceivesInfoEmails' : 'java.lang.Boolean' (OPT) SORTABLE,
+        receivesadmininfoemails = 'ReceivesAdminInfoEmails' : 'java.lang.Boolean' (OPT) SORTABLE,
+        emailencodingkey = 'EmailEncodingKey' : 'java.lang.String' (OPT) SORTABLE,
+        profileid = 'ProfileId' : 'java.lang.String' (OPT) SORTABLE,
+        usertype = 'UserType' : 'java.lang.String' (OPT) SORTABLE,
+        languagelocalekey = 'LanguageLocaleKey' : 'java.lang.String' (OPT) SORTABLE,
+        employeenumber = 'EmployeeNumber' : 'java.lang.String' (OPT) SORTABLE,
+        delegatedapproverid = 'DelegatedApproverId' : 'java.lang.String' (OPT) SORTABLE,
+        managerid = 'ManagerId' : 'java.lang.String' (OPT) SORTABLE,
+        lastlogindate = 'LastLoginDate' : 'java.util.Date' (OPT) SORTABLE,
+        lastpasswordchangedate = 'LastPasswordChangeDate' : 'java.util.Date' (OPT) SORTABLE,
+        createddate = 'CreatedDate' : 'java.util.Date' (OPT) SORTABLE,
+        createdbyid = 'CreatedById' : 'java.lang.String' (OPT) SORTABLE,
+        lastmodifieddate = 'LastModifiedDate' : 'java.util.Date' (OPT) SORTABLE,
+        lastmodifiedbyid = 'LastModifiedById' : 'java.lang.String' (OPT) SORTABLE,
+        systemmodstamp = 'SystemModstamp' : 'java.util.Date' (OPT) SORTABLE,
+        offlinetrialexpirationdate = 'OfflineTrialExpirationDate' : 'java.util.Date' (OPT) SORTABLE,
+        offlinepdatrialexpirationdate = 'OfflinePdaTrialExpirationDate' : 'java.util.Date' (OPT) SORTABLE,
+        userpermissionsmarketinguser = 'UserPermissionsMarketingUser' : 'java.lang.Boolean' (OPT) NOT SORTABLE,
+        userpermissionsofflineuser = 'UserPermissionsOfflineUser' : 'java.lang.Boolean' (OPT) NOT SORTABLE,
+        userpermissionscallcenterautologin = 'UserPermissionsCallCenterAutoLogin' : 'java.lang.Boolean' (OPT) NOT SORTABLE,
+        userpermissionsmobileuser = 'UserPermissionsMobileUser' : 'java.lang.Boolean' (OPT) NOT SORTABLE,
+        userpermissionssfcontentuser = 'UserPermissionsSFContentUser' : 'java.lang.Boolean' (OPT) NOT SORTABLE,
+        userpermissionsknowledgeuser = 'UserPermissionsKnowledgeUser' : 'java.lang.Boolean' (OPT) NOT SORTABLE,
+        userpermissionsinteractionuser = 'UserPermissionsInteractionUser' : 'java.lang.Boolean' (OPT) NOT SORTABLE,
+        userpermissionssupportuser = 'UserPermissionsSupportUser' : 'java.lang.Boolean' (OPT) NOT SORTABLE,
+        userpermissionssiteforcecontributoruser = 'UserPermissionsSiteforceContributorUser' : 'java.lang.Boolean' (OPT) NOT SORTABLE,
+        userpermissionssiteforcepublisheruser = 'UserPermissionsSiteforcePublisherUser' : 'java.lang.Boolean' (OPT) NOT SORTABLE,
+        userpermissionschatteranswersuser = 'UserPermissionsChatterAnswersUser' : 'java.lang.Boolean' (OPT) NOT SORTABLE,
+        forecastenabled = 'ForecastEnabled' : 'java.lang.Boolean' (OPT) SORTABLE,
+        userpreferencesactivityreminderspopup = 'UserPreferencesActivityRemindersPopup' : 'java.lang.Boolean' (OPT) NOT SORTABLE,
+        userpreferenceseventreminderscheckboxdefault = 'UserPreferencesEventRemindersCheckboxDefault' : 'java.lang.Boolean' (OPT) NOT SORTABLE,
+        userpreferencestaskreminderscheckboxdefault = 'UserPreferencesTaskRemindersCheckboxDefault' : 'java.lang.Boolean' (OPT) NOT SORTABLE,
+        userpreferencesremindersoundoff = 'UserPreferencesReminderSoundOff' : 'java.lang.Boolean' (OPT) NOT SORTABLE,
+        userpreferencesdisableallfeedsemail = 'UserPreferencesDisableAllFeedsEmail' : 'java.lang.Boolean' (OPT) NOT SORTABLE,
+        userpreferencesapexpagesdevelopermode = 'UserPreferencesApexPagesDeveloperMode' : 'java.lang.Boolean' (OPT) NOT SORTABLE,
+        userpreferenceshidecsngetchattermobiletask = 'UserPreferencesHideCSNGetChatterMobileTask' : 'java.lang.Boolean' (OPT) NOT SORTABLE,
+        userpreferenceshidecsndesktoptask = 'UserPreferencesHideCSNDesktopTask' : 'java.lang.Boolean' (OPT) NOT SORTABLE,
+        userpreferenceshidechatteronboardingsplash = 'UserPreferencesHideChatterOnboardingSplash' : 'java.lang.Boolean' (OPT) NOT SORTABLE,
+        userpreferenceshidesecondchatteronboardingsplash = 'UserPreferencesHideSecondChatterOnboardingSplash' : 'java.lang.Boolean' (OPT) NOT SORTABLE,
+        userpreferencesshowtitletoexternalusers = 'UserPreferencesShowTitleToExternalUsers' : 'java.lang.Boolean' (OPT) NOT SORTABLE,
+        userpreferencesshowmanagertoexternalusers = 'UserPreferencesShowManagerToExternalUsers' : 'java.lang.Boolean' (OPT) NOT SORTABLE,
+        userpreferencesshowemailtoexternalusers = 'UserPreferencesShowEmailToExternalUsers' : 'java.lang.Boolean' (OPT) NOT SORTABLE,
+        userpreferencesshowworkphonetoexternalusers = 'UserPreferencesShowWorkPhoneToExternalUsers' : 'java.lang.Boolean' (OPT) NOT SORTABLE,
+        userpreferencesshowmobilephonetoexternalusers = 'UserPreferencesShowMobilePhoneToExternalUsers' : 'java.lang.Boolean' (OPT) NOT SORTABLE,
+        userpreferencesshowfaxtoexternalusers = 'UserPreferencesShowFaxToExternalUsers' : 'java.lang.Boolean' (OPT) NOT SORTABLE,
+        userpreferencesshowstreetaddresstoexternalusers = 'UserPreferencesShowStreetAddressToExternalUsers' : 'java.lang.Boolean' (OPT) NOT SORTABLE,
+        userpreferencesshowcitytoexternalusers = 'UserPreferencesShowCityToExternalUsers' : 'java.lang.Boolean' (OPT) NOT SORTABLE,
+        userpreferencesshowstatetoexternalusers = 'UserPreferencesShowStateToExternalUsers' : 'java.lang.Boolean' (OPT) NOT SORTABLE,
+        userpreferencesshowpostalcodetoexternalusers = 'UserPreferencesShowPostalCodeToExternalUsers' : 'java.lang.Boolean' (OPT) NOT SORTABLE,
+        userpreferencesshowcountrytoexternalusers = 'UserPreferencesShowCountryToExternalUsers' : 'java.lang.Boolean' (OPT) NOT SORTABLE,
+        userpreferencesshowprofilepictoguestusers = 'UserPreferencesShowProfilePicToGuestUsers' : 'java.lang.Boolean' (OPT) NOT SORTABLE,
+        userpreferencesshowtitletoguestusers = 'UserPreferencesShowTitleToGuestUsers' : 'java.lang.Boolean' (OPT) NOT SORTABLE,
+        userpreferencesshowcitytoguestusers = 'UserPreferencesShowCityToGuestUsers' : 'java.lang.Boolean' (OPT) NOT SORTABLE,
+        userpreferencesshowstatetoguestusers = 'UserPreferencesShowStateToGuestUsers' : 'java.lang.Boolean' (OPT) NOT SORTABLE,
+        userpreferencesshowpostalcodetoguestusers = 'UserPreferencesShowPostalCodeToGuestUsers' : 'java.lang.Boolean' (OPT) NOT SORTABLE,
+        userpreferencesshowcountrytoguestusers = 'UserPreferencesShowCountryToGuestUsers' : 'java.lang.Boolean' (OPT) NOT SORTABLE,
+        userpreferenceshides1browserui = 'UserPreferencesHideS1BrowserUI' : 'java.lang.Boolean' (OPT) NOT SORTABLE,
+        userpreferenceslightningexperiencepreferred = 'UserPreferencesLightningExperiencePreferred' : 'java.lang.Boolean' (OPT) NOT SORTABLE,
+        contactid = 'ContactId' : 'java.lang.String' (OPT) SORTABLE,
+        accountid = 'AccountId' : 'java.lang.String' (OPT) SORTABLE,
+        callcenterid = 'CallCenterId' : 'java.lang.String' (OPT) SORTABLE,
+        extension = 'Extension' : 'java.lang.String' (OPT) SORTABLE,
+        federationidentifier = 'FederationIdentifier' : 'java.lang.String' (OPT) SORTABLE,
+        aboutme = 'AboutMe' : 'java.lang.String' (OPT) SORTABLE,
+        fullphotourl = 'FullPhotoUrl' : 'java.lang.String' (OPT) SORTABLE,
+        smallphotourl = 'SmallPhotoUrl' : 'java.lang.String' (OPT) SORTABLE,
+        digestfrequency = 'DigestFrequency' : 'java.lang.String' (OPT) SORTABLE,
+        defaultgroupnotificationfrequency = 'DefaultGroupNotificationFrequency' : 'java.lang.String' (OPT) SORTABLE,
+        lastvieweddate = 'LastViewedDate' : 'java.util.Date' (OPT) SORTABLE,
+        lastreferenceddate = 'LastReferencedDate' : 'java.util.Date' (OPT) SORTABLE
+    );
+
+CREATE OR REPLACE TABLE sf_user I18N us_pst (
+        id:text,
+        username:text,
+        lastname:text,
+        firstname:text,
+        name:text,
+        companyname:text,
+        division:text,
+        department:text,
+        title:text,
+        street:text,
+        city:text,
+        state:text,
+        postalcode:text,
+        country:text,
+        latitude:decimal,
+        longitude:decimal,
+        address:text,
+        email:text,
+        emailpreferencesautobcc:boolean,
+        emailpreferencesautobccstayintouch:boolean,
+        emailpreferencesstayintouchreminder:boolean,
+        senderemail:text,
+        sendername:text,
+        signature:text,
+        stayintouchsubject:text,
+        stayintouchsignature:text,
+        stayintouchnote:text,
+        phone:text,
+        fax:text,
+        mobilephone:text,
+        alias:text,
+        communitynickname:text,
+        isbadged:boolean,
+        isactive:boolean,
+        timezonesidkey:text,
+        userroleid:text,
+        localesidkey:text,
+        receivesinfoemails:boolean,
+        receivesadmininfoemails:boolean,
+        emailencodingkey:text,
+        profileid:text,
+        usertype:text,
+        languagelocalekey:text,
+        employeenumber:text,
+        delegatedapproverid:text,
+        managerid:text,
+        lastlogindate:date,
+        lastpasswordchangedate:date,
+        createddate:date,
+        createdbyid:text,
+        lastmodifieddate:date,
+        lastmodifiedbyid:text,
+        systemmodstamp:date,
+        offlinetrialexpirationdate:date,
+        offlinepdatrialexpirationdate:date,
+        userpermissionsmarketinguser:boolean,
+        userpermissionsofflineuser:boolean,
+        userpermissionscallcenterautologin:boolean,
+        userpermissionsmobileuser:boolean,
+        userpermissionssfcontentuser:boolean,
+        userpermissionsknowledgeuser:boolean,
+        userpermissionsinteractionuser:boolean,
+        userpermissionssupportuser:boolean,
+        userpermissionssiteforcecontributoruser:boolean,
+        userpermissionssiteforcepublisheruser:boolean,
+        userpermissionschatteranswersuser:boolean,
+        forecastenabled:boolean,
+        userpreferencesactivityreminderspopup:boolean,
+        userpreferenceseventreminderscheckboxdefault:boolean,
+        userpreferencestaskreminderscheckboxdefault:boolean,
+        userpreferencesremindersoundoff:boolean,
+        userpreferencesdisableallfeedsemail:boolean,
+        userpreferencesapexpagesdevelopermode:boolean,
+        userpreferenceshidecsngetchattermobiletask:boolean,
+        userpreferenceshidecsndesktoptask:boolean,
+        userpreferenceshidechatteronboardingsplash:boolean,
+        userpreferenceshidesecondchatteronboardingsplash:boolean,
+        userpreferencesshowtitletoexternalusers:boolean,
+        userpreferencesshowmanagertoexternalusers:boolean,
+        userpreferencesshowemailtoexternalusers:boolean,
+        userpreferencesshowworkphonetoexternalusers:boolean,
+        userpreferencesshowmobilephonetoexternalusers:boolean,
+        userpreferencesshowfaxtoexternalusers:boolean,
+        userpreferencesshowstreetaddresstoexternalusers:boolean,
+        userpreferencesshowcitytoexternalusers:boolean,
+        userpreferencesshowstatetoexternalusers:boolean,
+        userpreferencesshowpostalcodetoexternalusers:boolean,
+        userpreferencesshowcountrytoexternalusers:boolean,
+        userpreferencesshowprofilepictoguestusers:boolean,
+        userpreferencesshowtitletoguestusers:boolean,
+        userpreferencesshowcitytoguestusers:boolean,
+        userpreferencesshowstatetoguestusers:boolean,
+        userpreferencesshowpostalcodetoguestusers:boolean,
+        userpreferencesshowcountrytoguestusers:boolean,
+        userpreferenceshides1browserui:boolean,
+        userpreferenceslightningexperiencepreferred:boolean,
+        contactid:text,
+        accountid:text,
+        callcenterid:text,
+        extension:text,
+        federationidentifier:text,
+        aboutme:text,
+        fullphotourl:text,
+        smallphotourl:text,
+        digestfrequency:text,
+        defaultgroupnotificationfrequency:text,
+        lastvieweddate:date,
+        lastreferenceddate:date
+    )
+    FOLDER = '/sources/07.saas/salesforce.com/entities'
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD sf_user(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD id (any) OPT ANY
+             ADD username (any) OPT ANY
+             ADD lastname (any) OPT ANY
+             ADD firstname (any) OPT ANY
+             ADD name (any) OPT ANY
+             ADD companyname (any) OPT ANY
+             ADD division (any) OPT ANY
+             ADD department (any) OPT ANY
+             ADD title (any) OPT ANY
+             ADD street (any) OPT ANY
+             ADD city (any) OPT ANY
+             ADD state (any) OPT ANY
+             ADD postalcode (any) OPT ANY
+             ADD country (any) OPT ANY
+             ADD latitude (any) OPT ANY
+             ADD longitude (any) OPT ANY
+             ADD address (any) OPT ANY
+             ADD email (any) OPT ANY
+             ADD emailpreferencesautobcc (any) OPT ANY
+             ADD emailpreferencesautobccstayintouch (any) OPT ANY
+             ADD emailpreferencesstayintouchreminder (any) OPT ANY
+             ADD senderemail (any) OPT ANY
+             ADD sendername (any) OPT ANY
+             ADD signature (any) OPT ANY
+             ADD stayintouchsubject (any) OPT ANY
+             ADD stayintouchsignature (any) OPT ANY
+             ADD stayintouchnote (any) OPT ANY
+             ADD phone (any) OPT ANY
+             ADD fax (any) OPT ANY
+             ADD mobilephone (any) OPT ANY
+             ADD alias (any) OPT ANY
+             ADD communitynickname (any) OPT ANY
+             ADD isbadged (any) OPT ANY
+             ADD isactive (any) OPT ANY
+             ADD timezonesidkey (any) OPT ANY
+             ADD userroleid (any) OPT ANY
+             ADD localesidkey (any) OPT ANY
+             ADD receivesinfoemails (any) OPT ANY
+             ADD receivesadmininfoemails (any) OPT ANY
+             ADD emailencodingkey (any) OPT ANY
+             ADD profileid (any) OPT ANY
+             ADD usertype (any) OPT ANY
+             ADD languagelocalekey (any) OPT ANY
+             ADD employeenumber (any) OPT ANY
+             ADD delegatedapproverid (any) OPT ANY
+             ADD managerid (any) OPT ANY
+             ADD lastlogindate (any) OPT ANY
+             ADD lastpasswordchangedate (any) OPT ANY
+             ADD createddate (any) OPT ANY
+             ADD createdbyid (any) OPT ANY
+             ADD lastmodifieddate (any) OPT ANY
+             ADD lastmodifiedbyid (any) OPT ANY
+             ADD systemmodstamp (any) OPT ANY
+             ADD offlinetrialexpirationdate (any) OPT ANY
+             ADD offlinepdatrialexpirationdate (any) OPT ANY
+             ADD userpermissionsmarketinguser (any) OPT ANY
+             ADD userpermissionsofflineuser (any) OPT ANY
+             ADD userpermissionscallcenterautologin (any) OPT ANY
+             ADD userpermissionsmobileuser (any) OPT ANY
+             ADD userpermissionssfcontentuser (any) OPT ANY
+             ADD userpermissionsknowledgeuser (any) OPT ANY
+             ADD userpermissionsinteractionuser (any) OPT ANY
+             ADD userpermissionssupportuser (any) OPT ANY
+             ADD userpermissionssiteforcecontributoruser (any) OPT ANY
+             ADD userpermissionssiteforcepublisheruser (any) OPT ANY
+             ADD userpermissionschatteranswersuser (any) OPT ANY
+             ADD forecastenabled (any) OPT ANY
+             ADD userpreferencesactivityreminderspopup (any) OPT ANY
+             ADD userpreferenceseventreminderscheckboxdefault (any) OPT ANY
+             ADD userpreferencestaskreminderscheckboxdefault (any) OPT ANY
+             ADD userpreferencesremindersoundoff (any) OPT ANY
+             ADD userpreferencesdisableallfeedsemail (any) OPT ANY
+             ADD userpreferencesapexpagesdevelopermode (any) OPT ANY
+             ADD userpreferenceshidecsngetchattermobiletask (any) OPT ANY
+             ADD userpreferenceshidecsndesktoptask (any) OPT ANY
+             ADD userpreferenceshidechatteronboardingsplash (any) OPT ANY
+             ADD userpreferenceshidesecondchatteronboardingsplash (any) OPT ANY
+             ADD userpreferencesshowtitletoexternalusers (any) OPT ANY
+             ADD userpreferencesshowmanagertoexternalusers (any) OPT ANY
+             ADD userpreferencesshowemailtoexternalusers (any) OPT ANY
+             ADD userpreferencesshowworkphonetoexternalusers (any) OPT ANY
+             ADD userpreferencesshowmobilephonetoexternalusers (any) OPT ANY
+             ADD userpreferencesshowfaxtoexternalusers (any) OPT ANY
+             ADD userpreferencesshowstreetaddresstoexternalusers (any) OPT ANY
+             ADD userpreferencesshowcitytoexternalusers (any) OPT ANY
+             ADD userpreferencesshowstatetoexternalusers (any) OPT ANY
+             ADD userpreferencesshowpostalcodetoexternalusers (any) OPT ANY
+             ADD userpreferencesshowcountrytoexternalusers (any) OPT ANY
+             ADD userpreferencesshowprofilepictoguestusers (any) OPT ANY
+             ADD userpreferencesshowtitletoguestusers (any) OPT ANY
+             ADD userpreferencesshowcitytoguestusers (any) OPT ANY
+             ADD userpreferencesshowstatetoguestusers (any) OPT ANY
+             ADD userpreferencesshowpostalcodetoguestusers (any) OPT ANY
+             ADD userpreferencesshowcountrytoguestusers (any) OPT ANY
+             ADD userpreferenceshides1browserui (any) OPT ANY
+             ADD userpreferenceslightningexperiencepreferred (any) OPT ANY
+             ADD contactid (any) OPT ANY
+             ADD accountid (any) OPT ANY
+             ADD callcenterid (any) OPT ANY
+             ADD extension (any) OPT ANY
+             ADD federationidentifier (any) OPT ANY
+             ADD aboutme (any) OPT ANY
+             ADD fullphotourl (any) OPT ANY
+             ADD smallphotourl (any) OPT ANY
+             ADD digestfrequency (any) OPT ANY
+             ADD defaultgroupnotificationfrequency (any) OPT ANY
+             ADD lastvieweddate (any) OPT ANY
+             ADD lastreferenceddate (any) OPT ANY
+        )
+        OUTPUTLIST (aboutme, accountid, address, alias, callcenterid, city, communitynickname, companyname, contactid, country, createdbyid, createddate, defaultgroupnotificationfrequency, delegatedapproverid, department, digestfrequency, division, email, emailencodingkey, emailpreferencesautobcc, emailpreferencesautobccstayintouch, emailpreferencesstayintouchreminder, employeenumber, extension, fax, federationidentifier, firstname, forecastenabled, fullphotourl, id, isactive, isbadged, languagelocalekey, lastlogindate, lastmodifiedbyid, lastmodifieddate, lastname, lastpasswordchangedate, lastreferenceddate, lastvieweddate, latitude, localesidkey, longitude, managerid, mobilephone, name, offlinepdatrialexpirationdate, offlinetrialexpirationdate, phone, postalcode, profileid, receivesadmininfoemails, receivesinfoemails, senderemail, sendername, signature, smallphotourl, state, stayintouchnote, stayintouchsignature, stayintouchsubject, street, systemmodstamp, timezonesidkey, title, username, userpermissionscallcenterautologin, userpermissionschatteranswersuser, userpermissionsinteractionuser, userpermissionsknowledgeuser, userpermissionsmarketinguser, userpermissionsmobileuser, userpermissionsofflineuser, userpermissionssfcontentuser, userpermissionssiteforcecontributoruser, userpermissionssiteforcepublisheruser, userpermissionssupportuser, userpreferencesactivityreminderspopup, userpreferencesapexpagesdevelopermode, userpreferencesdisableallfeedsemail, userpreferenceseventreminderscheckboxdefault, userpreferenceshidechatteronboardingsplash, userpreferenceshidecsndesktoptask, userpreferenceshidecsngetchattermobiletask, userpreferenceshides1browserui, userpreferenceshidesecondchatteronboardingsplash, userpreferenceslightningexperiencepreferred, userpreferencesremindersoundoff, userpreferencesshowcitytoexternalusers, userpreferencesshowcitytoguestusers, userpreferencesshowcountrytoexternalusers, userpreferencesshowcountrytoguestusers, userpreferencesshowemailtoexternalusers, userpreferencesshowfaxtoexternalusers, userpreferencesshowmanagertoexternalusers, userpreferencesshowmobilephonetoexternalusers, userpreferencesshowpostalcodetoexternalusers, userpreferencesshowpostalcodetoguestusers, userpreferencesshowprofilepictoguestusers, userpreferencesshowstatetoexternalusers, userpreferencesshowstatetoguestusers, userpreferencesshowstreetaddresstoexternalusers, userpreferencesshowtitletoexternalusers, userpreferencesshowtitletoguestusers, userpreferencesshowworkphonetoexternalusers, userpreferencestaskreminderscheckboxdefault, userroleid, usertype
+        )
+        WRAPPER (custom sf_user)
+    );
+

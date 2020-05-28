@@ -1,0 +1,35 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE DATASOURCE JDBC acme_erp
+    FOLDER = '/sources/01.databases/sql server/company'
+    DRIVERCLASSNAME = 'net.sourceforge.jtds.jdbc.Driver'
+    DATABASEURI = '${databases.customer360.folder.sources.folder.01..databases.folder.sql server.folder.company.datasources.jdbc.acme_erp.DATABASEURI}'
+    USERNAME = '${databases.customer360.folder.sources.folder.01..databases.folder.sql server.folder.company.datasources.jdbc.acme_erp.USERNAME}'
+    USERPASSWORD = '${databases.customer360.folder.sources.folder.01..databases.folder.sql server.folder.company.datasources.jdbc.acme_erp.USERPASSWORD}' ${databases.customer360.folder.sources.folder.01..databases.folder.sql server.folder.company.datasources.jdbc.acme_erp.USERPASSWORD.ENCRYPTED}
+    CLASSPATH = 'jtds-1.2.8'
+    DATABASENAME = 'sqlserver'
+    DATABASEVERSION = '2008R2'
+    IGNORETRAILINGSPACES = TRUE
+    FETCHSIZE = 1000
+    VALIDATIONQUERY = 'Select 1'
+    INITIALSIZE = 4
+    MAXIDLE = -1
+    MINIDLE = 0
+    MAXACTIVE = 20
+    EXHAUSTEDACTION = 1
+    TESTONBORROW = true
+    TESTONRETURN = false
+    TESTWHILEIDLE = false
+    TIMEBETWEENEVICTION = -1
+    NUMTESTPEREVICTION = 3
+    MINEVICTABLETIME = 1800000
+    POOLPREPAREDSTATEMENTS = false
+    MAXOPENPREPAREDSTATEMENTS = -1
+    DATA_LOAD_CONFIGURATION (
+        BATCHINSERTSIZE = 1000
+    )
+    SOURCECONFIGURATION (
+        delegateaggregatefunctionslist = (avg, count, max, min, sum),
+        delegatescalarfunctionslist = (abs, addday, addhour, addminute, addmonth, addsecond, addweek, addyear, case, ceil, coalesce, concat, div, firstdayofmonth, firstdayofweek, floor, getday, gethour, getminute, getmonth, getsecond, getyear, lastdayofmonth, lastdayofweek, len, log, lower, ltrim, mod, mult, nextweekday, now, nullif, power, previousweekday, rand, removeaccents, replace, round, rtrim, sqrt, substring, subtract, sum, textconstant, to_date(literal), trim, upper),
+        delegateoperatorslist = (between, =, exists, >=, >, in, is false, is not null, is null, is true, <=, like, <, <>, notin)
+    );
+

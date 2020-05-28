@@ -1,0 +1,6 @@
+﻿CREATE OR REPLACE VIEW flattened_invoicing FOLDER = '/sources/06.web services/rest/invoicing'
+    PRIMARY KEY ( 'client_id' , 'date' , 'package_id' ) AS SELECT client_id AS client_id, invoicing_address AS invoicing_address, to_date('yyyy/mm/dd', date) AS date, package_id AS package_id, description AS description, amount_due AS amount_due FROM FLATTEN invoicing AS v ( v.invoicing_data_aux_item.bills.item AS field0, field0.array_package.item) CONTEXT ('I18N' = 'us_cst');
+
+ALTER VIEW flattened_invoicing
+ LAYOUT (invoicing = [20, 20, 356, 324]);
+

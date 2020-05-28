@@ -1,0 +1,12 @@
+﻿/databases/customer360/folder.sources/sources.vql
+/databases/customer360/folder.sources/folder.01.databases/01.databases.vql
+/databases/customer360/folder.sources/folder.01.databases/folder.mysql/mysql.vql
+/databases/customer360/folder.sources/folder.01.databases/folder.mysql/datasources/jdbc/acme_crm.vql
+/databases/customer360/folder.sources/folder.01.databases/folder.mysql/views/client.vql
+/databases/customer360/folder.sources/folder.01.databases/folder.mysql/views/client_type.vql
+/databases/customer360/folder.sources/folder.06.web services/06.web services.vql
+/databases/customer360/folder.sources/folder.06.web services/folder.rest/rest.vql
+/databases/customer360/folder.sources/folder.06.web services/folder.rest/folder.invoicing/invoicing.vql
+/databases/customer360/folder.sources/folder.06.web services/folder.rest/folder.invoicing/datasources/xml/invoicing.vql
+/databases/customer360/folder.sources/folder.06.web services/folder.rest/folder.invoicing/views/invoicing.vql
+/databases/customer360/folder.sources/folder.06.web services/folder.rest/folder.invoicing/views/flattened_invoicing.vql

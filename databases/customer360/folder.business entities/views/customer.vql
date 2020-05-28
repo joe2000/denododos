@@ -1,0 +1,9 @@
+﻿CREATE OR REPLACE VIEW customer FOLDER = '/business entities' DESCRIPTION = 'Aggregated view of a customer, including the company they belong to.' 
+    PRIMARY KEY ( 'id' ) (
+    full_name (sourcetypeid = '12', sourcetypesize = '200')
+)
+ AS SELECT client_ora.client_id AS id, client_ora.name AS name, client_ora.surname AS surname, ((client_ora.name||' ')||client_ora.surname) AS full_name, client_ora.ssn AS ssn, client_type_ora.value AS type, company.name AS company_name, address_ora.street AS street, address_ora.city AS city, address_ora.zip AS zip, map(address_ora.state, 'us_states_map') AS state, propercase(address_ora.country) AS country, address_ora.primary_phone AS primary_phone FROM ((client_ora AS client_ora INNER JOIN client_type_ora AS client_type_ora ON client_ora.client_type = client_type_ora.code ) INNER JOIN address_ora AS address_ora ON client_ora.client_id = address_ora.client_identifier ) INNER JOIN company AS company ON client_ora.company_code = replace(company.code, 'ENT', 'COM')  ORDER BY id ASC;
+
+ALTER VIEW customer
+ LAYOUT (client_ora = [0, 106, 200, 147], client_type_ora = [590, 30, 200, 67], address_ora = [590, 180, 200, 167], company = [380, 280, 200, 167]);
+

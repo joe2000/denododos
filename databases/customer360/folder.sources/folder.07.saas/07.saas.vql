@@ -1,0 +1,2 @@
+﻿CREATE OR REPLACE FOLDER '/sources/07.SaaS' DESCRIPTION 'SaaS Connections' ;
+

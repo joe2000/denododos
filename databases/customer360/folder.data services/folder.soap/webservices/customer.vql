@@ -1,0 +1,90 @@
+﻿CREATE OR REPLACE SOAP WEBSERVICE customer
+    CHUNKSIZE = 1000
+    CHUNKTIMEOUT = 80000
+    QUERYTIMEOUT = 8000000000
+    POOLENABLED = true
+    POOLINITSIZE = 0
+    POOLMAXACTIVE = 30
+    I18N  = es_euro
+    DATETYPEMAPPING DATE
+    NOWRAPARRAYS
+    DONOTAPPLYOUTPUTXSLTTOERRORS
+    AUTHENTICATION (WSS BASIC
+    USER 'admin'
+    PASSWORD '6t1QG9IJQLdoK9abTjo0WCaWgFk5uWZF4aBb5D23Yh0HucirA6MNVb4epIQh4KlYXv+xmk2eDJcDlkZlwiGEyQinHtAWdMsXpndbWiwIuacWhNlKh0mFSbwq7QSr7Z9V' ENCRYPTED )
+    OUTPUT 
+        ( STYLE RPC  )
+    OPERATION 'getCustomerById' (
+        TYPE SELECT
+        SCHEMA VIEW customer_2
+        VQL = 'SELECT id, name, surname, full_name, type, street, city, zip, state, country, company_name, primary_phone, ssn FROM customer_2 ^ExecuteIfIsNotNull("WHERE ",@WHEREEXPRESSION,"") CONTEXT (''i18n'' = ''es_euro'')'
+        INPUTS (
+            'ID' id:'text' '=' 
+        )
+        OUTPUT 
+            'CUSTOMERReturn_2': Array of ( 'getCustomerByIdRow': Register of (
+                id : 'text',
+                name : 'text',
+                surname : 'text',
+                full_name : 'text',
+                type : 'text',
+                street : 'text',
+                city : 'text',
+                zip : 'text',
+                state : 'text',
+                country : 'text',
+                company_name : 'text',
+                primary_phone : 'text',
+                ssn : 'text'
+            ) (
+                    '/city'='CITY',
+                    '/company_name'='COMPANY_NAME',
+                    '/country'='COUNTRY',
+                    '/full_name'='FULL_NAME',
+                    '/id'='ID',
+                    '/name'='NAME',
+                    '/primary_phone'='PRIMARY_PHONE',
+                    '/ssn'='SSN',
+                    '/state'='STATE',
+                    '/street'='STREET',
+                    '/surname'='SURNAME',
+                    '/type'='TYPE',
+                    '/zip'='ZIP'))
+    )    OPERATION 'getAllCustomers' (
+        TYPE SELECT
+        SCHEMA VIEW customer_2
+        VQL = 'SELECT id, name, surname, full_name, type, street, city, zip, state, country, company_name, primary_phone, ssn FROM customer_2 ^ExecuteIfIsNotNull("WHERE ",@WHEREEXPRESSION,"") CONTEXT (''i18n'' = ''es_euro'')'
+        INPUTS (
+        )
+        OUTPUT 
+            'CUSTOMERReturn_3': Array of ( 'getAllCustomersRow': Register of (
+                id : 'text',
+                name : 'text',
+                surname : 'text',
+                full_name : 'text',
+                type : 'text',
+                street : 'text',
+                city : 'text',
+                zip : 'text',
+                state : 'text',
+                country : 'text',
+                company_name : 'text',
+                primary_phone : 'text',
+                ssn : 'text'
+            ) (
+                    '/city'='CITY',
+                    '/company_name'='COMPANY_NAME',
+                    '/country'='COUNTRY',
+                    '/full_name'='FULL_NAME',
+                    '/id'='ID',
+                    '/name'='NAME',
+                    '/primary_phone'='PRIMARY_PHONE',
+                    '/ssn'='SSN',
+                    '/state'='STATE',
+                    '/street'='STREET',
+                    '/surname'='SURNAME',
+                    '/type'='TYPE',
+                    '/zip'='ZIP'))
+    )
+    FOLDER = '/data services/soap';
+

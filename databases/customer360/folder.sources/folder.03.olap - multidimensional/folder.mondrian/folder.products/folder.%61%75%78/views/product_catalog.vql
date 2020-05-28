@@ -1,0 +1,68 @@
+﻿CREATE OR REPLACE WRAPPER XML product_catalog
+    DATASOURCENAME=product_catalog
+    TUPLEROOT '/packages/package'
+    OUTPUTSCHEMA (packages = 'packages' : REGISTER OF (
+        package_code = 'packages.package.package_code' : 'java.lang.String' (OPT),
+        package_name = 'packages.package.package_name' : 'java.lang.String' (OPT),
+        package_type = 'packages.package.package_type' : 'java.lang.Integer' (OPT),
+        features = 'packages.package.features' : REGISTER OF (
+            price = 'price' : 'java.lang.Float' (OPT),
+            free_minutes_month = 'free_minutes_month' : 'java.lang.Integer' (OPT),
+            special_features = 'special_features' : 'java.lang.String' (OPT),
+            product = 'product' : ARRAY OF (
+                product = 'product' : REGISTER OF (
+                    product_name = 'product_name' : 'java.lang.String' (OPT),
+                    code = 'code' : 'java.lang.Integer' (OPT),
+                    product_features = 'product_features' : REGISTER OF (
+                        manufacturer = 'manufacturer' : 'java.lang.String' (OPT),
+                        reference = 'reference' : 'java.lang.String' (OPT),
+                        category = 'category' : 'java.lang.String' (OPT),
+                        description = 'description' : 'java.lang.String' (OPT)
+                    )
+                )
+            )
+        )
+    )
+    );
+
+CREATE OR REPLACE TYPE product_catalog_features_product_product_product_features AS REGISTER OF (manufacturer:text, reference:text, category:text, description:text);
+
+CREATE OR REPLACE TYPE product_catalog_features_product_product AS REGISTER OF (product_name:text, code:int, product_features:product_catalog_features_product_product_product_features);
+
+CREATE OR REPLACE TYPE product_catalog_features_product AS ARRAY OF product_catalog_features_product_product;
+
+CREATE OR REPLACE TYPE product_catalog_features AS REGISTER OF (price:float, free_minutes_month:int, special_features:text, product:product_catalog_features_product);
+
+CREATE OR REPLACE TABLE product_catalog I18N us_pst (
+        package_code:text,
+        package_name:text (sourcetypeid = '1', sourcetypesize = '100'),
+        package_type:int,
+        features:product_catalog_features
+    )
+    FOLDER = '/sources/03.olap - multidimensional/mondrian/products/aux'
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD product_catalog(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD package_code NOS ZERO ()
+             ADD package_name NOS ZERO ()
+             ADD package_type NOS ZERO ()
+             ADD features.price NOS ZERO ()
+             ADD features.free_minutes_month NOS ZERO ()
+             ADD features.special_features NOS ZERO ()
+             ADD features.product.product_name NOS ZERO ()
+             ADD features.product.code NOS ZERO ()
+             ADD features.product.product_features.manufacturer NOS ZERO ()
+             ADD features.product.product_features.reference NOS ZERO ()
+             ADD features.product.product_features.category NOS ZERO ()
+             ADD features.product.product_features.description NOS ZERO ()
+             ADD features NOS ZERO ()
+             ADD features.product NOS ZERO ()
+             ADD features.product.product_features NOS ZERO ()
+        )
+        OUTPUTLIST (features, package_code, package_name, package_type
+        )
+        WRAPPER (xml product_catalog)
+    );
+

@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW addresses_to_format FOLDER = '/other/data quality/external services integration/aux' AS SELECT address.client_identifier AS client_identifier, address.primary_phone AS primary_phone, ((((((address.street||' , ')||address.city)||' ,')||address.zip)||' , ')||address.state) AS full_address FROM address;
+
+ALTER VIEW addresses_to_format
+ LAYOUT (address = [20, 20, 200, 105]);
+

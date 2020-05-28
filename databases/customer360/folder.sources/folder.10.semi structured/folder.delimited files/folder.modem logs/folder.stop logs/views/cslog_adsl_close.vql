@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW cslog_adsl_close FOLDER = '/sources/10.semi structured/delimited files/modem logs/stop logs' AS SELECT cslog_adsl_stop.network_equipment AS networkequipment, cslog_adsl_stop.login AS login, cslog_adsl_stop.interface AS ntu, cslog_adsl_stop.task_id AS id, cslog_adsl_stop.client_mac_addr AS macpc, cslog_adsl_stop.filepath AS filepath, textconstant('ADSL') AS accesstype, textconstant('') AS ip, (regexp(cslog_adsl_stop.date, '(\\d{{2}})/(\\d{{2}})/(\\d{{4}})', '$$3-$$1-$$2 ')||time) AS date_to FROM cslog_adsl_stop CONTEXT ('I18N' = 'us_cst');
+
+ALTER VIEW cslog_adsl_close
+ LAYOUT (cslog_adsl_stop = [20, 20, 200, 207]);
+

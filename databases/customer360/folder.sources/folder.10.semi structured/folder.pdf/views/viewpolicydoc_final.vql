@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW viewpolicydoc_final FOLDER = '/sources/10.semi structured/pdf' AS SELECT (nameaddress)[0].name AS name, (nameaddress)[0].address AS address, (nameaddress)[0].city AS city, coveragetype AS coveragetype, insurancelimits AS insurancelimits, premium AS premium FROM FLATTEN viewpolicydoc_intermediate AS v ( v.coverage);
+
+ALTER VIEW viewpolicydoc_final
+ LAYOUT (viewpolicydoc_intermediate = [20, 20, 268, 169]);
+

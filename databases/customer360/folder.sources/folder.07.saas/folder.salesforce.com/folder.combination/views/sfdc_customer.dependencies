@@ -1,0 +1,24 @@
+﻿/databases/customer360/folder.sources/sources.vql
+/databases/customer360/folder.sources/folder.07.saas/07.saas.vql
+/databases/customer360/folder.sources/folder.07.saas/folder.salesforce.com/salesforce.com.vql
+/databases/customer360/folder.sources/folder.07.saas/folder.salesforce.com/folder.combination/combination.vql
+/databases/customer360/maps/us_states_map.vql
+/databases/customer360/folder.business entities/business entities.vql
+/extensions/jars/denodo-xtrafuncs-vdp-string-6.0.vql
+/databases/customer360/folder.sources/folder.01.databases/01.databases.vql
+/databases/customer360/folder.sources/folder.01.databases/folder.oracle/oracle.vql
+/databases/customer360/folder.sources/folder.01.databases/folder.oracle/datasources/jdbc/oracle_crm.vql
+/databases/customer360/folder.sources/folder.01.databases/folder.oracle/views/client_ora.vql
+/databases/customer360/folder.sources/folder.01.databases/folder.oracle/views/client_type_ora.vql
+/databases/customer360/folder.sources/folder.01.databases/folder.oracle/views/address_ora.vql
+/databases/customer360/folder.sources/folder.01.databases/folder.sql server/sql server.vql
+/databases/customer360/folder.sources/folder.01.databases/folder.sql server/folder.company/company.vql
+/databases/customer360/folder.sources/folder.01.databases/folder.sql server/folder.company/datasources/jdbc/acme_erp.vql
+/databases/customer360/folder.sources/folder.01.databases/folder.sql server/folder.company/views/company.vql
+/databases/customer360/folder.business entities/views/customer.vql
+/databases/customer360/folder.sources/folder.07.saas/folder.salesforce.com/folder.entities/entities.vql
+/extensions/jars/denodo-salesforce-rest-wrapper-6.0.vql
+/databases/customer360/folder.sources/folder.07.saas/folder.salesforce.com/folder.salesforce/salesforce.vql
+/databases/customer360/folder.sources/folder.07.saas/folder.salesforce.com/folder.salesforce/datasources/custom/salesforce.vql
+/databases/customer360/folder.sources/folder.07.saas/folder.salesforce.com/folder.entities/views/sf_contact.vql
+/databases/customer360/folder.sources/folder.07.saas/folder.salesforce.com/folder.combination/views/salesforce_contact.vql

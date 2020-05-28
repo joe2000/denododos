@@ -1,0 +1,2 @@
+﻿CREATE OR REPLACE FOLDER '/sources/03.OLAP - Multidimensional' DESCRIPTION 'OLAP DB Connections' ;
+

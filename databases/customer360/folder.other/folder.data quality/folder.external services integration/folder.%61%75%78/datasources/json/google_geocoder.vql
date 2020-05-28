@@ -1,0 +1,7 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE DATASOURCE JSON google_geocoder
+    FOLDER = '/other/data quality/external services integration/aux'
+    ROUTE HTTP 'http.CommonsHttpClientConnection,120000' GET '${databases.customer360.folder.other.folder.data quality.folder.external services integration.folder.aux.datasources.json.google_geocoder.ROUTE.HTTP.URL}'
+    AUTHENTICATION OFF
+    PROXY OFF;
+

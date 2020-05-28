@@ -1,0 +1,6 @@
+﻿/databases/customer360/folder.sources/sources.vql
+/databases/customer360/folder.sources/folder.10.semi structured/10.semi structured.vql
+/databases/customer360/folder.sources/folder.10.semi structured/folder.delimited files/delimited files.vql
+/databases/customer360/folder.sources/folder.10.semi structured/folder.delimited files/folder.date ordered logs/date ordered logs.vql
+/extensions/jars/denodo-log-customwrapper-6.0.vql
+/databases/customer360/folder.sources/folder.10.semi structured/folder.delimited files/folder.date ordered logs/datasources/custom/logcustomwrapper.vql

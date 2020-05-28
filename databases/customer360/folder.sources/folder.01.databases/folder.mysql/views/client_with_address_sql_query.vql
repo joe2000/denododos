@@ -1,0 +1,56 @@
+﻿CREATE OR REPLACE WRAPPER JDBC client_with_address_sql_query
+    FOLDER = '/sources/01.databases/mysql'
+    DATASOURCENAME=acme_crm
+    SQLSENTENCE='SELECT t0.client_id, t0.name, t0.surname, t1.street, t1.city, t1.zip, t1.state, t1.primary_phone, t1.country, t2.`value`  as type,  t0.company_code
+FROM 
+(acme_crm.client t0 JOIN acme_crm.address t1 ON ((t0.client_id =  t1.client_identifier) )) JOIN acme_crm.client_type t2 ON ((t0.client_type = t2.code) ) order by client_id desc'   
+    OUTPUTSCHEMA (
+        client_id = 'client_id' :'java.lang.String' (sourcetypename='VARCHAR', sourcetypeid='12', sourcetypedecimals='0', sourcetypesize='50')  NOT NULL SORTABLE NOT UPDATEABLE,
+        name = 'name' :'java.lang.String' (sourcetypename='VARCHAR', sourcetypeid='12', sourcetypedecimals='0', sourcetypesize='100')  NOT NULL SORTABLE NOT UPDATEABLE,
+        surname = 'surname' :'java.lang.String' (sourcetypename='VARCHAR', sourcetypeid='12', sourcetypedecimals='0', sourcetypesize='100')  NOT NULL SORTABLE NOT UPDATEABLE,
+        street = 'street' :'java.lang.String' (sourcetypename='VARCHAR', sourcetypeid='12', sourcetypedecimals='0', sourcetypesize='100')  SORTABLE NOT UPDATEABLE,
+        city = 'city' :'java.lang.String' (sourcetypename='VARCHAR', sourcetypeid='12', sourcetypedecimals='0', sourcetypesize='100')  SORTABLE NOT UPDATEABLE,
+        zip = 'zip' :'java.lang.String' (sourcetypename='VARCHAR', sourcetypeid='12', sourcetypedecimals='0', sourcetypesize='100')  SORTABLE NOT UPDATEABLE,
+        state = 'state' :'java.lang.String' (sourcetypename='VARCHAR', sourcetypeid='12', sourcetypedecimals='0', sourcetypesize='100')  SORTABLE NOT UPDATEABLE,
+        primary_phone = 'primary_phone' :'java.lang.String' (sourcetypename='VARCHAR', sourcetypeid='12', sourcetypedecimals='0', sourcetypesize='100')  SORTABLE NOT UPDATEABLE,
+        country = 'country' :'java.lang.String' (sourcetypename='VARCHAR', sourcetypeid='12', sourcetypedecimals='0', sourcetypesize='100')  SORTABLE NOT UPDATEABLE,
+        type = 'type' :'java.lang.String' (sourcetypename='VARCHAR', sourcetypeid='12', sourcetypedecimals='0', sourcetypesize='100')  SORTABLE NOT UPDATEABLE,
+        company_code = 'company_code' :'java.lang.String' (sourcetypename='VARCHAR', sourcetypeid='12', sourcetypedecimals='0', sourcetypesize='50')  NOT NULL SORTABLE NOT UPDATEABLE
+    );
+
+CREATE OR REPLACE TABLE client_with_address_sql_query I18N us_pst (
+        client_id:text (sourcetypeid = '12', sourcetypedecimals = '0', sourcetypesize = '50'),
+        name:text (sourcetypeid = '12', sourcetypedecimals = '0', sourcetypesize = '100'),
+        surname:text (sourcetypeid = '12', sourcetypedecimals = '0', sourcetypesize = '100'),
+        street:text (sourcetypeid = '12', sourcetypedecimals = '0', sourcetypesize = '100'),
+        city:text (sourcetypeid = '12', sourcetypedecimals = '0', sourcetypesize = '100'),
+        zip:text (sourcetypeid = '12', sourcetypedecimals = '0', sourcetypesize = '100'),
+        state:text (sourcetypeid = '12', sourcetypedecimals = '0', sourcetypesize = '100'),
+        primary_phone:text (sourcetypeid = '12', sourcetypedecimals = '0', sourcetypesize = '100'),
+        country:text (sourcetypeid = '12', sourcetypedecimals = '0', sourcetypesize = '100'),
+        type:text (sourcetypeid = '12', sourcetypedecimals = '0', sourcetypesize = '100'),
+        company_code:text (sourcetypeid = '12', sourcetypedecimals = '0', sourcetypesize = '50')
+    )
+    FOLDER = '/sources/01.databases/mysql'
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD client_with_address_sql_query(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD client_id NOS ZERO ()
+             ADD name NOS ZERO ()
+             ADD surname NOS ZERO ()
+             ADD street NOS ZERO ()
+             ADD city NOS ZERO ()
+             ADD zip NOS ZERO ()
+             ADD state NOS ZERO ()
+             ADD primary_phone NOS ZERO ()
+             ADD country NOS ZERO ()
+             ADD type NOS ZERO ()
+             ADD company_code NOS ZERO ()
+        )
+        OUTPUTLIST (city, client_id, company_code, country, name, primary_phone, state, street, surname, type, zip
+        )
+        WRAPPER (jdbc client_with_address_sql_query)
+    );
+

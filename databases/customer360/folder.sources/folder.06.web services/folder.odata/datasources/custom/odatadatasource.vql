@@ -1,0 +1,7 @@
+﻿CREATE OR REPLACE DATASOURCE CUSTOM "ODataDatasource"
+    FOLDER = '/sources/06.web services/odata'
+    CLASSNAME='com.denodo.connect.odata.wrapper.ODataWrapper'
+    JARS 'denodo-odata2-wrapper-6.0'
+    DESCRIPTION='A simple OData v2 service optimized for quick browser demos.
+http://services.odata.org/V2/Northwind/Northwind.svc/';
+

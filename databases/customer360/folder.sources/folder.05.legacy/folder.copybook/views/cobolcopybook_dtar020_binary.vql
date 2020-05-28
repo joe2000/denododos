@@ -1,0 +1,43 @@
+﻿CREATE OR REPLACE WRAPPER CUSTOM cobolcopybook_dtar020_binary_9764
+    FOLDER = '/sources/05.legacy/copybook'
+    DATASOURCENAME=cobolcopybook
+    PARAMETERS (
+      'Data' = 'C:/demos/customer360/Datasources/Copybook/sampleFiles/data/DTAR020.bin',
+      'Copybook' = 'C:/demos/customer360/Datasources/Copybook/sampleFiles/copybook/DTAR020-Fixed-True.cbl',
+      'Fixed' = 'true'
+    )
+    OUTPUTSCHEMA (
+        dtar020_keycode_no = 'DTAR020_KEYCODE_NO' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        dtar020_store_no = 'DTAR020_STORE_NO' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        dtar020_date = 'DTAR020_DATE' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        dtar020_dept_no = 'DTAR020_DEPT_NO' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        dtar020_qty_sold = 'DTAR020_QTY_SOLD' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE,
+        dtar020_sale_price = 'DTAR020_SALE_PRICE' : 'java.lang.String' (OPT) NOT SORTABLE NOT UPDATEABLE
+    );
+
+CREATE OR REPLACE TABLE cobolcopybook_dtar020_binary I18N es_euro (
+        dtar020_keycode_no:text,
+        dtar020_store_no:text,
+        dtar020_date:text,
+        dtar020_dept_no:text,
+        dtar020_qty_sold:text,
+        dtar020_sale_price:text
+    )
+    FOLDER = '/sources/05.legacy/copybook'
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD cobolcopybook_dtar020_binary(
+        I18N es_euro
+        CONSTRAINTS (
+             ADD dtar020_keycode_no NOS ZERO ()
+             ADD dtar020_store_no NOS ZERO ()
+             ADD dtar020_date NOS ZERO ()
+             ADD dtar020_dept_no NOS ZERO ()
+             ADD dtar020_qty_sold NOS ZERO ()
+             ADD dtar020_sale_price NOS ZERO ()
+        )
+        OUTPUTLIST (dtar020_date, dtar020_dept_no, dtar020_keycode_no, dtar020_qty_sold, dtar020_sale_price, dtar020_store_no
+        )
+        WRAPPER (custom cobolcopybook_dtar020_binary_9764)
+    );
+

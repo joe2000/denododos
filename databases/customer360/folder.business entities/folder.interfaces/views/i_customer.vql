@@ -1,0 +1,21 @@
+﻿CREATE OR REPLACE INTERFACE VIEW i_customer (
+        id:text,
+        name:text,
+        surname:text,
+        full_name:text,
+        ssn:text,
+        type:text,
+        company_name:text,
+        state:text,
+        country:text,
+        street:text,
+        city:text,
+        zip:text,
+        primary_phone:text
+    )
+    SET IMPLEMENTATION customer_2
+    FOLDER = '/business entities/interfaces';
+
+ALTER VIEW i_customer
+ LAYOUT (customer_2 = [372, 44, 200, 225]);
+

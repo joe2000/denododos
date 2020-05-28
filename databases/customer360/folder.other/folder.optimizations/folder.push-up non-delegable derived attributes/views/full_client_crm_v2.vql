@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW full_client_crm_v2 FOLDER = '/other/optimizations/push-up non-delegable derived attributes' AS SELECT client.client_id AS client_id, client.name AS name, client.surname AS surname, client.ssn AS ssn, client_type.value AS client_type, norm_address.street AS street, norm_address.city AS city, norm_address.zip AS zip, norm_address.state AS state, norm_address.primary_phone AS primary_phone, norm_address.country AS country FROM (client AS client INNER JOIN norm_address AS norm_address ON client.client_id = norm_address.client_identifier ) INNER JOIN client_type AS client_type ON client.client_type = client_type.code ;
+
+ALTER VIEW full_client_crm_v2
+ LAYOUT (client = [40, 30, 200, 147], norm_address = [310, 160, 200, 167], client_type = [572, 62, 200, 67]);
+

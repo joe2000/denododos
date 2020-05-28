@@ -1,0 +1,16 @@
+﻿/databases/customer360/folder.other/other.vql
+/databases/customer360/folder.other/folder.optimizations/optimizations.vql
+/databases/customer360/folder.other/folder.optimizations/folder.cost-based optimization/cost-based optimization.vql
+/databases/customer360/folder.other/folder.optimizations/folder.cost-based optimization/folder.%61%75%78/%61%75%78.vql
+/databases/customer360/folder.sources/sources.vql
+/databases/customer360/folder.sources/folder.01.databases/01.databases.vql
+/databases/customer360/folder.sources/folder.01.databases/folder.mysql/mysql.vql
+/databases/customer360/folder.sources/folder.01.databases/folder.mysql/datasources/jdbc/acme_crm.vql
+/databases/customer360/folder.sources/folder.01.databases/folder.mysql/views/client.vql
+/databases/customer360/folder.sources/folder.01.databases/folder.mysql/views/client_type.vql
+/databases/customer360/folder.sources/folder.01.databases/folder.mysql/views/address.vql
+/databases/customer360/folder.other/folder.optimizations/folder.cost-based optimization/folder.%61%75%78/views/full_client_crm.vql
+/databases/customer360/folder.sources/folder.01.databases/folder.sql server/sql server.vql
+/databases/customer360/folder.sources/folder.01.databases/folder.sql server/folder.company/company.vql
+/databases/customer360/folder.sources/folder.01.databases/folder.sql server/folder.company/datasources/jdbc/acme_erp.vql
+/databases/customer360/folder.sources/folder.01.databases/folder.sql server/folder.company/views/company.vql

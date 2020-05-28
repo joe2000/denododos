@@ -1,0 +1,6 @@
+﻿CREATE OR REPLACE VIEW denodo_catalog_folders FOLDER = '/other/business catalog' DESCRIPTION = 'Denodo metadata catalog folders' 
+    PRIMARY KEY ( 'resultname' , 'databasename' ) AS SELECT resultname AS resultname, resulttype AS resulttype, resultsubtype AS resultsubtype, resultusercreator AS resultusercreator, resultlastusermodifier AS resultlastusermodifier, resultcreatedate AS resultcreatedate, resultlastmodificationdate AS resultlastmodificationdate, resultdescription AS resultdescription, getsession('database') AS databasename FROM catalog_elements() WHERE resulttype = 'folder';
+
+ALTER VIEW denodo_catalog_folders
+ LAYOUT (catalog_elements = [20, 20, 200, 132]);
+

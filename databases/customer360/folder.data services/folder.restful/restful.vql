@@ -1,0 +1,2 @@
+﻿CREATE OR REPLACE FOLDER '/data services/RESTful' DESCRIPTION 'Denodo RESTful Web Services' ;
+

@@ -1,0 +1,2 @@
+﻿CREATE OR REPLACE VIEW cs_open FOLDER = '/sources/10.semi structured/delimited files/modem logs/combined logs' AS SELECT networkequipment, login, ntu, id, macpc, filepath, accesstype, ip, date_from FROM (SELECT * FROM cslog_adsl_open UNION SELECT macpc, date_from, networkequipment, filepath, ntu, accesstype, id, ip, login FROM cslog_isdn_open) WHERE filepath = 'C:/demos/customer360/Datasources/DF/Modem Logs';
+

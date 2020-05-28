@@ -1,0 +1,2 @@
+﻿CREATE OR REPLACE VIEW dual_search_term FOLDER = '/sources/11.unstructured/aracne index/misc' AS SELECT dual.dummy AS dummy, search_term FROM dual USING PARAMETERS ( search_term : text) CONTEXT ('I18N' = 'us_cst');
+

@@ -1,0 +1,11 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE DATASOURCE OLAP mondrian
+    FOLDER = '/sources/03.olap - multidimensional/mondrian'
+    DATABASENAME = 'mondrian'
+    DATABASEVERSION = '3x'
+    XMLAURI = '${databases.customer360.folder.sources.folder.03..olap - multidimensional.folder.mondrian.datasources.olap.mondrian.XMLAURI}'
+    USERNAME = '${databases.customer360.folder.sources.folder.03..olap - multidimensional.folder.mondrian.datasources.olap.mondrian.USERNAME}'
+    USERPASSWORD = '${databases.customer360.folder.sources.folder.03..olap - multidimensional.folder.mondrian.datasources.olap.mondrian.USERPASSWORD}' ${databases.customer360.folder.sources.folder.03..olap - multidimensional.folder.mondrian.datasources.olap.mondrian.USERPASSWORD.ENCRYPTED}
+    INITIALSIZE = 2
+    MAXACTIVE = 20;
+

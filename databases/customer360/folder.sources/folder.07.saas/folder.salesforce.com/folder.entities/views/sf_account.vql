@@ -1,0 +1,196 @@
+﻿CREATE OR REPLACE WRAPPER CUSTOM sf_account
+    FOLDER = '/sources/07.saas/salesforce.com/entities'
+    DATASOURCENAME=salesforce
+    PARAMETERS (
+      'ENTITY' = 'Account',
+      'BASE_URL' = 'https://na3.salesforce.com',
+      'ACCESS_TOKEN' = '00D5000000077zi!ARcAQE_qUZ9l3JhH3yr4nQpPucD.NDJxUphbjCjx6oetX8mQ1C2qVi770L1RBnPJcdK53ck4UP0pY1QAdQPHexh50o1cRMD.',
+      'CLIENT_ID' = '3MVG9Km_cBLhsuPzuEJ8T.2uUkOGhpBPs0UH6ejd6RFAmuHgCV_zeHh_GE0cUfnTCyKkf.m4fghfEeLpqMdus',
+      'REFRESH_TOKEN (required for web flow)' = '5Aep861eWO5D.7wJBsLFjitX6L3M98eYEYnVfxbfZ6rwYOkMG4OhB3bBRaYfPD5xCWNEh0D6LkRzbfkUhbk3Lin',
+      'RESPONSE_COMPRESSION_TYPE (one of NONE, GZIP or DEFLATE -default is NONE)' = 'DEFLATE'
+    )
+    OUTPUTSCHEMA (
+        id = 'Id' : 'java.lang.String' (OPT) SORTABLE,
+        isdeleted = 'IsDeleted' : 'java.lang.Boolean' (OPT) SORTABLE,
+        masterrecordid = 'MasterRecordId' : 'java.lang.String' (OPT) SORTABLE,
+        name = 'Name' : 'java.lang.String' (OPT) SORTABLE,
+        type = 'Type' : 'java.lang.String' (OPT) SORTABLE,
+        parentid = 'ParentId' : 'java.lang.String' (OPT) SORTABLE,
+        billingstreet = 'BillingStreet' : 'java.lang.String' (OPT) SORTABLE,
+        billingcity = 'BillingCity' : 'java.lang.String' (OPT) SORTABLE,
+        billingstate = 'BillingState' : 'java.lang.String' (OPT) SORTABLE,
+        billingpostalcode = 'BillingPostalCode' : 'java.lang.String' (OPT) SORTABLE,
+        billingcountry = 'BillingCountry' : 'java.lang.String' (OPT) SORTABLE,
+        "BillingLatitude" = 'BillingLatitude' : 'java.math.BigDecimal' (OPT) SORTABLE,
+        "BillingLongitude" = 'BillingLongitude' : 'java.math.BigDecimal' (OPT) SORTABLE,
+        "BillingAddress" = 'BillingAddress' : 'java.lang.String' (OPT) NOT SORTABLE,
+        shippingstreet = 'ShippingStreet' : 'java.lang.String' (OPT) SORTABLE,
+        shippingcity = 'ShippingCity' : 'java.lang.String' (OPT) SORTABLE,
+        shippingstate = 'ShippingState' : 'java.lang.String' (OPT) SORTABLE,
+        shippingpostalcode = 'ShippingPostalCode' : 'java.lang.String' (OPT) SORTABLE,
+        shippingcountry = 'ShippingCountry' : 'java.lang.String' (OPT) SORTABLE,
+        "ShippingLatitude" = 'ShippingLatitude' : 'java.math.BigDecimal' (OPT) SORTABLE,
+        "ShippingLongitude" = 'ShippingLongitude' : 'java.math.BigDecimal' (OPT) SORTABLE,
+        "ShippingAddress" = 'ShippingAddress' : 'java.lang.String' (OPT) NOT SORTABLE,
+        phone = 'Phone' : 'java.lang.String' (OPT) SORTABLE,
+        fax = 'Fax' : 'java.lang.String' (OPT) SORTABLE,
+        accountnumber = 'AccountNumber' : 'java.lang.String' (OPT) SORTABLE,
+        website = 'Website' : 'java.lang.String' (OPT) SORTABLE,
+        "PhotoUrl" = 'PhotoUrl' : 'java.lang.String' (OPT) SORTABLE,
+        sic = 'Sic' : 'java.lang.String' (OPT) SORTABLE,
+        industry = 'Industry' : 'java.lang.String' (OPT) SORTABLE,
+        annualrevenue = 'AnnualRevenue' : 'java.math.BigDecimal' (OPT) SORTABLE,
+        numberofemployees = 'NumberOfEmployees' : 'java.lang.Long' (OPT) SORTABLE,
+        ownership = 'Ownership' : 'java.lang.String' (OPT) SORTABLE,
+        tickersymbol = 'TickerSymbol' : 'java.lang.String' (OPT) SORTABLE,
+        description = 'Description' : 'java.lang.String' NOT SORTABLE,
+        rating = 'Rating' : 'java.lang.String' (OPT) SORTABLE,
+        site = 'Site' : 'java.lang.String' (OPT) SORTABLE,
+        ownerid = 'OwnerId' : 'java.lang.String' (OPT) SORTABLE,
+        createddate = 'CreatedDate' : 'java.util.Date' (OPT) SORTABLE,
+        createdbyid = 'CreatedById' : 'java.lang.String' (OPT) SORTABLE,
+        lastmodifieddate = 'LastModifiedDate' : 'java.util.Date' (OPT) SORTABLE,
+        lastmodifiedbyid = 'LastModifiedById' : 'java.lang.String' (OPT) SORTABLE,
+        systemmodstamp = 'SystemModstamp' : 'java.util.Date' (OPT) SORTABLE,
+        lastactivitydate = 'LastActivityDate' : 'java.util.Date' (OPT) SORTABLE,
+        "LastViewedDate" = 'LastViewedDate' : 'java.util.Date' (OPT) SORTABLE,
+        "LastReferencedDate" = 'LastReferencedDate' : 'java.util.Date' (OPT) SORTABLE,
+        jigsaw = 'Jigsaw' : 'java.lang.String' (OPT) SORTABLE,
+        jigsawcompanyid = 'JigsawCompanyId' : 'java.lang.String' (OPT) SORTABLE,
+        accountsource = 'AccountSource' : 'java.lang.String' (OPT) SORTABLE,
+        sicdesc = 'SicDesc' : 'java.lang.String' (OPT) SORTABLE,
+        numberoflocations__c = 'NumberofLocations__c' : 'java.math.BigDecimal' (OPT) SORTABLE,
+        slaexpirationdate__c = 'SLAExpirationDate__c' : 'java.util.Date' (OPT) SORTABLE,
+        upsellopportunity__c = 'UpsellOpportunity__c' : 'java.lang.String' (OPT) SORTABLE,
+        slaserialnumber__c = 'SLASerialNumber__c' : 'java.lang.String' (OPT) SORTABLE,
+        sla__c = 'SLA__c' : 'java.lang.String' (OPT) SORTABLE,
+        customerpriority__c = 'CustomerPriority__c' : 'java.lang.String' (OPT) SORTABLE,
+        active__c = 'Active__c' : 'java.lang.String' (OPT) SORTABLE
+    );
+
+CREATE OR REPLACE TABLE sf_account I18N us_pst (
+        id:text,
+        isdeleted:boolean,
+        masterrecordid:text,
+        name:text,
+        type:text,
+        parentid:text,
+        billingstreet:text,
+        billingcity:text,
+        billingstate:text,
+        billingpostalcode:text,
+        billingcountry:text,
+        "BillingLatitude":decimal,
+        "BillingLongitude":decimal,
+        "BillingAddress":text,
+        shippingstreet:text,
+        shippingcity:text,
+        shippingstate:text,
+        shippingpostalcode:text,
+        shippingcountry:text,
+        "ShippingLatitude":decimal,
+        "ShippingLongitude":decimal,
+        "ShippingAddress":text,
+        phone:text,
+        fax:text,
+        accountnumber:text,
+        website:text,
+        "PhotoUrl":text,
+        sic:text,
+        industry:text,
+        annualrevenue:decimal,
+        numberofemployees:long,
+        ownership:text,
+        tickersymbol:text,
+        description:text,
+        rating:text,
+        site:text,
+        ownerid:text,
+        createddate:date,
+        createdbyid:text,
+        lastmodifieddate:date,
+        lastmodifiedbyid:text,
+        systemmodstamp:date,
+        lastactivitydate:date,
+        "LastViewedDate":date,
+        "LastReferencedDate":date,
+        jigsaw:text,
+        jigsawcompanyid:text,
+        accountsource:text,
+        sicdesc:text,
+        numberoflocations__c:decimal,
+        slaexpirationdate__c:date,
+        upsellopportunity__c:text,
+        slaserialnumber__c:text,
+        sla__c:text,
+        customerpriority__c:text,
+        active__c:text
+    )
+    FOLDER = '/sources/07.saas/salesforce.com/entities'
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD sf_account(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD id (any) OPT ANY
+             ADD isdeleted (any) OPT ANY
+             ADD masterrecordid (any) OPT ANY
+             ADD name (any) OPT ANY
+             ADD type (any) OPT ANY
+             ADD parentid (any) OPT ANY
+             ADD billingstreet (any) OPT ANY
+             ADD billingcity (any) OPT ANY
+             ADD billingstate (any) OPT ANY
+             ADD billingpostalcode (any) OPT ANY
+             ADD billingcountry (any) OPT ANY
+             ADD "BillingLatitude" (any) OPT ANY
+             ADD "BillingLongitude" (any) OPT ANY
+             ADD "BillingAddress" (any) OPT ANY
+             ADD shippingstreet (any) OPT ANY
+             ADD shippingcity (any) OPT ANY
+             ADD shippingstate (any) OPT ANY
+             ADD shippingpostalcode (any) OPT ANY
+             ADD shippingcountry (any) OPT ANY
+             ADD "ShippingLatitude" (any) OPT ANY
+             ADD "ShippingLongitude" (any) OPT ANY
+             ADD "ShippingAddress" (any) OPT ANY
+             ADD phone (any) OPT ANY
+             ADD fax (any) OPT ANY
+             ADD accountnumber (any) OPT ANY
+             ADD website (any) OPT ANY
+             ADD "PhotoUrl" (any) OPT ANY
+             ADD sic (any) OPT ANY
+             ADD industry (any) OPT ANY
+             ADD annualrevenue (any) OPT ANY
+             ADD numberofemployees (any) OPT ANY
+             ADD ownership (any) OPT ANY
+             ADD tickersymbol (any) OPT ANY
+             ADD rating (any) OPT ANY
+             ADD site (any) OPT ANY
+             ADD ownerid (any) OPT ANY
+             ADD createddate (any) OPT ANY
+             ADD createdbyid (any) OPT ANY
+             ADD lastmodifieddate (any) OPT ANY
+             ADD lastmodifiedbyid (any) OPT ANY
+             ADD systemmodstamp (any) OPT ANY
+             ADD lastactivitydate (any) OPT ANY
+             ADD "LastViewedDate" (any) OPT ANY
+             ADD "LastReferencedDate" (any) OPT ANY
+             ADD jigsaw (any) OPT ANY
+             ADD jigsawcompanyid (any) OPT ANY
+             ADD accountsource (any) OPT ANY
+             ADD sicdesc (any) OPT ANY
+             ADD numberoflocations__c (any) OPT ANY
+             ADD slaexpirationdate__c (any) OPT ANY
+             ADD upsellopportunity__c (any) OPT ANY
+             ADD slaserialnumber__c (any) OPT ANY
+             ADD sla__c (any) OPT ANY
+             ADD customerpriority__c (any) OPT ANY
+             ADD active__c (any) OPT ANY
+             ADD description NOS ZERO ()
+        )
+        OUTPUTLIST ("BillingAddress", "BillingLatitude", "BillingLongitude", "LastReferencedDate", "LastViewedDate", "PhotoUrl", "ShippingAddress", "ShippingLatitude", "ShippingLongitude", accountnumber, accountsource, active__c, annualrevenue, billingcity, billingcountry, billingpostalcode, billingstate, billingstreet, createdbyid, createddate, customerpriority__c, description, fax, id, industry, isdeleted, jigsaw, jigsawcompanyid, lastactivitydate, lastmodifiedbyid, lastmodifieddate, masterrecordid, name, numberofemployees, numberoflocations__c, ownerid, ownership, parentid, phone, rating, shippingcity, shippingcountry, shippingpostalcode, shippingstate, shippingstreet, sic, sicdesc, site, sla__c, slaexpirationdate__c, slaserialnumber__c, systemmodstamp, tickersymbol, type, upsellopportunity__c, website
+        )
+        WRAPPER (custom sf_account)
+    );
+

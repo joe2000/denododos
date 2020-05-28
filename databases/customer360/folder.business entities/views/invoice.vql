@@ -1,0 +1,11 @@
+﻿CREATE OR REPLACE VIEW invoice FOLDER = '/business entities' DESCRIPTION = 'Basic invoicing info for customers.' 
+    PRIMARY KEY ( 'client_id' , 'date' , 'package_id' ) AS SELECT client_id AS client_id, invoicing_address AS invoicing_address, to_date('yyyy/dd/MM', date) AS date, package_id AS package_id, description AS description, amount_due AS amount_due FROM FLATTEN invoicing AS v ( v.invoicing_data_aux_item.bills.item AS field0, field0.array_package.item);
+
+ALTER VIEW invoice
+ LAYOUT (invoicing = [0, 0, 200, 303]);
+
+ALTER VIEW invoice
+ CACHE PARTIAL
+     BATCHSIZEINCACHE DEFAULT TIMETOLIVEINCACHE DEFAULT
+    DECLARE CACHE INDEX invoice_clientid_idx ON (client_id);
+

@@ -1,0 +1,33 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE WRAPPER JDBC "GetNumberOfCompaniesPerState_6617"
+    FOLDER = '/sources/01.databases/sql server/company'
+    DATASOURCENAME=acme_erp
+    CATALOGNAME='${databases.customer360.folder.sources.folder.01..databases.folder.sql server.folder.company.views.jdbc.getnumberofcompaniesperstate_6617.CATALOGNAME}' 
+    SCHEMANAME='${databases.customer360.folder.sources.folder.01..databases.folder.sql server.folder.company.views.jdbc.getnumberofcompaniesperstate_6617.SCHEMANAME}' 
+    PROCEDURENAME='GetNumberOfCompaniesPerState' 
+    OUTPUTSCHEMA (
+        "@RETURN_VALUE" = '@RETURN_VALUE' :'java.lang.Integer' (sourcetyperadix='10', sourcetypename='int', sourcetypeid='4', sourcetypedecimals='0', sourcetypesize='10')  NOT NULL SORTABLE PARAMINDEX=1 PARAMTYPE=5,
+        state = '@state' :'java.lang.String' (sourcetyperadix='0', sourcetypename='varchar', sourcetypeid='12', sourcetypedecimals='0', sourcetypesize='200')  NOT NULL SORTABLE PARAMINDEX=2 PARAMTYPE=1,
+        "numberOfCompanies" = '@numberOfCompanies' :'java.lang.Integer' (sourcetyperadix='10', sourcetypename='int', sourcetypeid='4', sourcetypedecimals='0', sourcetypesize='10')  NOT NULL SORTABLE PARAMINDEX=3 PARAMTYPE=2
+    );
+
+CREATE OR REPLACE TABLE companies_per_state I18N us_pst (
+        "@RETURN_VALUE":int (sourcetypeid = '4', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '10'),
+        state:text (sourcetypeid = '12', sourcetyperadix = '0', sourcetypedecimals = '0', sourcetypesize = '200'),
+        "numberOfCompanies":int (sourcetypeid = '4', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '10')
+    )
+    FOLDER = '/sources/01.databases/sql server/company'
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD "GetNumberOfCompaniesPerState"(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD "@RETURN_VALUE" NOS ZERO ()
+             ADD "numberOfCompanies" (=,is null) OPT ONE
+             ADD state (=,is null) OBL ONE
+        )
+        OUTPUTLIST ("@RETURN_VALUE", "numberOfCompanies", state
+        )
+        WRAPPER (jdbc "GetNumberOfCompaniesPerState_6617")
+    );
+

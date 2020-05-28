@@ -1,0 +1,38 @@
+﻿CREATE OR REPLACE WRAPPER DF client_df
+    FOLDER = '/other/metadata governance/source refresh and changes propagation/sources'
+    DATASOURCENAME=client_df
+    OUTPUTSCHEMA (
+        client_id = 'client_id' (OPT),
+        name = 'name' (OPT),
+        surname = 'surname' (OPT),
+        ssn = 'ssn' (OPT),
+        client_type = 'client_type' (OPT),
+        company_code = 'company_code' (OPT)
+    );
+
+CREATE OR REPLACE TABLE client_df I18N us_pst (
+        client_id:text,
+        name:text,
+        surname:text,
+        ssn:text,
+        client_type:text,
+        company_code:text
+    )
+    FOLDER = '/other/metadata governance/source refresh and changes propagation/sources'
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD client_df(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD client_id (=,in) OPT ANY
+             ADD name (=,in) OPT ANY
+             ADD surname (=,in) OPT ANY
+             ADD ssn (=,in) OPT ANY
+             ADD client_type (=,in) OPT ANY
+             ADD company_code (=,in) OPT ANY
+        )
+        OUTPUTLIST (client_id, client_type, company_code, name, ssn, surname
+        )
+        WRAPPER (df client_df)
+    );
+

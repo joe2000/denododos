@@ -1,0 +1,54 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE WRAPPER CUSTOM test_logs
+    FOLDER = '/sources/10.semi structured/delimited files/date ordered logs'
+    DATASOURCENAME="LogCustomWrapper"
+    PARAMETERS (
+      'Date Pattern' = 'yyyyMMddHHmmssSSS',
+      'Date Extractor Pattern' = '(?:.*?)([0-9]\{{17\}}) (?:.*?)',
+      'Content Extractor Pattern' = '(?:.*?) (.*?)(ERROR) ([0-9]\{{17\}})(.*?)-(.*?)',
+      'Filepath' = ROUTE LOCAL 'LocalConnection' '${databases.customer360.folder.sources.folder.10..semi structured.folder.delimited files.folder.date ordered logs.views.custom.test_logs.Filepath.ROUTE.LOCAL.PATH}',
+      'Sequential Search Interval' = 10000,
+      'Rolling Implementation Class Name' = 'com.denodo.connect.log.rollingpolicy.DefaultLogRollingPolicy'
+    )
+    OUTPUTSCHEMA (
+        "Thread" = 'out0' : 'java.lang.String' NOT SORTABLE NOT UPDATEABLE,
+        "Priority" = 'out1' : 'java.lang.String' NOT SORTABLE NOT UPDATEABLE,
+        "Date" = 'out2' : 'java.lang.String' NOT SORTABLE NOT UPDATEABLE,
+        "Category" = 'out3' : 'java.lang.String' NOT SORTABLE NOT UPDATEABLE,
+        out4 = 'out4' : 'java.lang.String' NOT SORTABLE NOT UPDATEABLE,
+        extracted_date = 'Extracted Date' : 'java.util.Date' (OPT) NOT NULL NOT SORTABLE NOT UPDATEABLE,
+        search_start_date = 'Search Start Date' : 'java.util.Date' (OBL) NOT NULL NOT SORTABLE NOT UPDATEABLE,
+        search_end_date = 'Search End Date' : 'java.util.Date' (OPT) NOT SORTABLE NOT UPDATEABLE
+    );
+
+CREATE OR REPLACE TABLE test_logs I18N us_pst (
+        "Thread":text,
+        "Priority":text,
+        "Date":text,
+        "Category":text,
+        out4:text,
+        extracted_date:date,
+        search_start_date:date,
+        search_end_date:date
+    )
+    FOLDER = '/sources/10.semi structured/delimited files/date ordered logs'
+    DESCRIPTION = 'to_date(''dd-MM-yyyy HH:mm:ss'', ''11-07-2010 16:34:13'')'
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD test_logs(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD extracted_date (any) OPT ANY
+             ADD search_end_date (any) OPT ANY
+             ADD "Thread" NOS ZERO ()
+             ADD "Priority" NOS ZERO ()
+             ADD "Date" NOS ZERO ()
+             ADD "Category" NOS ZERO ()
+             ADD out4 NOS ZERO ()
+             ADD search_start_date (=) OBL ONE
+        )
+        OUTPUTLIST ("Category", "Date", "Priority", "Thread", extracted_date, out4, search_end_date, search_start_date
+        )
+        WRAPPER (custom test_logs)
+    );
+

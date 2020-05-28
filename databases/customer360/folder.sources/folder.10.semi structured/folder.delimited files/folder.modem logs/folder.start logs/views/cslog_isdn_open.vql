@@ -1,0 +1,2 @@
+﻿CREATE OR REPLACE VIEW cslog_isdn_open FOLDER = '/sources/10.semi structured/delimited files/modem logs/start logs' AS SELECT cslog_isdn_start.network_equipment AS networkequipment, cslog_isdn_start.login AS login, telephone AS ntu, cslog_isdn_start.task_id AS id, cslog_isdn_start.filepath AS filepath, textconstant('PSTN/ISDN') AS accesstype, textconstant('') AS ip, textconstant('') AS macpc, (regexp(cslog_isdn_start.date, '(\\d{{2}})/(\\d{{2}})/(\\d{{4}})', '$$3-$$1-$$2 ')||time) AS date_from FROM cslog_isdn_start CONTEXT ('I18N' = 'us_cst');
+

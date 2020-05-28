@@ -1,0 +1,49 @@
+﻿CREATE OR REPLACE WRAPPER CUSTOM sf_casesolution_2510
+    FOLDER = '/sources/07.saas/salesforce.com/entities'
+    DATASOURCENAME=salesforce
+    PARAMETERS (
+      'ENTITY' = 'CaseSolution',
+      'BASE_URL' = 'https://na3.salesforce.com',
+      'ACCESS_TOKEN' = '00D5000000077zi!ARcAQE_qUZ9l3JhH3yr4nQpPucD.NDJxUphbjCjx6oetX8mQ1C2qVi770L1RBnPJcdK53ck4UP0pY1QAdQPHexh50o1cRMD.',
+      'CLIENT_ID' = '3MVG9Km_cBLhsuPzuEJ8T.2uUkOGhpBPs0UH6ejd6RFAmuHgCV_zeHh_GE0cUfnTCyKkf.m4fghfEeLpqMdus',
+      'REFRESH_TOKEN (required for web flow)' = '5Aep861eWO5D.7wJBsLFjitX6L3M98eYEYnVfxbfZ6rwYOkMG4OhB3bBRaYfPD5xCWNEh0D6LkRzbfkUhbk3Lin',
+      'RESPONSE_COMPRESSION_TYPE (one of NONE, GZIP or DEFLATE -default is NONE)' = 'DEFLATE'
+    )
+    OUTPUTSCHEMA (
+        id = 'Id' : 'java.lang.String' (OPT) NOT SORTABLE,
+        caseid = 'CaseId' : 'java.lang.String' (OPT) NOT SORTABLE,
+        solutionid = 'SolutionId' : 'java.lang.String' (OPT) NOT SORTABLE,
+        createdbyid = 'CreatedById' : 'java.lang.String' (OPT) NOT SORTABLE,
+        createddate = 'CreatedDate' : 'java.util.Date' (OPT) NOT SORTABLE,
+        systemmodstamp = 'SystemModstamp' : 'java.util.Date' (OPT) NOT SORTABLE,
+        isdeleted = 'IsDeleted' : 'java.lang.Boolean' (OPT) NOT SORTABLE
+    );
+
+CREATE OR REPLACE TABLE sf_casesolution I18N us_pst (
+        id:text,
+        caseid:text,
+        solutionid:text,
+        createdbyid:text,
+        createddate:date,
+        systemmodstamp:date,
+        isdeleted:boolean
+    )
+    FOLDER = '/sources/07.saas/salesforce.com/entities'
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD sf_casesolution(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD id (any) OPT ANY
+             ADD caseid (any) OPT ANY
+             ADD solutionid (any) OPT ANY
+             ADD createdbyid (any) OPT ANY
+             ADD createddate (any) OPT ANY
+             ADD systemmodstamp (any) OPT ANY
+             ADD isdeleted (any) OPT ANY
+        )
+        OUTPUTLIST (caseid, createdbyid, createddate, id, isdeleted, solutionid, systemmodstamp
+        )
+        WRAPPER (custom sf_casesolution_2510)
+    );
+

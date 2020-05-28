@@ -1,0 +1,17 @@
+﻿CREATE OR REPLACE INTERFACE VIEW i_product (
+        package_code:text,
+        package_name:text,
+        package_type:int,
+        price:float,
+        free_minutes_month:int,
+        special_features:text,
+        product_name:text,
+        code:int,
+        manufacturer:text,
+        reference:text,
+        category:text,
+        description:text
+    )
+    SET IMPLEMENTATION product
+    FOLDER = '/business entities/interfaces';
+

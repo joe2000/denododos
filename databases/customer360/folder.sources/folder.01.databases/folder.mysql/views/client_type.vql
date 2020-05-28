@@ -1,0 +1,32 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE WRAPPER JDBC client_type
+    FOLDER = '/sources/01.databases/mysql'
+    DATASOURCENAME=acme_crm
+    CATALOGNAME='${databases.customer360.folder.sources.folder.01..databases.folder.mysql.views.jdbc.client_type.CATALOGNAME}' 
+    RELATIONNAME='client_type' 
+    OUTPUTSCHEMA (
+        code = 'code' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypename='VARCHAR', sourcetypeid='12', sourcetypesize='10')  NOT NULL SORTABLE,
+        value = 'value' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypename='VARCHAR', sourcetypeid='12', sourcetypesize='100')  ESCAPE SORTABLE
+    )
+    CONSTRAINT 'PRIMARY' PRIMARY KEY ( 'code' )
+    INDEX 'PRIMARY' CLUSTER UNIQUE PRIMARY ( 'code' );
+
+CREATE OR REPLACE TABLE client_type I18N us_pst (
+        code:text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '10', description = ''),
+        value:text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '100', description = '')
+    )
+    FOLDER = '/sources/01.databases/mysql'
+    CONSTRAINT 'PRIMARY' PRIMARY KEY ( 'code' )
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD client_type(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD code (any) OPT ANY
+             ADD value (any) OPT ANY
+        )
+        OUTPUTLIST (code, value
+        )
+        WRAPPER (jdbc client_type)
+    );
+

@@ -1,0 +1,118 @@
+﻿CREATE OR REPLACE WRAPPER CUSTOM sf_campaign
+    FOLDER = '/sources/07.saas/salesforce.com/entities'
+    DATASOURCENAME=salesforce
+    PARAMETERS (
+      'ENTITY' = 'Campaign',
+      'BASE_URL' = 'https://na3.salesforce.com',
+      'ACCESS_TOKEN' = '00D5000000077zi!ARcAQE_qUZ9l3JhH3yr4nQpPucD.NDJxUphbjCjx6oetX8mQ1C2qVi770L1RBnPJcdK53ck4UP0pY1QAdQPHexh50o1cRMD.',
+      'CLIENT_ID' = '3MVG9Km_cBLhsuPzuEJ8T.2uUkOGhpBPs0UH6ejd6RFAmuHgCV_zeHh_GE0cUfnTCyKkf.m4fghfEeLpqMdus',
+      'REFRESH_TOKEN (required for web flow)' = '5Aep861eWO5D.7wJBsLFjitX6L3M98eYEYnVfxbfZ6rwYOkMG4OhB3bBRaYfPD5xCWNEh0D6LkRzbfkUhbk3Lin',
+      'RESPONSE_COMPRESSION_TYPE (one of NONE, GZIP or DEFLATE -default is NONE)' = 'DEFLATE'
+    )
+    OUTPUTSCHEMA (
+        id = 'Id' : 'java.lang.String' (OPT) NOT SORTABLE,
+        isdeleted = 'IsDeleted' : 'java.lang.Boolean' (OPT) NOT SORTABLE,
+        name = 'Name' : 'java.lang.String' (OPT) NOT SORTABLE,
+        type = 'Type' : 'java.lang.String' (OPT) NOT SORTABLE,
+        status = 'Status' : 'java.lang.String' (OPT) NOT SORTABLE,
+        startdate = 'StartDate' : 'java.util.Date' (OPT) NOT SORTABLE,
+        enddate = 'EndDate' : 'java.util.Date' (OPT) NOT SORTABLE,
+        expectedrevenue = 'ExpectedRevenue' : 'java.lang.Float' (OPT) NOT SORTABLE,
+        budgetedcost = 'BudgetedCost' : 'java.lang.Float' (OPT) NOT SORTABLE,
+        actualcost = 'ActualCost' : 'java.lang.Float' (OPT) NOT SORTABLE,
+        expectedresponse = 'ExpectedResponse' : 'java.lang.Long' (OPT) NOT SORTABLE,
+        numbersent = 'NumberSent' : 'java.lang.Float' (OPT) NOT SORTABLE,
+        isactive = 'IsActive' : 'java.lang.Boolean' (OPT) NOT SORTABLE,
+        description = 'Description' : 'java.lang.String' (OPT) NOT SORTABLE,
+        numberofleads = 'NumberOfLeads' : 'java.lang.Long' (OPT) NOT SORTABLE,
+        numberofconvertedleads = 'NumberOfConvertedLeads' : 'java.lang.Long' (OPT) NOT SORTABLE,
+        numberofcontacts = 'NumberOfContacts' : 'java.lang.Long' (OPT) NOT SORTABLE,
+        numberofresponses = 'NumberOfResponses' : 'java.lang.Long' (OPT) NOT SORTABLE,
+        numberofopportunities = 'NumberOfOpportunities' : 'java.lang.Long' (OPT) NOT SORTABLE,
+        numberofwonopportunities = 'NumberOfWonOpportunities' : 'java.lang.Long' (OPT) NOT SORTABLE,
+        amountallopportunities = 'AmountAllOpportunities' : 'java.lang.Float' (OPT) NOT SORTABLE,
+        amountwonopportunities = 'AmountWonOpportunities' : 'java.lang.Float' (OPT) NOT SORTABLE,
+        ownerid = 'OwnerId' : 'java.lang.String' (OPT) NOT SORTABLE,
+        createddate = 'CreatedDate' : 'java.util.Date' (OPT) NOT SORTABLE,
+        createdbyid = 'CreatedById' : 'java.lang.String' (OPT) NOT SORTABLE,
+        lastmodifieddate = 'LastModifiedDate' : 'java.util.Date' (OPT) NOT SORTABLE,
+        lastmodifiedbyid = 'LastModifiedById' : 'java.lang.String' (OPT) NOT SORTABLE,
+        systemmodstamp = 'SystemModstamp' : 'java.util.Date' (OPT) NOT SORTABLE,
+        lastactivitydate = 'LastActivityDate' : 'java.util.Date' (OPT) NOT SORTABLE,
+        campaignmemberrecordtypeid = 'CampaignMemberRecordTypeId' : 'java.lang.String' (OPT) NOT SORTABLE
+    );
+
+CREATE OR REPLACE TABLE sf_campaign I18N us_pst (
+        id:text,
+        isdeleted:boolean,
+        name:text,
+        type:text,
+        status:text,
+        startdate:date,
+        enddate:date,
+        expectedrevenue:float,
+        budgetedcost:float,
+        actualcost:float,
+        expectedresponse:long,
+        numbersent:float,
+        isactive:boolean,
+        description:text,
+        numberofleads:long,
+        numberofconvertedleads:long,
+        numberofcontacts:long,
+        numberofresponses:long,
+        numberofopportunities:long,
+        numberofwonopportunities:long,
+        amountallopportunities:float,
+        amountwonopportunities:float,
+        ownerid:text,
+        createddate:date,
+        createdbyid:text,
+        lastmodifieddate:date,
+        lastmodifiedbyid:text,
+        systemmodstamp:date,
+        lastactivitydate:date,
+        campaignmemberrecordtypeid:text
+    )
+    FOLDER = '/sources/07.saas/salesforce.com/entities'
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD sf_campaign(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD id (any) OPT ANY
+             ADD isdeleted (any) OPT ANY
+             ADD name (any) OPT ANY
+             ADD type (any) OPT ANY
+             ADD status (any) OPT ANY
+             ADD startdate (any) OPT ANY
+             ADD enddate (any) OPT ANY
+             ADD expectedrevenue (any) OPT ANY
+             ADD budgetedcost (any) OPT ANY
+             ADD actualcost (any) OPT ANY
+             ADD expectedresponse (any) OPT ANY
+             ADD numbersent (any) OPT ANY
+             ADD isactive (any) OPT ANY
+             ADD numberofleads (any) OPT ANY
+             ADD numberofconvertedleads (any) OPT ANY
+             ADD numberofcontacts (any) OPT ANY
+             ADD numberofresponses (any) OPT ANY
+             ADD numberofopportunities (any) OPT ANY
+             ADD numberofwonopportunities (any) OPT ANY
+             ADD amountallopportunities (any) OPT ANY
+             ADD amountwonopportunities (any) OPT ANY
+             ADD ownerid (any) OPT ANY
+             ADD createddate (any) OPT ANY
+             ADD createdbyid (any) OPT ANY
+             ADD lastmodifieddate (any) OPT ANY
+             ADD lastmodifiedbyid (any) OPT ANY
+             ADD systemmodstamp (any) OPT ANY
+             ADD lastactivitydate (any) OPT ANY
+             ADD campaignmemberrecordtypeid (any) OPT ANY
+             ADD description NOS ZERO ()
+        )
+        OUTPUTLIST (actualcost, amountallopportunities, amountwonopportunities, budgetedcost, campaignmemberrecordtypeid, createdbyid, createddate, description, enddate, expectedresponse, expectedrevenue, id, isactive, isdeleted, lastactivitydate, lastmodifiedbyid, lastmodifieddate, name, numberofcontacts, numberofconvertedleads, numberofleads, numberofopportunities, numberofresponses, numberofwonopportunities, numbersent, ownerid, startdate, status, systemmodstamp, type
+        )
+        WRAPPER (custom sf_campaign)
+    );
+

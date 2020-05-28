@@ -1,0 +1,29 @@
+﻿CREATE OR REPLACE TABLE clinicaltrials_gov I18N us_pst (
+        study:text,
+        status:text,
+        intervention:text,
+        phase:text,
+        medicalcondition:text,
+        nctid:text,
+        search_term:text
+    )
+    FOLDER = '/sources/10.semi structured/clinical trials website'
+    DESCRIPTION = '''aspirin'''
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD clinicaltrials_gov(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD search_term (=) OBL ONE
+             ADD study NOS ZERO ()
+             ADD status NOS ZERO ()
+             ADD intervention NOS ZERO ()
+             ADD phase NOS ZERO ()
+             ADD medicalcondition NOS ZERO ()
+             ADD nctid NOS ZERO ()
+        )
+        OUTPUTLIST (intervention, medicalcondition, nctid, phase, search_term, status, study
+        )
+        WRAPPER (itp clinicaltrials_gov)
+    );
+

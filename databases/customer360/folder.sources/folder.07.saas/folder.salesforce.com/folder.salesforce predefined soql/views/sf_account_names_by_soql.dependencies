@@ -1,0 +1,6 @@
+﻿/databases/customer360/folder.sources/sources.vql
+/databases/customer360/folder.sources/folder.07.saas/07.saas.vql
+/databases/customer360/folder.sources/folder.07.saas/folder.salesforce.com/salesforce.com.vql
+/databases/customer360/folder.sources/folder.07.saas/folder.salesforce.com/folder.salesforce predefined soql/salesforce predefined soql.vql
+/extensions/jars/denodo-salesforce-rest-wrapper-6.0.vql
+/databases/customer360/folder.sources/folder.07.saas/folder.salesforce.com/folder.salesforce predefined soql/datasources/custom/salesforce_predefined_soql.vql

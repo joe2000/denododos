@@ -1,0 +1,6 @@
+﻿CREATE OR REPLACE VIEW customer_v2 FOLDER = '/other/optimizations/static join reordering' DESCRIPTION = 'Aggregated view of a customer, including the company they belong to.' 
+    PRIMARY KEY ( 'id' ) AS SELECT client.client_id AS id, client.name AS name, client.surname AS surname, client_type.value AS type, company.name AS company_name, ((client.name||' ')||client.surname) AS full_name, map(address.state, 'us_states_map') AS state, propercase(address.country) AS country, address.street AS street, address.city AS city, address.zip AS zip, address.primary_phone AS primary_phone FROM ((client AS client INNER JOIN client_type AS client_type ON client.client_type = client_type.code ) INNER JOIN company AS company ON client.company_code = replace(company.code, 'ENT', 'COM') ) INNER JOIN address AS address ON client.client_id = address.client_identifier  ORDER BY id ASC;
+
+ALTER VIEW customer_v2
+ LAYOUT (client = [0, 106, 200, 147], client_type = [250, 0, 200, 67], company = [250, 96, 200, 167], address = [250, 293, 200, 167]);
+

@@ -1,0 +1,18 @@
+﻿/databases/customer360/folder.sources/sources.vql
+/databases/customer360/folder.sources/folder.09.nosql/09.nosql.vql
+/databases/customer360/folder.sources/folder.09.nosql/folder.redis/redis.vql
+/databases/customer360/folder.sources/folder.09.nosql/folder.redis/folder.subscribers/subscribers.vql
+/extensions/jars/redis_cw_with_jedis_dependencies.vql
+/databases/customer360/folder.sources/folder.09.nosql/folder.redis/datasources/custom/pushd_redis.vql
+/databases/customer360/folder.sources/folder.09.nosql/folder.redis/folder.subscribers/views/pushd_event_subscribers.vql
+/databases/customer360/folder.sources/folder.07.saas/07.saas.vql
+/databases/customer360/folder.sources/folder.07.saas/folder.salesforce.com/salesforce.com.vql
+/databases/customer360/folder.sources/folder.07.saas/folder.salesforce.com/folder.entities/entities.vql
+/extensions/jars/denodo-salesforce-rest-wrapper-6.0.vql
+/databases/customer360/folder.sources/folder.07.saas/folder.salesforce.com/folder.salesforce/salesforce.vql
+/databases/customer360/folder.sources/folder.07.saas/folder.salesforce.com/folder.salesforce/datasources/custom/salesforce.vql
+/databases/customer360/folder.sources/folder.07.saas/folder.salesforce.com/folder.entities/views/sf_campaign.vql
+/databases/customer360/folder.sources/folder.10.semi structured/10.semi structured.vql
+/databases/customer360/folder.sources/folder.10.semi structured/folder.excel/excel.vql
+/databases/customer360/folder.sources/folder.10.semi structured/folder.excel/datasources/custom/campaigns_events_mapping.vql
+/databases/customer360/folder.sources/folder.10.semi structured/folder.excel/views/campaigns_events_mapping.vql

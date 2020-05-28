@@ -1,0 +1,3 @@
+﻿CREATE OR REPLACE FOLDER '/other/optimizations/Push-up non-delegable derived attributes' DESCRIPTION 'Push-up non-delegable derived attributes to maximize delegation and reduce the number of performed transformations
+' ;
+

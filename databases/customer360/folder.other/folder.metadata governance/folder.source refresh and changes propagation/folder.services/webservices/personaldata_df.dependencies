@@ -1,0 +1,13 @@
+﻿/databases/customer360/folder.other/other.vql
+/databases/customer360/folder.other/folder.metadata governance/metadata governance.vql
+/databases/customer360/folder.other/folder.metadata governance/folder.source refresh and changes propagation/source refresh and changes propagation.vql
+/databases/customer360/folder.other/folder.metadata governance/folder.source refresh and changes propagation/folder.services/services.vql
+/databases/customer360/folder.other/folder.metadata governance/folder.source refresh and changes propagation/folder.combination/combination.vql
+/databases/customer360/folder.other/folder.metadata governance/folder.source refresh and changes propagation/folder.sources/sources.vql
+/databases/customer360/folder.other/folder.metadata governance/folder.source refresh and changes propagation/folder.sources/datasources/df/client_df.vql
+/databases/customer360/folder.other/folder.metadata governance/folder.source refresh and changes propagation/folder.sources/views/client_df.vql
+/databases/customer360/folder.other/folder.metadata governance/folder.source refresh and changes propagation/folder.sources/datasources/df/address_df.vql
+/databases/customer360/folder.other/folder.metadata governance/folder.source refresh and changes propagation/folder.sources/views/address_df.vql
+/databases/customer360/folder.other/folder.metadata governance/folder.source refresh and changes propagation/folder.sources/datasources/df/client_type_df.vql
+/databases/customer360/folder.other/folder.metadata governance/folder.source refresh and changes propagation/folder.sources/views/client_type_df.vql
+/databases/customer360/folder.other/folder.metadata governance/folder.source refresh and changes propagation/folder.combination/views/personaldata_df.vql

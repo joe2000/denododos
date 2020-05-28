@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE VIEW df_source_changes FOLDER = '/other/metadata governance' AS SELECT base_views.resultname AS resultname, base_views.resulttype AS resulttype, base_views.resultsubtype AS resultsubtype, base_views.resultusercreator AS resultusercreator, base_views.resultlastusermodifier AS resultlastusermodifier, base_views.resultcreatedate AS resultcreatedate, base_views.resultlastmodificationdate AS resultlastmodificationdate, source_changes.table_name AS table_name, source_changes.field AS field, source_changes.type AS type, source_changes.old_type AS old_type, source_changes.modification AS modification, source_changes.depth AS depth FROM df_base_views AS base_views INNER JOIN source_changes AS source_changes ON base_views.resultname = source_changes.table_name  WHERE source_changes.modification <> '';
+
+ALTER VIEW df_source_changes
+ LAYOUT (df_base_views = [20, 20, 200, 167], source_changes = [245, 70, 200, 147]);
+

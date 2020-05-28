@@ -1,0 +1,6 @@
+﻿CREATE OR REPLACE VIEW customer_pa FOLDER = '/other/optimizations/partitioned union/aux'
+    PRIMARY KEY ( 'client_id' ) AS SELECT client_pa.client_id AS client_id, client_pa.name AS name, client_pa.surname AS surname, client_pa.client_type AS client_type, client_pa.ssn AS ssn, address_pa.street AS street, address_pa.city AS city, address_pa.zip AS zip, address_pa.state AS state, address_pa.primary_phone AS primary_phone, address_pa.country AS country FROM address_pa AS address_pa INNER JOIN client_pa AS client_pa ON address_pa.client_identifier = client_pa.client_id  WHERE address_pa.city = 'Palo Alto';
+
+ALTER VIEW customer_pa
+ LAYOUT (address_pa = [0, 0, 200, 167], client_pa = [250, 0, 200, 167]);
+

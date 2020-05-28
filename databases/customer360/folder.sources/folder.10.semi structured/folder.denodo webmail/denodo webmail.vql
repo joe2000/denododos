@@ -1,0 +1,3 @@
+﻿CREATE OR REPLACE FOLDER '/sources/10.semi structured/Denodo Webmail' DESCRIPTION 'Execute the webmailsample_startup.bat script in the <DENODO_HOME>/samples/itpilot/webmail path. 
+URL: http://localhost:9090/samples/itpilot/webmail.' ;
+

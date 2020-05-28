@@ -1,0 +1,46 @@
+﻿CREATE OR REPLACE WRAPPER XML invoicing_data_aux_flatten
+    FOLDER = '/sources/06.web services/rest/invoicing/aux'
+    DATASOURCENAME=invoicing_aux_ds
+    TUPLEROOT '/invoicing_records/bill/package'
+    OUTPUTSCHEMA (invoicing_records = 'invoicing_records' : REGISTER OF (
+        client_id = 'client_id' : 'java.lang.String' (OBL),
+        name = 'name' : 'java.lang.String' (OPT),
+        surname = 'surname' : 'java.lang.String' (OPT),
+        invoicing_address = 'invoicing_address' : 'java.lang.String' (OPT),
+        date = 'invoicing_records.bill.date' : 'java.lang.String' (OPT),
+        package_id = 'invoicing_records.bill.package.package_id' : 'java.lang.String' (OPT),
+        description = 'invoicing_records.bill.package.description' : 'java.lang.String' (OPT),
+        amount_due = 'invoicing_records.bill.package.amount_due' : 'java.lang.Float' (OPT)
+    )
+    );
+
+CREATE OR REPLACE TABLE invoicing_data_aux_flatten I18N us_pst (
+        client_id:text,
+        name:text,
+        surname:text,
+        invoicing_address:text,
+        date:text,
+        package_id:text,
+        description:text,
+        amount_due:float
+    )
+    FOLDER = '/sources/06.web services/rest/invoicing/aux'
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD invoicing_data_aux_flatten(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD client_id (any) OBL ONE
+             ADD name NOS ZERO ()
+             ADD surname NOS ZERO ()
+             ADD invoicing_address NOS ZERO ()
+             ADD date NOS ZERO ()
+             ADD package_id NOS ZERO ()
+             ADD description NOS ZERO ()
+             ADD amount_due NOS ZERO ()
+        )
+        OUTPUTLIST (amount_due, client_id, date, description, invoicing_address, name, package_id, surname
+        )
+        WRAPPER (xml invoicing_data_aux_flatten)
+    );
+

@@ -1,0 +1,11 @@
+﻿CREATE OR REPLACE INTERFACE VIEW i_invoice (
+        client_id:text,
+        invoicing_address:text,
+        date:date,
+        package_id:text,
+        description:text,
+        amount_due:float
+    )
+    SET IMPLEMENTATION invoice
+    FOLDER = '/business entities/interfaces';
+

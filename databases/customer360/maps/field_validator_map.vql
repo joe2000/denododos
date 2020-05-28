@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE MAP simple field_validator_map (
+    'phone' = '(\\d-)?(\\d{{3}}-)?\\d{{3}}-\\d{{4}}'
+    'zip' = '\\d{{5}}(-\\d{{4}})?'
+);
+

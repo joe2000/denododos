@@ -1,0 +1,32 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE WRAPPER JDBC client_type_ora
+    FOLDER = '/sources/01.databases/oracle'
+    DATASOURCENAME=oracle_crm
+    SCHEMANAME='${databases.customer360.folder.sources.folder.01..databases.folder.oracle.views.jdbc.client_type_ora.SCHEMANAME}' 
+    RELATIONNAME='CLIENT_TYPE' 
+    OUTPUTSCHEMA (
+        code = 'CODE' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypename='VARCHAR2', sourcetypeid='12', sourcetypesize='10')  NOT NULL SORTABLE,
+        value = 'VALUE' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypename='VARCHAR2', sourcetypeid='12', sourcetypesize='100')  ESCAPE SORTABLE
+    )
+    CONSTRAINT 'CLIENT_TYPE_PK' PRIMARY KEY ( 'CODE' )
+    INDEX 'CLIENT_TYPE_PK' CLUSTER UNIQUE PRIMARY ( 'CODE' );
+
+CREATE OR REPLACE TABLE client_type_ora I18N us_pst (
+        code:text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '10'),
+        value:text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '100')
+    )
+    FOLDER = '/sources/01.databases/oracle'
+    PRIMARY KEY ( 'code' )
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD client_type_ora(
+        I18N us_pst
+        CONSTRAINTS (
+             ADD code (any) OPT ANY
+             ADD value (any) OPT ANY
+        )
+        OUTPUTLIST (code, value
+        )
+        WRAPPER (jdbc client_type_ora)
+    );
+

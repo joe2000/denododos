@@ -1,0 +1,48 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE WRAPPER JDBC job_history
+    DATASOURCENAME=oracle_tpcds_copy
+    SCHEMANAME='${databases.test.views.jdbc.job_history.SCHEMANAME}' 
+    RELATIONNAME='JOB_HISTORY' 
+    OUTPUTSCHEMA (
+        employee_id = 'EMPLOYEE_ID' :'java.lang.Integer' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='6', sourcetypeid='3', sourcetypename='NUMBER')  NOT NULL SORTABLE,
+        start_date = 'START_DATE' :'java.time.LocalDateTime' (OPT) (sourcetyperadix='10', sourcetypesize='7', sourcetypeid='93', sourcetypename='DATE')  NOT NULL SORTABLE,
+        end_date = 'END_DATE' :'java.time.LocalDateTime' (OPT) (sourcetyperadix='10', sourcetypesize='7', sourcetypeid='93', sourcetypename='DATE')  NOT NULL SORTABLE,
+        job_id = 'JOB_ID' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='10', sourcetypeid='12', sourcetypename='VARCHAR2')  NOT NULL SORTABLE,
+        department_id = 'DEPARTMENT_ID' :'java.lang.Integer' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='4', sourcetypeid='3', sourcetypename='NUMBER')  SORTABLE
+    )
+    CONSTRAINT 'JHIST_EMP_ID_ST_DATE_PK' PRIMARY KEY ( 'EMPLOYEE_ID' , 'START_DATE' )
+    CONSTRAINT 'JHIST_DEPT_FK' FOREIGN KEY ( 'DEPARTMENT_ID' ) 
+    REFERENCES 'HR'.'DEPARTMENTS'( 'DEPARTMENT_ID' )  ON DELETE RESTRICT NOT DEFERRABLE 
+    CONSTRAINT 'JHIST_EMP_FK' FOREIGN KEY ( 'EMPLOYEE_ID' ) 
+    REFERENCES 'HR'.'EMPLOYEES'( 'EMPLOYEE_ID' )  ON DELETE RESTRICT NOT DEFERRABLE 
+    CONSTRAINT 'JHIST_JOB_FK' FOREIGN KEY ( 'JOB_ID' ) 
+    REFERENCES 'HR'.'JOBS'( 'JOB_ID' )  ON DELETE RESTRICT NOT DEFERRABLE 
+    INDEX 'JHIST_EMP_ID_ST_DATE_PK' CLUSTER UNIQUE PRIMARY ( 'EMPLOYEE_ID' , 'START_DATE' )
+    INDEX 'JHIST_DEPARTMENT_IX' CLUSTER ( 'DEPARTMENT_ID' )
+    INDEX 'JHIST_EMPLOYEE_IX' CLUSTER ( 'EMPLOYEE_ID' )
+    INDEX 'JHIST_JOB_IX' CLUSTER ( 'JOB_ID' );
+
+CREATE OR REPLACE TABLE job_history I18N us_est (
+        employee_id:int (sourcetypeid = '4', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '6'),
+        start_date:timestamp (sourcetypeid = '93', sourcetyperadix = '10', sourcetypesize = '7'),
+        end_date:timestamp (sourcetypeid = '93', sourcetyperadix = '10', sourcetypesize = '7'),
+        job_id:text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '10'),
+        department_id:int (sourcetypeid = '4', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '4')
+    )
+    CONSTRAINT 'JHIST_EMP_ID_ST_DATE_PK' PRIMARY KEY ( 'employee_id' , 'start_date' )
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD job_history(
+        I18N us_est
+        CONSTRAINTS (
+             ADD employee_id (any) OPT ANY
+             ADD start_date (any) OPT ANY
+             ADD end_date (any) OPT ANY
+             ADD job_id (any) OPT ANY
+             ADD department_id (any) OPT ANY
+        )
+        OUTPUTLIST (department_id, employee_id, end_date, job_id, start_date
+        )
+        WRAPPER (jdbc job_history)
+    );
+

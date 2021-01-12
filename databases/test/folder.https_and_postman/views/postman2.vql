@@ -1,0 +1,25 @@
+﻿CREATE OR REPLACE WRAPPER JSON postman2
+    FOLDER = '/https_and_postman'
+    DATASOURCENAME=postman2
+    TUPLEROOT '/JSONFile'
+    OUTPUTSCHEMA (jsonfile = 'JSONFile' : REGISTER OF (
+        authenticated = 'authenticated' : 'java.lang.String'
+    )
+    );
+
+CREATE OR REPLACE TABLE postman2 I18N us_est (
+        authenticated:text
+    )
+    FOLDER = '/https_and_postman'
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD postman2(
+        I18N us_est
+        CONSTRAINTS (
+             ADD authenticated NOS ZERO ()
+        )
+        OUTPUTLIST (authenticated
+        )
+        WRAPPER (json postman2)
+    );
+

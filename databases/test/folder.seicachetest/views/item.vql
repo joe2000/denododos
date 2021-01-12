@@ -1,0 +1,92 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE WRAPPER JDBC item
+    FOLDER = '/seicachetest'
+    DATASOURCENAME=oracle_tpcds
+    SCHEMANAME='${databases.test.folder.seicachetest.views.jdbc.item.SCHEMANAME}' 
+    RELATIONNAME='ITEM' 
+    OUTPUTSCHEMA (
+        i_item_sk = 'I_ITEM_SK' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  NOT NULL SORTABLE,
+        i_item_id = 'I_ITEM_ID' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='16', sourcetypeid='1', sourcetypename='CHAR')  NOT NULL SORTABLE,
+        i_rec_start_date = 'I_REC_START_DATE' :'java.time.LocalDateTime' (OPT) (sourcetyperadix='10', sourcetypesize='7', sourcetypeid='93', sourcetypename='DATE')  SORTABLE,
+        i_rec_end_date = 'I_REC_END_DATE' :'java.time.LocalDateTime' (OPT) (sourcetyperadix='10', sourcetypesize='7', sourcetypeid='93', sourcetypename='DATE')  SORTABLE,
+        i_item_desc = 'I_ITEM_DESC' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='200', sourcetypeid='12', sourcetypename='VARCHAR2')  SORTABLE,
+        i_current_price = 'I_CURRENT_PRICE' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='2', sourcetyperadix='10', sourcetypesize='7', sourcetypeid='3', sourcetypename='NUMBER')  SORTABLE,
+        i_wholesale_cost = 'I_WHOLESALE_COST' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='2', sourcetyperadix='10', sourcetypesize='7', sourcetypeid='3', sourcetypename='NUMBER')  SORTABLE,
+        i_brand_id = 'I_BRAND_ID' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  SORTABLE,
+        i_brand = 'I_BRAND' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='50', sourcetypeid='1', sourcetypename='CHAR')  SORTABLE,
+        i_class_id = 'I_CLASS_ID' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  SORTABLE,
+        i_class = 'I_CLASS' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='50', sourcetypeid='1', sourcetypename='CHAR')  SORTABLE,
+        i_category_id = 'I_CATEGORY_ID' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  SORTABLE,
+        i_category = 'I_CATEGORY' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='50', sourcetypeid='1', sourcetypename='CHAR')  SORTABLE,
+        i_manufact_id = 'I_MANUFACT_ID' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  SORTABLE,
+        i_manufact = 'I_MANUFACT' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='50', sourcetypeid='1', sourcetypename='CHAR')  SORTABLE,
+        i_size = 'I_SIZE' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='20', sourcetypeid='1', sourcetypename='CHAR')  SORTABLE,
+        i_formulation = 'I_FORMULATION' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='20', sourcetypeid='1', sourcetypename='CHAR')  SORTABLE,
+        i_color = 'I_COLOR' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='20', sourcetypeid='1', sourcetypename='CHAR')  SORTABLE,
+        i_units = 'I_UNITS' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='10', sourcetypeid='1', sourcetypename='CHAR')  SORTABLE,
+        i_container = 'I_CONTAINER' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='10', sourcetypeid='1', sourcetypename='CHAR')  SORTABLE,
+        i_manager_id = 'I_MANAGER_ID' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  SORTABLE,
+        i_product_name = 'I_PRODUCT_NAME' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='50', sourcetypeid='1', sourcetypename='CHAR')  SORTABLE
+    )
+    CONSTRAINT 'SYS_C007078' PRIMARY KEY ( 'I_ITEM_SK' )
+    INDEX 'SYS_C007078' CLUSTER UNIQUE PRIMARY ( 'I_ITEM_SK' );
+
+CREATE OR REPLACE TABLE item I18N us_est (
+        i_item_sk:decimal (sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        i_item_id:text (sourcetypeid = '1', sourcetyperadix = '10', sourcetypesize = '16'),
+        i_rec_start_date:timestamp (sourcetypeid = '93', sourcetyperadix = '10', sourcetypesize = '7'),
+        i_rec_end_date:timestamp (sourcetypeid = '93', sourcetyperadix = '10', sourcetypesize = '7'),
+        i_item_desc:text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '200'),
+        i_current_price:decimal (sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '2', sourcetypesize = '7'),
+        i_wholesale_cost:decimal (sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '2', sourcetypesize = '7'),
+        i_brand_id:decimal (sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        i_brand:text (sourcetypeid = '1', sourcetyperadix = '10', sourcetypesize = '50'),
+        i_class_id:decimal (sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        i_class:text (sourcetypeid = '1', sourcetyperadix = '10', sourcetypesize = '50'),
+        i_category_id:decimal (sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        i_category:text (sourcetypeid = '1', sourcetyperadix = '10', sourcetypesize = '50'),
+        i_manufact_id:decimal (sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        i_manufact:text (sourcetypeid = '1', sourcetyperadix = '10', sourcetypesize = '50'),
+        i_size:text (sourcetypeid = '1', sourcetyperadix = '10', sourcetypesize = '20'),
+        i_formulation:text (sourcetypeid = '1', sourcetyperadix = '10', sourcetypesize = '20'),
+        i_color:text (sourcetypeid = '1', sourcetyperadix = '10', sourcetypesize = '20'),
+        i_units:text (sourcetypeid = '1', sourcetyperadix = '10', sourcetypesize = '10'),
+        i_container:text (sourcetypeid = '1', sourcetyperadix = '10', sourcetypesize = '10'),
+        i_manager_id:decimal (sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        i_product_name:text (sourcetypeid = '1', sourcetyperadix = '10', sourcetypesize = '50')
+    )
+    FOLDER = '/seicachetest'
+    CONSTRAINT 'SYS_C007078' PRIMARY KEY ( 'i_item_sk' )
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD item(
+        I18N us_est
+        CONSTRAINTS (
+             ADD i_item_sk (any) OPT ANY
+             ADD i_item_id (any) OPT ANY
+             ADD i_rec_start_date (any) OPT ANY
+             ADD i_rec_end_date (any) OPT ANY
+             ADD i_item_desc (any) OPT ANY
+             ADD i_current_price (any) OPT ANY
+             ADD i_wholesale_cost (any) OPT ANY
+             ADD i_brand_id (any) OPT ANY
+             ADD i_brand (any) OPT ANY
+             ADD i_class_id (any) OPT ANY
+             ADD i_class (any) OPT ANY
+             ADD i_category_id (any) OPT ANY
+             ADD i_category (any) OPT ANY
+             ADD i_manufact_id (any) OPT ANY
+             ADD i_manufact (any) OPT ANY
+             ADD i_size (any) OPT ANY
+             ADD i_formulation (any) OPT ANY
+             ADD i_color (any) OPT ANY
+             ADD i_units (any) OPT ANY
+             ADD i_container (any) OPT ANY
+             ADD i_manager_id (any) OPT ANY
+             ADD i_product_name (any) OPT ANY
+        )
+        OUTPUTLIST (i_brand, i_brand_id, i_category, i_category_id, i_class, i_class_id, i_color, i_container, i_current_price, i_formulation, i_item_desc, i_item_id, i_item_sk, i_manager_id, i_manufact, i_manufact_id, i_product_name, i_rec_end_date, i_rec_start_date, i_size, i_units, i_wholesale_cost
+        )
+        WRAPPER (jdbc item)
+    );
+

@@ -1,0 +1,26 @@
+﻿CREATE OR REPLACE WRAPPER DF view_with_short_long
+    FOLDER = '/replacemap'
+    DATASOURCENAME=view_with_short_long
+    OUTPUTSCHEMA (
+        full_day = 'Full_day' (OPT),
+        partial_day = 'Partial_day' (OPT)
+    );
+
+CREATE OR REPLACE TABLE view_with_short_long I18N us_est (
+        full_day:text,
+        partial_day:text
+    )
+    FOLDER = '/replacemap'
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD view_with_short_long(
+        I18N us_est
+        CONSTRAINTS (
+             ADD full_day (=,in) OPT ANY
+             ADD partial_day (=,in) OPT ANY
+        )
+        OUTPUTLIST (full_day, partial_day
+        )
+        WRAPPER (df view_with_short_long)
+    );
+

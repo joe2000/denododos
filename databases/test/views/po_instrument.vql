@@ -10,9 +10,9 @@ CREATE OR REPLACE WRAPPER JDBC po_instrument
     );
 
 CREATE OR REPLACE TABLE po_instrument I18N us_est (
-        po_id:long (sourcetypedecimals = '0', sourcetyperadix = '10', sourcetypesize = '10', sourcetypeid = '-5'), 
-        cscn_0:long (sourcetypedecimals = '0', sourcetyperadix = '10', sourcetypesize = '10', sourcetypeid = '-5'), 
-        cscnm_0:text (sourcetyperadix = '10', sourcetypesize = '100', sourcetypeid = '12')
+        po_id:long (sourcetypeid = '-5', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '10'),
+        cscn_0:long (sourcetypeid = '-5', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '10'),
+        cscnm_0:text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '100')
     )
     CACHE OFF
     TIMETOLIVEINCACHE DEFAULT

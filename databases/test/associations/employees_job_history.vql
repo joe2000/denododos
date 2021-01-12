@@ -1,0 +1,5 @@
+﻿CREATE OR REPLACE ASSOCIATION employees_job_history REFERENTIAL CONSTRAINT 
+    ENDPOINT job_history employees PRINCIPAL (0,1)
+    ENDPOINT employees job_history (0,*)
+    ADD MAPPING employee_id=employee_id;
+

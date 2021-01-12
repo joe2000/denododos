@@ -1,0 +1,2 @@
+﻿CREATE OR REPLACE VIEW v_permissions FOLDER = '/catalog_permissions' AS SELECT * FROM catalog_permissions(NULL,NULL);
+

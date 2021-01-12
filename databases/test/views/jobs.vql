@@ -1,0 +1,36 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE WRAPPER JDBC jobs
+    DATASOURCENAME=oracle_tpcds_copy
+    SCHEMANAME='${databases.test.views.jdbc.jobs.SCHEMANAME}' 
+    RELATIONNAME='JOBS' 
+    OUTPUTSCHEMA (
+        job_id = 'JOB_ID' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='10', sourcetypeid='12', sourcetypename='VARCHAR2')  NOT NULL SORTABLE,
+        job_title = 'JOB_TITLE' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='35', sourcetypeid='12', sourcetypename='VARCHAR2')  NOT NULL SORTABLE,
+        min_salary = 'MIN_SALARY' :'java.lang.Integer' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='6', sourcetypeid='3', sourcetypename='NUMBER')  SORTABLE,
+        max_salary = 'MAX_SALARY' :'java.lang.Integer' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='6', sourcetypeid='3', sourcetypename='NUMBER')  SORTABLE
+    )
+    CONSTRAINT 'JOB_ID_PK' PRIMARY KEY ( 'JOB_ID' )
+    INDEX 'JOB_ID_PK' CLUSTER UNIQUE PRIMARY ( 'JOB_ID' );
+
+CREATE OR REPLACE TABLE jobs I18N us_est (
+        job_id:text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '10'),
+        job_title:text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '35'),
+        min_salary:int (sourcetypeid = '4', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '6'),
+        max_salary:int (sourcetypeid = '4', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '6')
+    )
+    CONSTRAINT 'JOB_ID_PK' PRIMARY KEY ( 'job_id' )
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD jobs(
+        I18N us_est
+        CONSTRAINTS (
+             ADD job_id (any) OPT ANY
+             ADD job_title (any) OPT ANY
+             ADD min_salary (any) OPT ANY
+             ADD max_salary (any) OPT ANY
+        )
+        OUTPUTLIST (job_id, job_title, max_salary, min_salary
+        )
+        WRAPPER (jdbc jobs)
+    );
+

@@ -1,0 +1,8 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE DATASOURCE DF new
+    FOLDER = '/seiglobalnewandold'
+    ROUTE LOCAL 'LocalConnection' '${databases.test.folder.seiglobalnewandold.datasources.df.new.ROUTE.LOCAL.PATH}'
+    COLUMNDELIMITER = ','
+    ENDOFLINEDELIMITER = '\n'
+    HEADER = TRUE;
+

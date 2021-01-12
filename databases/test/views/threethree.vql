@@ -1,0 +1,2 @@
+﻿CREATE OR REPLACE VIEW threethree AS SELECT jh.employee_id, avg(((jobs.min_salary+jobs.max_salary)/2)) AS avg_salary FROM job_history AS jh INNER JOIN jobs AS jobs ON jh.job_id = jobs.job_id  GROUP BY jh.employee_id;
+

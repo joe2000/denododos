@@ -1,0 +1,43 @@
+﻿CREATE OR REPLACE WRAPPER DF v
+    FOLDER = '/replacemap'
+    DATASOURCENAME=v
+    OUTPUTSCHEMA (
+        id = 'id' (OPT),
+        text_block = 'text_block' (OPT)
+    );
+
+CREATE OR REPLACE TABLE v I18N us_est (
+        id:text,
+        text_block:text
+    )
+    FOLDER = '/replacemap'
+    DESCRIPTION = 'DROP MAP simple "daysOfTheWeek";
+
+CREATE MAP simple "daysOfTheWeek" (
+    ''Sunday'' = ''Sun''
+    ''Monday'' = ''Mon''
+    ''Tuesday'' = ''Tus''
+    ''Wednesday'' =  ''Wed''
+    ''Thursday'' = ''Thur''
+    ''Friday'' = ''Fri''
+    ''Saturday'' = ''Sat''
+    ''Sunday'' = ''Sun'' 
+);
+
+
+SELECT text_block
+    , replacemap (text_block, ''daysOfTheWeek'') as text_block_with_full_name
+FROM V;'
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD v(
+        I18N us_est
+        CONSTRAINTS (
+             ADD id (=,in) OPT ANY
+             ADD text_block (=,in) OPT ANY
+        )
+        OUTPUTLIST (id, text_block
+        )
+        WRAPPER (df v)
+    );
+

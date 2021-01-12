@@ -1,0 +1,6 @@
+﻿CREATE OR REPLACE ASSOCIATION customer_store_sales REFERENTIAL CONSTRAINT 
+FOLDER = '/seicachetest'
+    ENDPOINT store_sales customer PRINCIPAL (0,1)
+    ENDPOINT customer store_sales (0,*)
+    ADD MAPPING c_customer_sk=ss_customer_sk;
+

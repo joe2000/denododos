@@ -1,0 +1,2 @@
+﻿CREATE OR REPLACE VIEW i_employee FOLDER = '/https_and_postman' AS SELECT employee_id, email FROM big_data.hr_employees;
+

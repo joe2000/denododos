@@ -1,0 +1,8 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE DATASOURCE DF view_with_short_long
+    FOLDER = '/replacemap'
+    ROUTE LOCAL 'LocalConnection' '${databases.test.folder.replacemap.datasources.df.view_with_short_long.ROUTE.LOCAL.PATH}'
+    COLUMNDELIMITER = ','
+    ENDOFLINEDELIMITER = '\n'
+    HEADER = TRUE;
+

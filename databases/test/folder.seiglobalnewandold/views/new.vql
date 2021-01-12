@@ -1,0 +1,38 @@
+﻿CREATE OR REPLACE WRAPPER DF new
+    FOLDER = '/seiglobalnewandold'
+    DATASOURCENAME=new
+    OUTPUTSCHEMA (
+        pk = 'pk' (OPT),
+        a = 'a' (OPT),
+        b = 'b' (OPT),
+        c = 'c' (OPT),
+        d = 'd' (OPT),
+        e = 'e' (OPT)
+    );
+
+CREATE OR REPLACE TABLE new I18N us_est (
+        pk:text,
+        a:text,
+        b:text,
+        c:text,
+        d:text,
+        e:text
+    )
+    FOLDER = '/seiglobalnewandold'
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD new(
+        I18N us_est
+        CONSTRAINTS (
+             ADD pk (=,in) OPT ANY
+             ADD a (=,in) OPT ANY
+             ADD b (=,in) OPT ANY
+             ADD c (=,in) OPT ANY
+             ADD d (=,in) OPT ANY
+             ADD e (=,in) OPT ANY
+        )
+        OUTPUTLIST (a, b, c, d, e, pk
+        )
+        WRAPPER (df new)
+    );
+

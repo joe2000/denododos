@@ -1,0 +1,78 @@
+﻿CREATE OR REPLACE WRAPPER JSON postman
+    FOLDER = '/https_and_postman'
+    DATASOURCENAME=postman
+    TUPLEROOT '/JSONFile'
+    OUTPUTSCHEMA (jsonfile = 'JSONFile' : REGISTER OF (
+        jsonarray = 'JSONArray' : ARRAY OF (
+            jsonarray = 'JSONArray' : REGISTER OF (
+                id = 'id' : 'java.lang.Integer',
+                name = 'name' : 'java.lang.String',
+                username = 'username' : 'java.lang.String',
+                email = 'email' : 'java.lang.String',
+                address = 'address' : REGISTER OF (
+                    street = 'street' : 'java.lang.String',
+                    suite = 'suite' : 'java.lang.String',
+                    city = 'city' : 'java.lang.String',
+                    zipcode = 'zipcode' : 'java.lang.String',
+                    geo = 'geo' : REGISTER OF (
+                        lat = 'lat' : 'java.lang.String',
+                        lng = 'lng' : 'java.lang.String'
+                    )
+                ),
+                phone = 'phone' : 'java.lang.String',
+                website = 'website' : 'java.lang.String',
+                company = 'company' : REGISTER OF (
+                    name = 'name' : 'java.lang.String',
+                    catchphrase = 'catchPhrase' : 'java.lang.String',
+                    bs = 'bs' : 'java.lang.String'
+                )
+            )
+        )
+    )
+    );
+
+CREATE OR REPLACE TYPE postman_jsonarray_jsonarray_address_geo AS REGISTER OF (lat:text, lng:text);
+
+CREATE OR REPLACE TYPE postman_jsonarray_jsonarray_address AS REGISTER OF (street:text, suite:text, city:text, zipcode:text, geo:postman_jsonarray_jsonarray_address_geo);
+
+CREATE OR REPLACE TYPE postman_jsonarray_jsonarray_company AS REGISTER OF (name:text, catchphrase:text, bs:text);
+
+CREATE OR REPLACE TYPE postman_jsonarray_jsonarray AS REGISTER OF (id:int, name:text, username:text, email:text, address:postman_jsonarray_jsonarray_address, phone:text, website:text, company:postman_jsonarray_jsonarray_company);
+
+CREATE OR REPLACE TYPE postman_jsonarray AS ARRAY OF postman_jsonarray_jsonarray;
+
+CREATE OR REPLACE TABLE postman I18N us_est (
+        jsonarray:postman_jsonarray
+    )
+    FOLDER = '/https_and_postman'
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD postman(
+        I18N us_est
+        CONSTRAINTS (
+             ADD jsonarray NOS ZERO ()
+             ADD jsonarray NOS ZERO ()
+             ADD jsonarray.id NOS ZERO ()
+             ADD jsonarray.name NOS ZERO ()
+             ADD jsonarray.username NOS ZERO ()
+             ADD jsonarray.email NOS ZERO ()
+             ADD jsonarray.address NOS ZERO ()
+             ADD jsonarray.address.street NOS ZERO ()
+             ADD jsonarray.address.suite NOS ZERO ()
+             ADD jsonarray.address.city NOS ZERO ()
+             ADD jsonarray.address.zipcode NOS ZERO ()
+             ADD jsonarray.address.geo NOS ZERO ()
+             ADD jsonarray.address.geo.lat NOS ZERO ()
+             ADD jsonarray.address.geo.lng NOS ZERO ()
+             ADD jsonarray.phone NOS ZERO ()
+             ADD jsonarray.website NOS ZERO ()
+             ADD jsonarray.company NOS ZERO ()
+             ADD jsonarray.company.name NOS ZERO ()
+             ADD jsonarray.company.catchphrase NOS ZERO ()
+             ADD jsonarray.company.bs NOS ZERO ()
+        )
+        OUTPUTLIST (jsonarray
+        )
+        WRAPPER (json postman)
+    );
+

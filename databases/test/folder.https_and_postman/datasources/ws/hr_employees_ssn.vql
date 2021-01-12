@@ -1,0 +1,9 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE DATASOURCE WS hr_employees_ssn
+    FOLDER = '/https_and_postman'
+    WSDLURI = '${databases.test.folder.https_and_postman.datasources.ws.hr_employees_ssn.WSDLURI}'
+    MAXCONNECTIONS 50
+    CONNECTIONPOOLTIMEOUT 0
+    AUTHENTICATION OFF
+    PROXY OFF;
+

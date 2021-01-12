@@ -1,0 +1,22 @@
+﻿CREATE OR REPLACE REST WEBSERVICE i_employee
+    CONNECTION (
+        CHUNKSIZE = 1000
+        CHUNKTIMEOUT = 90000
+        QUERYTIMEOUT = 9000000
+        POOLENABLED = true
+        POOLINITSIZE = 0
+        POOLMAXACTIVE = 30
+    )
+    DEFAULTREPRESENTATION = JSON
+    SUPPORTEDREPRESENTATIONS (XML, JSON)
+    RESOURCES (
+        VIEW i_employee FIELDS (
+            employee_id : 'int', 
+            email : 'text'
+        )
+    )
+    OPTIONS ( NULLVALUESASEMPTYXMLELEMENTS = false
+        PROCESS_FUNCTIONS_IN_SELECT_PARAMETER = true ) 
+    OPENAPI2 ( API_VERSION = '1.0.0' ) 
+    FOLDER = '/https_and_postman';
+

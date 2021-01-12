@@ -1,0 +1,2 @@
+﻿CREATE OR REPLACE VIEW twotwo AS SELECT employee_id, count(*) AS numjobs FROM job_history GROUP BY employee_id;
+

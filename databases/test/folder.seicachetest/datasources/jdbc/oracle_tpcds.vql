@@ -1,0 +1,46 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE DATASOURCE JDBC oracle_tpcds
+    FOLDER = '/seicachetest'
+    DRIVERCLASSNAME = 'oracle.jdbc.OracleDriver'
+    DATABASEURI = '${databases.test.folder.seicachetest.datasources.jdbc.oracle_tpcds.DATABASEURI}'
+    USERNAME = '${databases.test.folder.seicachetest.datasources.jdbc.oracle_tpcds.USERNAME}'
+    USERPASSWORD = '${databases.test.folder.seicachetest.datasources.jdbc.oracle_tpcds.USERPASSWORD}' ${databases.test.folder.seicachetest.datasources.jdbc.oracle_tpcds.USERPASSWORD.ENCRYPTED}
+    CLASSPATH = 'oracle-11g'
+    DATABASENAME = 'oracle'
+    DATABASEVERSION = '11g'
+    FETCHSIZE = 1000
+    VALIDATIONQUERY = 'SELECT COUNT(*) FROM SYS.DUAL'
+    INITIALSIZE = 4
+    MAXIDLE = -1
+    MINIDLE = 0
+    MAXACTIVE = 20
+    EXHAUSTEDACTION = 1
+    TESTONBORROW = true
+    TESTONRETURN = false
+    TESTWHILEIDLE = false
+    TIMEBETWEENEVICTION = -1
+    NUMTESTPEREVICTION = 3
+    MINEVICTABLETIME = 1800000
+    POOLPREPAREDSTATEMENTS = false
+    MAXOPENPREPAREDSTATEMENTS = -1
+    DATA_LOAD_CONFIGURATION (
+        BATCHINSERTSIZE = 200
+        BULK_LOAD_CONFIGURATION (
+            WORK_DIR = 'c:\Denodo\cachework'
+            SQLLDR_EXECUTABLE_LOCATION = 'C:\oraclexe\app\oracle\product\11.2.0\server\bin\sqlldr.exe'
+        )
+        USEEXTERNALTABLES ( 
+            ONMOVEREAD = false,
+            ONMOVEWRITE = true
+        )
+    )
+    PROCESSING_UNITS = 8
+    CPUS_PER_PROCESSING_UNIT = 8
+    DESCRIPTION  = 'test'
+    SOURCECONFIGURATION (
+        allowliteralasparameter = false,
+        delegateprojectsubquery = false,
+        delegateaggregatefunctionslist = (avg, count, max, min, stdev, stdevp, sum, var, varp),
+        delegatescalarfunctionslist = (abs, acos, addday, addhour, addminute, addmonth, addsecond, addweek, addyear, array_to_string(evaluate_literal), ascii, asin, atan, atan2, case, cast, ceil, char, coalesce, concat, cos, cot, current_date, degrees, div, exp, firstdayofmonth, firstdayofweek, floor, formatdate, getday, getdayofweek, getdayofyear, getdaysbetween, gethour, getmillisecond, getminute, getmonth, getmonthsbetween, getquarter, getsecond, getsession(evaluate_literal), gettimeinmillis, getweek, getyear, instr, lastdayofmonth, lastdayofweek, len, ln, log, lower, ltrim, max, min, mod, mult, nextweekday, now, nullif, pi, position, pow, power, previousweekday, radians, regexp, removeaccents, repeat, replace, round, rtrim, sign, sin, sql_trim, sqrt, substr, substring, subtract, sum, tan, textcat, textconstant, to_date, to_interval_day_second, to_interval_year_month, to_localdate, to_timestamp, to_timestamptz, trim, trunc, upper, xmlquery, xpath)
+    );
+

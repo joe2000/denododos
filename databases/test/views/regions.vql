@@ -1,0 +1,30 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE WRAPPER JDBC regions
+    DATASOURCENAME=oracle_tpcds_copy
+    SCHEMANAME='${databases.test.views.jdbc.regions.SCHEMANAME}' 
+    RELATIONNAME='REGIONS' 
+    OUTPUTSCHEMA (
+        region_id = 'REGION_ID' :'java.math.BigDecimal' (OPT) (sourcetyperadix='10', sourcetypeid='3', sourcetypename='NUMBER')  NOT NULL SORTABLE,
+        region_name = 'REGION_NAME' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='25', sourcetypeid='12', sourcetypename='VARCHAR2')  SORTABLE
+    )
+    CONSTRAINT 'REG_ID_PK' PRIMARY KEY ( 'REGION_ID' )
+    INDEX 'REG_ID_PK' CLUSTER UNIQUE PRIMARY ( 'REGION_ID' );
+
+CREATE OR REPLACE TABLE regions I18N us_est (
+        region_id:decimal (sourcetypeid = '3', sourcetyperadix = '10'),
+        region_name:text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '25')
+    )
+    CONSTRAINT 'REG_ID_PK' PRIMARY KEY ( 'region_id' )
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD regions(
+        I18N us_est
+        CONSTRAINTS (
+             ADD region_id (any) OPT ANY
+             ADD region_name (any) OPT ANY
+        )
+        OUTPUTLIST (region_id, region_name
+        )
+        WRAPPER (jdbc regions)
+    );
+

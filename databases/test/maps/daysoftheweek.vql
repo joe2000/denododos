@@ -1,0 +1,10 @@
+﻿CREATE OR REPLACE MAP simple "daysOfTheWeek" (
+    'Friday' = 'Fri'
+    'Monday' = 'Mon'
+    'Saturday' = 'Sat'
+    'Sunday' = 'Sun'
+    'Thursday' = 'Thur'
+    'Tuesday' = 'Tus'
+    'Wednesday' = 'Wed'
+);
+

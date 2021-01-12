@@ -1,0 +1,9 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE DATASOURCE JSON postman2
+    FOLDER = '/https_and_postman'
+    ROUTE HTTP 'http.CommonsHttpClientConnection,120000' GET '${databases.test.folder.https_and_postman.datasources.json.postman2.ROUTE.HTTP.URL}'
+    AUTHENTICATION BASIC ( 
+      USER '${databases.test.folder.https_and_postman.datasources.json.postman2.ROUTE.HTTP.USER}'
+      PASSWORD '${databases.test.folder.https_and_postman.datasources.json.postman2.ROUTE.HTTP.PASSWORD}' ${databases.test.folder.https_and_postman.datasources.json.postman2.ROUTE.HTTP.PASSWORD.ENCRYPTED} )
+    PROXY OFF;
+

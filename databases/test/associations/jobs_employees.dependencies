@@ -1,0 +1,3 @@
+﻿/databases/test/datasources/jdbc/oracle_tpcds_copy.vql
+/databases/test/views/jobs.vql
+/databases/test/views/employees.vql

@@ -1,0 +1,115 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE WRAPPER JDBC store
+    FOLDER = '/seicachetest'
+    DATASOURCENAME=oracle_tpcds
+    SCHEMANAME='${databases.test.folder.seicachetest.views.jdbc.store.SCHEMANAME}' 
+    RELATIONNAME='STORE' 
+    OUTPUTSCHEMA (
+        s_store_sk = 'S_STORE_SK' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  NOT NULL SORTABLE,
+        s_store_id = 'S_STORE_ID' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='16', sourcetypeid='1', sourcetypename='CHAR')  NOT NULL SORTABLE,
+        s_rec_start_date = 'S_REC_START_DATE' :'java.time.LocalDateTime' (OPT) (sourcetyperadix='10', sourcetypesize='7', sourcetypeid='93', sourcetypename='DATE')  SORTABLE,
+        s_rec_end_date = 'S_REC_END_DATE' :'java.time.LocalDateTime' (OPT) (sourcetyperadix='10', sourcetypesize='7', sourcetypeid='93', sourcetypename='DATE')  SORTABLE,
+        s_closed_date_sk = 'S_CLOSED_DATE_SK' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  SORTABLE,
+        s_store_name = 'S_STORE_NAME' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='50', sourcetypeid='12', sourcetypename='VARCHAR2')  SORTABLE,
+        s_number_employees = 'S_NUMBER_EMPLOYEES' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  SORTABLE,
+        s_floor_space = 'S_FLOOR_SPACE' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  SORTABLE,
+        s_hours = 'S_HOURS' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='20', sourcetypeid='1', sourcetypename='CHAR')  SORTABLE,
+        s_manager = 'S_MANAGER' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='40', sourcetypeid='12', sourcetypename='VARCHAR2')  SORTABLE,
+        s_market_id = 'S_MARKET_ID' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  SORTABLE,
+        s_geography_class = 'S_GEOGRAPHY_CLASS' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='100', sourcetypeid='12', sourcetypename='VARCHAR2')  SORTABLE,
+        s_market_desc = 'S_MARKET_DESC' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='100', sourcetypeid='12', sourcetypename='VARCHAR2')  SORTABLE,
+        s_market_manager = 'S_MARKET_MANAGER' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='40', sourcetypeid='12', sourcetypename='VARCHAR2')  SORTABLE,
+        s_division_id = 'S_DIVISION_ID' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  SORTABLE,
+        s_division_name = 'S_DIVISION_NAME' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='50', sourcetypeid='12', sourcetypename='VARCHAR2')  SORTABLE,
+        s_company_id = 'S_COMPANY_ID' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='38', sourcetypeid='3', sourcetypename='NUMBER')  SORTABLE,
+        s_company_name = 'S_COMPANY_NAME' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='50', sourcetypeid='12', sourcetypename='VARCHAR2')  SORTABLE,
+        s_street_number = 'S_STREET_NUMBER' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='10', sourcetypeid='12', sourcetypename='VARCHAR2')  SORTABLE,
+        s_street_name = 'S_STREET_NAME' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='60', sourcetypeid='12', sourcetypename='VARCHAR2')  SORTABLE,
+        s_street_type = 'S_STREET_TYPE' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='15', sourcetypeid='1', sourcetypename='CHAR')  SORTABLE,
+        s_suite_number = 'S_SUITE_NUMBER' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='10', sourcetypeid='1', sourcetypename='CHAR')  SORTABLE,
+        s_city = 'S_CITY' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='60', sourcetypeid='12', sourcetypename='VARCHAR2')  SORTABLE,
+        s_county = 'S_COUNTY' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='30', sourcetypeid='12', sourcetypename='VARCHAR2')  SORTABLE,
+        s_state = 'S_STATE' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='2', sourcetypeid='1', sourcetypename='CHAR')  SORTABLE,
+        s_zip = 'S_ZIP' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='10', sourcetypeid='1', sourcetypename='CHAR')  SORTABLE,
+        s_country = 'S_COUNTRY' :'java.lang.String' (OPT) (sourcetyperadix='10', sourcetypesize='20', sourcetypeid='12', sourcetypename='VARCHAR2')  SORTABLE,
+        s_gmt_offset = 'S_GMT_OFFSET' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='2', sourcetyperadix='10', sourcetypesize='5', sourcetypeid='3', sourcetypename='NUMBER')  SORTABLE,
+        s_tax_precentage = 'S_TAX_PRECENTAGE' :'java.math.BigDecimal' (OPT) (sourcetypedecimals='2', sourcetyperadix='10', sourcetypesize='5', sourcetypeid='3', sourcetypename='NUMBER')  SORTABLE
+    )
+    CONSTRAINT 'SYS_C007079' PRIMARY KEY ( 'S_STORE_SK' )
+    CONSTRAINT 'S_CLOSE_DATE' FOREIGN KEY ( 'S_CLOSED_DATE_SK' ) 
+    REFERENCES 'EDW_TPCDS'.'DATE_DIM'( 'D_DATE_SK' )  ON DELETE RESTRICT NOT DEFERRABLE 
+    INDEX 'SYS_C007079' CLUSTER UNIQUE PRIMARY ( 'S_STORE_SK' );
+
+CREATE OR REPLACE TABLE store I18N us_est (
+        s_store_sk:decimal (sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        s_store_id:text (sourcetypeid = '1', sourcetyperadix = '10', sourcetypesize = '16'),
+        s_rec_start_date:timestamp (sourcetypeid = '93', sourcetyperadix = '10', sourcetypesize = '7'),
+        s_rec_end_date:timestamp (sourcetypeid = '93', sourcetyperadix = '10', sourcetypesize = '7'),
+        s_closed_date_sk:decimal (sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        s_store_name:text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '50'),
+        s_number_employees:decimal (sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        s_floor_space:decimal (sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        s_hours:text (sourcetypeid = '1', sourcetyperadix = '10', sourcetypesize = '20'),
+        s_manager:text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '40'),
+        s_market_id:decimal (sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        s_geography_class:text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '100'),
+        s_market_desc:text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '100'),
+        s_market_manager:text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '40'),
+        s_division_id:decimal (sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        s_division_name:text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '50'),
+        s_company_id:decimal (sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '38'),
+        s_company_name:text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '50'),
+        s_street_number:text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '10'),
+        s_street_name:text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '60'),
+        s_street_type:text (sourcetypeid = '1', sourcetyperadix = '10', sourcetypesize = '15'),
+        s_suite_number:text (sourcetypeid = '1', sourcetyperadix = '10', sourcetypesize = '10'),
+        s_city:text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '60'),
+        s_county:text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '30'),
+        s_state:text (sourcetypeid = '1', sourcetyperadix = '10', sourcetypesize = '2'),
+        s_zip:text (sourcetypeid = '1', sourcetyperadix = '10', sourcetypesize = '10'),
+        s_country:text (sourcetypeid = '12', sourcetyperadix = '10', sourcetypesize = '20'),
+        s_gmt_offset:decimal (sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '2', sourcetypesize = '5'),
+        s_tax_precentage:decimal (sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '2', sourcetypesize = '5')
+    )
+    FOLDER = '/seicachetest'
+    CONSTRAINT 'SYS_C007079' PRIMARY KEY ( 's_store_sk' )
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD store(
+        I18N us_est
+        CONSTRAINTS (
+             ADD s_store_sk (any) OPT ANY
+             ADD s_store_id (any) OPT ANY
+             ADD s_rec_start_date (any) OPT ANY
+             ADD s_rec_end_date (any) OPT ANY
+             ADD s_closed_date_sk (any) OPT ANY
+             ADD s_store_name (any) OPT ANY
+             ADD s_number_employees (any) OPT ANY
+             ADD s_floor_space (any) OPT ANY
+             ADD s_hours (any) OPT ANY
+             ADD s_manager (any) OPT ANY
+             ADD s_market_id (any) OPT ANY
+             ADD s_geography_class (any) OPT ANY
+             ADD s_market_desc (any) OPT ANY
+             ADD s_market_manager (any) OPT ANY
+             ADD s_division_id (any) OPT ANY
+             ADD s_division_name (any) OPT ANY
+             ADD s_company_id (any) OPT ANY
+             ADD s_company_name (any) OPT ANY
+             ADD s_street_number (any) OPT ANY
+             ADD s_street_name (any) OPT ANY
+             ADD s_street_type (any) OPT ANY
+             ADD s_suite_number (any) OPT ANY
+             ADD s_city (any) OPT ANY
+             ADD s_county (any) OPT ANY
+             ADD s_state (any) OPT ANY
+             ADD s_zip (any) OPT ANY
+             ADD s_country (any) OPT ANY
+             ADD s_gmt_offset (any) OPT ANY
+             ADD s_tax_precentage (any) OPT ANY
+        )
+        OUTPUTLIST (s_city, s_closed_date_sk, s_company_id, s_company_name, s_country, s_county, s_division_id, s_division_name, s_floor_space, s_geography_class, s_gmt_offset, s_hours, s_manager, s_market_desc, s_market_id, s_market_manager, s_number_employees, s_rec_end_date, s_rec_start_date, s_state, s_store_id, s_store_name, s_store_sk, s_street_name, s_street_number, s_street_type, s_suite_number, s_tax_precentage, s_zip
+        )
+        WRAPPER (jdbc store)
+    );
+

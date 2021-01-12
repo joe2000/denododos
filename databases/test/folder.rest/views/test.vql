@@ -47,6 +47,7 @@ CREATE OR REPLACE TABLE test I18N us_est (
     )
     FOLDER = '/rest'
     CACHE OFF
+    BATCHSIZEINCACHE DEFAULT
     TIMETOLIVEINCACHE DEFAULT
     ADD SEARCHMETHOD test(
         I18N us_est
@@ -70,5 +71,6 @@ CREATE OR REPLACE TABLE test I18N us_est (
         OUTPUTLIST (jsonarray
         )
         WRAPPER (json test)
-    );
+    )
+    ATSOURCE_THROUGH_VDP_ONLY;
 

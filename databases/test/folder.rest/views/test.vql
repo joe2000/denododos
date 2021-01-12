@@ -1,0 +1,74 @@
+﻿CREATE OR REPLACE WRAPPER JSON test
+    FOLDER = '/rest'
+    DATASOURCENAME=test
+    TUPLEROOT '/JSONFile'
+    OUTPUTSCHEMA (jsonfile = 'JSONFile' : REGISTER OF (
+        jsonarray = 'JSONArray' : ARRAY OF (
+            jsonarray = 'JSONArray' : REGISTER OF (
+                id = 'id' : 'java.lang.Long',
+                category = 'category' : REGISTER OF (
+                    id = 'id' : 'java.lang.Long',
+                    name = 'name' : 'java.lang.String'
+                ),
+                name = 'name' : 'java.lang.String',
+                photourls = 'photoUrls' : ARRAY OF (
+                    photourls = 'photoUrls' : REGISTER OF (
+                        field_0 = 'field_0' : 'java.lang.String'
+                    )
+                ),
+                tags = 'tags' : ARRAY OF (
+                    tags = 'tags' : REGISTER OF (
+                        id = 'id' : 'java.lang.Long',
+                        name = 'name' : 'java.lang.String'
+                    )
+                ),
+                status = 'status' : 'java.lang.String'
+            )
+        )
+    )
+    );
+
+CREATE OR REPLACE TYPE test_jsonarray_jsonarray_category AS REGISTER OF (id:long, name:text);
+
+CREATE OR REPLACE TYPE test_jsonarray_jsonarray_photourls_photourls AS REGISTER OF (field_0:text);
+
+CREATE OR REPLACE TYPE test_jsonarray_jsonarray_photourls AS ARRAY OF test_jsonarray_jsonarray_photourls_photourls;
+
+CREATE OR REPLACE TYPE test_jsonarray_jsonarray_tags_tags AS REGISTER OF (id:long, name:text);
+
+CREATE OR REPLACE TYPE test_jsonarray_jsonarray_tags AS ARRAY OF test_jsonarray_jsonarray_tags_tags;
+
+CREATE OR REPLACE TYPE test_jsonarray_jsonarray AS REGISTER OF (id:long, category:test_jsonarray_jsonarray_category, name:text, photourls:test_jsonarray_jsonarray_photourls, tags:test_jsonarray_jsonarray_tags, status:text);
+
+CREATE OR REPLACE TYPE test_jsonarray AS ARRAY OF test_jsonarray_jsonarray;
+
+CREATE OR REPLACE TABLE test I18N us_est (
+        jsonarray:test_jsonarray
+    )
+    FOLDER = '/rest'
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD test(
+        I18N us_est
+        CONSTRAINTS (
+             ADD jsonarray NOS ZERO ()
+             ADD jsonarray NOS ZERO ()
+             ADD jsonarray.id NOS ZERO ()
+             ADD jsonarray.category NOS ZERO ()
+             ADD jsonarray.category.id NOS ZERO ()
+             ADD jsonarray.category.name NOS ZERO ()
+             ADD jsonarray.name NOS ZERO ()
+             ADD jsonarray.photourls NOS ZERO ()
+             ADD jsonarray.photourls NOS ZERO ()
+             ADD jsonarray.photourls.field_0 NOS ZERO ()
+             ADD jsonarray.tags NOS ZERO ()
+             ADD jsonarray.tags NOS ZERO ()
+             ADD jsonarray.tags.id NOS ZERO ()
+             ADD jsonarray.tags.name NOS ZERO ()
+             ADD jsonarray.status NOS ZERO ()
+        )
+        OUTPUTLIST (jsonarray
+        )
+        WRAPPER (json test)
+    );
+

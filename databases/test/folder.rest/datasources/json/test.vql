@@ -3,5 +3,6 @@ CREATE OR REPLACE DATASOURCE JSON test
     FOLDER = '/rest'
     ROUTE HTTP 'http.CommonsHttpClientConnection,120000' GET '${databases.test.folder.rest.datasources.json.test.ROUTE.HTTP.URL}'
     AUTHENTICATION OFF
-    PROXY OFF;
+    PROXY OFF
+    DESCRIPTION = 'some notes here';
 
